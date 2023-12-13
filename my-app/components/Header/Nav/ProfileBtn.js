@@ -1,32 +1,72 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars } from '@fortawesome/free-solid-svg-icons';
-import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
+import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons';
+
 import Link from "next/link";
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+import MenuLogin from './MenuList/MenuLogin';
+import MenuLogout from './MenuList/MenuLogout';
+import LoginModal from '../modals/Login';
+
+// 지구본 버튼 누르면 언어, 통화 변경할 수 있는 모달창
+
+// 새소식 버튼 누르면 새소식 모달창
+// 로그인 버튼 누르면 로그인 모달창
+// 회원가입 버튼 누르면 회원가입 모달창
+// 메뉴바를 제외한 부분을 클릭하면 메뉴바가 닫히도록 구현하기
 
 export default function ProfileBtn() {
     const [isListVisible, setIsListVisible] = useState(false);
 
-    const toggleList = () => {
+    const menuRef = useRef(null);
+
+    const toggleMenu = () => {
         setIsListVisible(!isListVisible);
     }
 
+    const closeMenu = () => {
+        if(isListVisible) {
+            setIsListVisible(false);
+        }
+    }
+
+    const openLoginModal = () => {
+        setIsLoginModalOpen(true);
+        closeMenu();
+    };
+
+    const handleClickOutside = (event) => {
+        if (menuRef.current && !menuRef.current.contains(event.target)) {
+          closeMenu();
+        }
+      };
+    
+      // 
+      useEffect(() => {
+        document.addEventListener('click', handleClickOutside);
+    
+        return () => {
+          document.removeEventListener('click', handleClickOutside);
+        };
+    }, [isListVisible]);
+
     return (
-        <button type="button" onClick={toggleList} className={`ml-[4px] border-[1px] border-solid border-[#DDDDDD] pl-[14px] pr-[8px] flex justify-center items-center gap-[14px] cursor-pointer rounded-[40px] hover:shadow-md ${isListVisible ? 'active:shadow-md' : ''}`}>
-            <div className='text-[16px]'>
-                <FontAwesomeIcon icon={faBars} />
-            </div>
-                <div className='text-[32px]'>
-                <FontAwesomeIcon icon={faCircleUser} />
-            </div>
-            <div className={`border-[1px] border-solid border-black relative ${isListVisible ? 'block' : 'hidden'}`}>
-                <ul className='absolute top-[100px] right-[80px]'>
-                    <li>로그인</li>
-                    <li>회원 가입</li>
-                    <li>당신의 공간을 에어비앤비하세요</li>
-                    <li>도움말 센터</li>
-                </ul>
-            </div>
-        </button>
+        <div onClick={closeMenu}>
+            <button type="button" onClick={toggleMenu} ref={menuRef} className={`ml-[4px] border-[1px] border-solid border-[#DDDDDD] pl-[14px] pr-[8px] flex justify-center items-center cursor-pointer rounded-[40px] hover:shadow-md ${isListVisible ? 'shadow-md relative' : ''}`}>
+                <div className='text-[16px] mr-[14px]'>
+                    <FontAwesomeIcon icon={faBars} />
+                </div>
+                    <div className='text-[32px]'>
+                    <FontAwesomeIcon icon={faCircleUser} />
+                </div>
+                {/* 비로그인 상태일 때 */}
+                {/* 로그인 기능을 만들면 비로그인 때만 보이도록 조건 추가하기 */}
+                {/* {isListVisible && <MenuLogout />} */}
+
+                {/* 로그인 상태일 때 */}
+                {/* 로그인 기능을 만들면 로그인일 때만 보이도록 조건 추가하기 */}
+                {isListVisible && <MenuLogin />}
+            </button>
+        </div>
     )
 }

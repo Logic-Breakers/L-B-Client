@@ -1,7 +1,10 @@
+import Title from "@/components/Title"
+
 export default function Host_Homes() {
     return (
         <>
-            host-homes page
+            <Title text={'에어비앤비 숙소 호스트가 되어보세요'}/>
+            당신의 공간을 에어비앤비하세요 페이지
         </>
     )
 }

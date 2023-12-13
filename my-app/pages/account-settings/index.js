@@ -1,9 +1,11 @@
 import Link from "next/link";
+import Title from "@/components/Title";
 import Header_Account from "@/components/Header/Header_Account";
 
 export default function Account_Settings() {
     return (
         <>
+            <Title text={'계정관리 - 에어비앤비'}/>
             <Header_Account />
             <main className='h-[100vh]'>
                 <div>계정</div>
