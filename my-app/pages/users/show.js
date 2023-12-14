@@ -7,7 +7,6 @@ export default function UserInfo(){
         <>
             <Title text={'게스트 프로필 - 에어비앤비'}/>
             <Header_Account />
-            유저 정보 페이지
         </>
     )
 }

@@ -1,4 +1,3 @@
-import Head from "next/head";
 import Header_Account from "@/components/Header/Header_Account";
 import Title from "@/components/Title";
 
