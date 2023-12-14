@@ -4,8 +4,8 @@ import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import Link from "next/link";
 import { useState, useEffect, useRef } from 'react';
 
-import MenuLogin from './MenuList/MenuLogin';
-import MenuLogout from './MenuList/MenuLogout';
+import MenuLogin from './Menu/MenuLogin';
+import MenuLogout from './Menu/MenuLogout';
 import LoginModal from '../modals/Login';
 
 // 지구본 버튼 누르면 언어, 통화 변경할 수 있는 모달창

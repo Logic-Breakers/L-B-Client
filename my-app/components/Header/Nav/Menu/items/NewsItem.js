@@ -1,5 +1,5 @@
 // '새소식' 메뉴 리스트 아이템
-export default function NewsMenuItem({text}) {
+export default function NewsItem({text}) {
     return (
             <li className='px-[20px] py-[12px] hover:cursor-pointer hover:bg-gray-100 border-b-[1px] border-solid border-[#DDDDDD] font-[500]'>
                 <span>
