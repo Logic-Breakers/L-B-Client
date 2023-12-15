@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Title from "@/components/Title";
 import HeaderBasic from "@/components/Header/HeaderBasic";
+import Footer from "@/components/Footer/Footer";
 import AccountItem from "@/components/Account/AccountItem";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -79,6 +80,7 @@ export default function AccountSettings() {
                     </div>
                 </div>
             </main>
+            <Footer />
         </>
     )
 }
