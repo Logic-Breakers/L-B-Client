@@ -2,7 +2,7 @@
 export default function CeilingBarItem({text}) {
     return (
         <li className='px-[20px] py-[12px] hover:cursor-pointer hover:bg-gray-100 border-t-[1px] border-solid border-[#DDDDDD]'>
-            <span className='text-[#5e5e5e]'>
+            <span className='text-[var(--menu-gray-color)]'>
                 {text}
             </span>
         </li>

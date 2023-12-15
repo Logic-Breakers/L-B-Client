@@ -52,7 +52,7 @@ export default function ProfileBtn() {
 
     return (
         <div onClick={closeMenu}>
-            <button type="button" onClick={toggleMenu} ref={menuRef} className={`ml-[4px] border-[1px] border-solid border-[#DDDDDD] pl-[14px] pr-[8px] flex justify-center items-center cursor-pointer rounded-[40px] hover:shadow-md ${isListVisible ? 'shadow-md relative' : ''}`}>
+            <button type="button" onClick={toggleMenu} ref={menuRef} className={`border-[1px] border-solid border-[#DDDDDD] ml-[4px] pl-[14px] pr-[8px] flex flex-row justify-center items-center cursor-pointer rounded-[40px] hover:shadow-md ${isListVisible ? 'shadow-md relative' : ''}`}>
                 <div className='text-[16px] mr-[14px]'>
                     <FontAwesomeIcon icon={faBars} />
                 </div>

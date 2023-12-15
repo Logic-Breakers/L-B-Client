@@ -1,6 +1,6 @@
 import Title from "@/components/Title"
 
-export default function Host_Homes() {
+export default function HostHomes() {
     return (
         <>
             <Title text={'에어비앤비 숙소 호스트가 되어보세요'}/>

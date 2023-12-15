@@ -4,10 +4,16 @@
 
 :root {
     --brand-color:#FF385C;
+    --menu-gray-color: #5e5e5e;
 }
+
 
 * {
     box-sizing: border-box;
+}
+
+body {
+    background-color: #fff;
 }
 
 li {
