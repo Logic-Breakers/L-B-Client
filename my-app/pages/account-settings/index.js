@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Title from "@/components/Title";
-import HeaderAccount from "@/components/Header/HeaderAccount";
+import HeaderBasic from "@/components/Header/HeaderBasic";
 import AccountItem from "@/components/Account/AccountItem";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,7 +19,7 @@ export default function AccountSettings() {
     return (
         <>
             <Title text={'계정 관리 - 에어비앤비'}/>
-            <HeaderAccount />
+            <HeaderBasic />
 
             {/* 1128px 이상인 경우 */}
             {/* 나중에 userName, email 받기 */}
