@@ -76,12 +76,12 @@ export default function Footer(){
                                     <FontAwesomeIcon icon={faSquareGithub} />
                                 </li>
                             </Link>
-                            <Link href={'/'} target="_blank" title="[BE] Developer 조상아"  className="text-[30px] text-green-700 hover:animate-bounce">
+                            <Link href={'https://github.com/KSJ-0'} target="_blank" title="[BE] Developer 김수정"  className="text-[30px] text-green-700 hover:animate-bounce">
                                 <li>
                                     <FontAwesomeIcon icon={faSquareGithub} />
                                 </li>
                             </Link>
-                            <Link href={'/'} target="_blank" title="[BE] Developer 김수정"  className="text-[30px] text-blue-600 hover:animate-bounce">
+                            <Link href={'https://github.com/SalguJam'} target="_blank" title="[BE] Developer 조상아"  className="text-[30px] text-blue-600 hover:animate-bounce">
                                 <li>
                                     <FontAwesomeIcon icon={faSquareGithub} />
                                 </li>
