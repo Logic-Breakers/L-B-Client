@@ -2,19 +2,12 @@ import Link from "next/link";
 import Title from "@/components/Title";
 import HeaderBasic from "@/components/Header/HeaderBasic";
 import Footer from "@/components/Footer/Footer";
+import NavApp from "@/components/Header/Nav/NavApp";
 import AccountItem from "@/components/Account/AccountItem";
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faAddressCard } from '@fortawesome/free-regular-svg-icons';
-import { faShieldHalved } from '@fortawesome/free-solid-svg-icons';
-import { faMoneyBill } from '@fortawesome/free-solid-svg-icons';
-import { faFile } from '@fortawesome/free-regular-svg-icons';
-import { faVolumeLow } from '@fortawesome/free-solid-svg-icons';
-import { faEye } from '@fortawesome/free-regular-svg-icons';
-import { faToggleOff } from '@fortawesome/free-solid-svg-icons';
-import { faBriefcase } from '@fortawesome/free-solid-svg-icons';
-import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
-import { faGift } from '@fortawesome/free-solid-svg-icons';
+import { faAddressCard, faFile, faEye } from '@fortawesome/free-regular-svg-icons';
+import { faShieldHalved, faMoneyBill, faVolumeLow, faToggleOff, faBriefcase, faChartSimple, faGift } from '@fortawesome/free-solid-svg-icons';
 
 export default function AccountSettings() {
     return (
@@ -22,10 +15,9 @@ export default function AccountSettings() {
             <Title text={'계정 관리 - 에어비앤비'}/>
             <HeaderBasic />
 
-            {/* 1128px 이상인 경우 */}
             {/* 나중에 userName, email 받기 */}
-            <main className='flex flex-row justify-center items-center w-full'>
-                <div className="w-[1048px] px-[8px] mt-[135px]">
+            <main className='bnb_sm:hidden flex flex-row justify-center items-center w-full bnb_md_lg:px-[24px]'>
+                <div className="bnb_lx:w-[1048px] bnb_md_lg:[696px] px-[8px] mt-[135px]">
                     <div className="mb-[65px]">
                         <h1 className="font-[500] text-[32px]">
                             계정
@@ -46,7 +38,7 @@ export default function AccountSettings() {
                     </div>
                         
                     {/* 각각의 페이지 만들고 라우터 시키기 */}
-                    <div className="grid grid-cols-3 grid-rows-4 gap-[16px]">
+                    <div className="grid bnb_xl:grid-cols-3 bnb_md_lg:grid-cols-2 grid-rows-auto gap-[16px] ">
                         <AccountItem link={'/account-settings/personal-info'} icon={<FontAwesomeIcon icon={faAddressCard} />} itemName={'개인정보'} itemDetail={'개인정보 및 연락처를 알려주세요'}/>
 
                         <AccountItem link={'/account-settings/login-and-security'} icon={<FontAwesomeIcon icon={faShieldHalved} />} itemName={'로그인 및 보안'} itemDetail={'비밀번호를 변경하고 계정을 안정하게 보호하세요'}/>
@@ -81,6 +73,7 @@ export default function AccountSettings() {
                 </div>
             </main>
             <Footer />
+            <NavApp />
         </>
     )
 }
