@@ -6,7 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import MenuLogin from './Menu/MenuLogin';
 import MenuLogout from './Menu/MenuLogout';
-import LoginModal from '../Modals/Login';
+import LoginModal from '../Modals/LoginModal';
 
 // 지구본 버튼 누르면 언어, 통화 변경할 수 있는 모달창
 
