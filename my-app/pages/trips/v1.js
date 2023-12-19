@@ -3,6 +3,7 @@ import HeaderBasic from "@/components/Header/HeaderBasic";
 import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
 import SearchBtn from "@/components/Buttons/tripsPage/SerachBtn";
+import NavApp from "@/components/Header/Nav/NavApp";
 
 export default function Trips() {
     return (
@@ -10,9 +11,9 @@ export default function Trips() {
             <Title text={'여행 목록 - 에어비앤비'}/>
             <HeaderBasic/>
             <main className='flex flex-row justify-center w-full h-[100vh]'>
-                <div className="w-[1048px] px-[8px] mt-[90px]">
+                <div className="w-[100%] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] bnb_md_xl:mt-[70px]">
                     <div>
-                        <h1 className="font-[500] text-[32px] my-[20px]">
+                        <h1 className="font-[500] text-[32px] pt-[36px] pb-[24px]">
                             여행
                         </h1>
                         <div className="border-y-[1px] border-solid border-[#cccccc] pt-[32px] pb-[48px]">
@@ -39,6 +40,7 @@ export default function Trips() {
                     </div>
                 </div>                    
             </main>
+            <NavApp />
             <Footer />
         </>
     )
