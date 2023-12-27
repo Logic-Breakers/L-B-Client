@@ -12,11 +12,13 @@ module.exports = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+
       boxShadow: {
         'xx': '0px 7px 29px 0px rgba(100, 100, 111, 0.2)',
         'xxx': '0px 5px 15px rgba(0, 0, 0, 0.35)',
         'cc' : '0px 1px 2px 0px rgba(60, 64, 67, 0.3), 0px 2px 6px 2px rgba(60, 64, 67, 0.15)',
       },
+
       screens: {
         'bnb_sm': { max: "743px" },
         'bnb_md': { min: "744px", max: "949px" },

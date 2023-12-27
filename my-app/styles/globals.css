@@ -5,6 +5,9 @@
 :root {
     --brand-color:#FF385C;
     --menu-gray-color: #5e5e5e;
+    
+    --modal-inner-bg: #fff;
+    --modal-outside-bg: rgba(0,0,0,0.5);
 }
 
 

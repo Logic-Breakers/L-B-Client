@@ -6,9 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 
 import MenuLogin from './Menu/MenuLogin';
 import MenuLogout from './Menu/MenuLogout';
-import LoginModal from '../Modals/LoginModal';
-
-// 지구본 버튼 누르면 언어, 통화 변경할 수 있는 모달창
+import LoginSignUpModal from '../Modals/LoginSignUpModal';
 
 // 새소식 버튼 누르면 새소식 모달창
 // 로그인 버튼 누르면 로그인 모달창
@@ -16,43 +14,36 @@ import LoginModal from '../Modals/LoginModal';
 // 메뉴바를 제외한 부분을 클릭하면 메뉴바가 닫히도록 구현하기
 
 export default function ProfileBtn() {
-    const [isListVisible, setIsListVisible] = useState(false);
+    const [showMenu, setShowMenu] = useState(false);
 
     const menuRef = useRef(null);
 
     const toggleMenu = () => {
-        setIsListVisible(!isListVisible);
+        setShowMenu(!showMenu);
     }
 
-    const closeMenu = () => {
-        if(isListVisible) {
-            setIsListVisible(false);
-        }
+    const closeMenu = (event) => {
+        setShowMenu(false);
     }
 
-    const openLoginModal = () => {
-        setIsLoginModalOpen(true);
-        closeMenu();
-    };
-
+    // 메뉴바 이외의 부분 클릭 시 메뉴바 닫히는 코드
     const handleClickOutside = (event) => {
         if (menuRef.current && !menuRef.current.contains(event.target)) {
           closeMenu();
         }
       };
     
-      // 
       useEffect(() => {
         document.addEventListener('click', handleClickOutside);
     
         return () => {
           document.removeEventListener('click', handleClickOutside);
         };
-    }, [isListVisible]);
+    }, [showMenu]);
 
     return (
-        <div onClick={closeMenu}>
-            <button type="button" onClick={toggleMenu} ref={menuRef} className={`border-[1px] border-solid border-[#DDDDDD] ml-[4px] pl-[14px] pr-[8px] flex flex-row justify-center items-center cursor-pointer rounded-[40px] hover:shadow-md ${isListVisible ? 'shadow-md relative' : ''}`}>
+        <div>
+            <div onClick={toggleMenu} ref={menuRef} className={`border-[1px] border-solid border-[#DDDDDD] ml-[4px] pl-[14px] pr-[8px] flex flex-row justify-center items-center cursor-pointer rounded-[40px] hover:shadow-md ${showMenu ? 'shadow-md relative' : ''}`}>
                 <div className='text-[16px] mr-[14px]'>
                     <FontAwesomeIcon icon={faBars} />
                 </div>
@@ -61,12 +52,12 @@ export default function ProfileBtn() {
                 </div>
                 {/* 비로그인 상태일 때 */}
                 {/* 로그인 기능을 만들면 비로그인 때만 보이도록 조건 추가하기 */}
-                {/* {isListVisible && <MenuLogout />} */}
+                {showMenu && <MenuLogout />}
 
                 {/* 로그인 상태일 때 */}
                 {/* 로그인 기능을 만들면 로그인일 때만 보이도록 조건 추가하기 */}
-                {isListVisible && <MenuLogin />}
-            </button>
+                {/* {showMenu && <MenuLogin />} */}
+            </div>
         </div>
     )
 }

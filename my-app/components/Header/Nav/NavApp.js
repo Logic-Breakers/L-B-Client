@@ -8,7 +8,6 @@ import Link from 'next/link';
 // App(w < 744px)
 export default function NavApp() {
     const router = useRouter();
-    console.log(router.pathname);
 
     return (
         <nav className='hidden bnb_sm:block border-t-[1px] border-solid border-[#DDDDDD] fixed bottom-0 left-0 w-[100%] bg-[#fff] z-[99] py-[10px]'>

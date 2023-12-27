@@ -8,7 +8,7 @@ export default function MenuLogin() {
     return (
         <div className='block absolute top-[120%] right-0 shadow-xx rounded-[15px] bg-[#fff] hover:cursor-default'>
             <ul className={`my-[8px] w-[250px] h-[425px] scroll flex flex-col justify-between text-left`}>
-                <NewsItem text={'겨울 업그레이드 기능'}/>
+                <NewsItem />
                 
                 <Link href={'/guest/inbox'}>
                     <BasicItem text={'메시지'} font_weight={500}/>
