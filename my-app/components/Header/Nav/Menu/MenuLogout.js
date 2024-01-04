@@ -14,7 +14,7 @@ export default function MenuLogout() {
         setShowLoginModal(true);
     }
     
-    const closeLoginModal = (event) => {
+    const closeLoginModal = () => {
         
         setShowLoginModal(false)
     }

@@ -18,8 +18,8 @@ export default function ProfileBtn() {
 
     const menuRef = useRef(null);
 
-    const toggleMenu = () => {
-        setShowMenu(!showMenu);
+    const openMenu = () => {
+        setShowMenu(true);
     }
 
     const closeMenu = (event) => {
@@ -43,7 +43,7 @@ export default function ProfileBtn() {
 
     return (
         <div>
-            <div onClick={toggleMenu} ref={menuRef} className={`border-[1px] border-solid border-[#DDDDDD] ml-[4px] pl-[14px] pr-[8px] flex flex-row justify-center items-center cursor-pointer rounded-[40px] hover:shadow-md ${showMenu ? 'shadow-md relative' : ''}`}>
+            <div onClick={openMenu} ref={menuRef} className={`border-[1px] border-solid border-[#DDDDDD] ml-[4px] pl-[14px] pr-[8px] flex flex-row justify-center items-center cursor-pointer rounded-[40px] hover:shadow-md ${showMenu ? 'shadow-md relative' : ''}`}>
                 <div className='text-[16px] mr-[14px]'>
                     <FontAwesomeIcon icon={faBars} />
                 </div>
