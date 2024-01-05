@@ -5,6 +5,6 @@ export default function BasicItem({text, font_weight=400, font_color ='black'}) 
             <span className={`font-[${font_weight}] text-[${font_color}]`}>
                 {text}
             </span>
-        </li>            
+        </li>
     )
 }
