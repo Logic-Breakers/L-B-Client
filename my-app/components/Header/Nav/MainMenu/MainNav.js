@@ -22,7 +22,7 @@ export default function MainNav() {
   return (
     <div className="flex justify-around">
       {userFilter.map((item) => (
-        <div key={1} className=" cursor-pointer">
+        <div key={1} className="mt-4 cursor-pointer mb-5">
           {item}
         </div>
       ))}
