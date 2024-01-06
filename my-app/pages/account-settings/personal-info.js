@@ -12,14 +12,28 @@ import { faEye } from '@fortawesome/free-regular-svg-icons';
 export default function PersonalInfo() {
     const [nameEdit, setNameEdit] = useState(false);
     const [emailEdit, setEmailEdit] = useState(false);
-
+    
     const handleNameEdit = () => {
-        setNameEdit(!nameEdit)
+        setNameEdit(!nameEdit);
+        setEmailEdit(false);
     }
     
     const handleEmailEdit = () => {
-        setEmailEdit(!emailEdit)
+        setEmailEdit(!emailEdit);
+        setNameEdit(false);
     }
+
+    const handleNameSubmit = (event) => {
+        event.preventDefault();
+    
+        console.log('Name submit');
+      }
+    
+      const handleEmailSubmit = (event) => {
+        event.preventDefault();
+    
+        console.log('Email submit');
+      }
 
 
     // 나중에 유저의 이름과 이메일 전화번호 등을 받아서 넣기
@@ -34,18 +48,76 @@ export default function PersonalInfo() {
                         
                         {/* 왼쪽 개인정보 변경 부분 */}
                         <article className="bnb_xl:w-[596px] bnb_md_lg:w-[58%] bnb_sm:w-full  ">
-                            <section className="py-[24px] border-b-[1px] flex flex-row justify-between items-start">
-                                <div className="">
-                                    <div>
-                                        실명
+                            <section className="py-[24px] border-b-[1px]">
+                                <div className="flex flex-row justify-between items-start ">
+                                    <div className="w-[95%]">
+                                        <div>
+                                            실명
+                                        </div>
+                                        <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                                            {nameEdit ? '허가증이나 여권 등 여행 서류에 기재되어 있는 이름을 말합니다.' : '이름 성'}
+                                        </div>
                                     </div>
-                                    <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
-                                        {nameEdit ? '허가증이나 여권 등 여행 서류에 기재되어 있는 이름을 말합니다.' : '이름 성'}
-                                    </div>
+                                    <button type="button" onClick={handleNameEdit} className="text-[14px] font-[500] underline">
+                                        {nameEdit ? '취소' : '수정'}
+                                    </button>
                                 </div>
-                                <button onClick={handleNameEdit} className="text-[14px] font-[500] underline">
-                                    {nameEdit ? '취소' : '수정'}
-                                </button>
+
+                                {nameEdit &&
+                                    <>
+                                        <form onSubmit={handleNameSubmit} className="flex flex-row justify-between gap-[20px] my-[20px]">
+                                            <label htmlFor="firstName" className="border-[1px] border-solid border-[#B0B0B0] rounded-[10px] w-[50%] h-[52px] px-[10px] py-[4px]">
+                                                <div className="text-[13px] text-[#888888]">
+                                                    이름
+                                                </div>
+                                                <input id="firstName" type="text" className="w-full">
+                                                </input>
+                                            </label>
+                                            <label htmlFor="lastName" className="border-[1px] border-solid border-[#B0B0B0] rounded-[10px] w-[50%] h-[52px] px-[10px] py-[4px]">
+                                                <div className="text-[13px] text-[#888888]">
+                                                    성
+                                                </div>
+                                                <input id="lastName" type="text" className="w-full">
+                                                </input>
+                                            </label>
+                                        </form> 
+                                        <button type="submit" onClick={handleNameSubmit} className="bg-black text-white w-[76px] h-[48px] px-[24px] py-[14px] rounded-[10px] flex flex-row justify-center items-center">
+                                            저장
+                                        </button>
+                                    </>
+                                }
+                            </section>
+                            <section className="py-[24px] border-b-[1px]">
+                                <div className="flex flex-row justify-between items-start ">
+                                    <div className="w-[95%]">
+                                        <div>
+                                            이메일 주소
+                                        </div>
+                                        <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                                            {emailEdit ? '언제든지 확인하실 수 있는 주소를 사용하세요' : 'example@gmail.com'}
+                                        </div>
+                                    </div>
+                                    <button type="button" onClick={handleEmailEdit} className="text-[14px] font-[500] underline">
+                                        {emailEdit ? '취소' : '수정'}
+                                    </button>
+                                </div>
+
+                                {emailEdit &&
+                                    <>
+                                        <form onSubmit={handleEmailSubmit} className="flex flex-row justify-between gap-[20px] my-[20px]">
+                                            <label htmlFor="email" className="border-[1px] border-solid border-[#B0B0B0] rounded-[10px] w-full h-[52px] px-[10px] py-[4px]">
+                                                <div className="text-[13px] text-[#888888]">
+                                                    이메일 주소
+                                                </div>
+                                                <input id="email" type="text" className="w-full">
+                                                </input>
+                                            </label>
+                                        </form> 
+                                        <button type="submit" onClick={handleEmailSubmit} className="bg-black text-white w-[76px] h-[48px] px-[24px] py-[14px] rounded-[10px] flex flex-row justify-center items-center">
+                                            저장
+                                        </button>
+                                    </>
+                                }
                             </section>
                             
                         </article>
