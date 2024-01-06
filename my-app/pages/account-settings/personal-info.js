@@ -50,7 +50,7 @@ export default function PersonalInfo() {
                         <article className="bnb_xl:w-[596px] bnb_md_lg:w-[58%] bnb_sm:w-full  ">
                             <section className="py-[24px] border-b-[1px]">
                                 <div className="flex flex-row justify-between items-start ">
-                                    <div className="w-[95%]">
+                                    <div>
                                         <div>
                                             실명
                                         </div>
@@ -89,7 +89,7 @@ export default function PersonalInfo() {
                             </section>
                             <section className="py-[24px] border-b-[1px]">
                                 <div className="flex flex-row justify-between items-start ">
-                                    <div className="w-[95%]">
+                                    <div>
                                         <div>
                                             이메일 주소
                                         </div>
