@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function AccountWepItem({link, icon, itemName, itemDetail}) {
+export default function AccountWebItem({link, icon, itemName, itemDetail}) {
     return (
         <div className="rounded-[12px] w-[328px] h-[156px] my-[4px] shadow-xx">
             <ul className="h-[100%]">

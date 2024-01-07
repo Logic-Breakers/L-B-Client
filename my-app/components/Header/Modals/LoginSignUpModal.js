@@ -27,10 +27,14 @@ export default function LoginSignUpModal ({closeLoginModal}) {
     }
   }
 
-  // input (국가/지역 누르면 select가 실행되도록 하기)
+  // 상위 컴포넌트로 이벤트 전파 방지 (버블링 방지)
+  const bubblingDepend = (event) => {
+    event.stopPropagation()
+  }
 
+  // input (국가/지역 누르면 select가 실행되도록 하기)
   return (
-    <div>
+    <div onClick={bubblingDepend}>
       {/* 로그인 & 회원가입 내용 */}
       <section className="border-[1px] border-solid border-black w-[568px] max-h-[746px] z-[1000] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#fff] rounded-[12px] cursor-default">
         <header className="flex flex-row items-center gap-[165px] h-[63px] px-[24px] border-b-[1px] border-solid border-[#DDDDDD]">

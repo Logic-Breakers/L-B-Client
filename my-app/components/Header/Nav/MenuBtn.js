@@ -1,28 +1,22 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faCircleUser } from '@fortawesome/free-solid-svg-icons';
 
-import Link from "next/link";
 import { useState, useEffect, useRef } from 'react';
 
 import MenuLogin from './Menu/MenuLogin';
 import MenuLogout from './Menu/MenuLogout';
 import LoginSignUpModal from '../Modals/LoginSignUpModal';
 
-// 새소식 버튼 누르면 새소식 모달창
-// 로그인 버튼 누르면 로그인 모달창
-// 회원가입 버튼 누르면 회원가입 모달창
-// 메뉴바를 제외한 부분을 클릭하면 메뉴바가 닫히도록 구현하기
-
-export default function ProfileBtn() {
+export default function MenuBtn() {
     const [showMenu, setShowMenu] = useState(false);
 
     const menuRef = useRef(null);
 
     const openMenu = () => {
-        setShowMenu(true);
+        setShowMenu(!showMenu);
     }
 
-    const closeMenu = (event) => {
+    const closeMenu = () => {
         setShowMenu(false);
     }
 

@@ -1,10 +1,16 @@
 import Developer from "@/components/Developer/Developer";
 
 export default function NewsModal ({closeNewsModal}) {
+
+    // 상위 컴포넌트로 이벤트 전파 방지 (버블링 방지)
+    const bubblingDepend = (event) => {
+        event.stopPropagation()
+    }
+
     return (
         <>
             {/* News 모달 내용 */}
-            <div className="bg-[#fff] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-[12px] w-[615px] h-[400px] z-[1000] p-[20px]"> 
+            <div onClick={bubblingDepend} className="bg-[#fff] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-[12px] w-[615px] h-[400px] z-[1000] p-[20px]"> 
                 <button type="button" onClick={closeNewsModal} className={`text-[16px] px-[8px] py-[2px] rounded-[20px] hover:shadow-inner hover:bg-[#F7F7F7]`}>
                     ✕
                 </button>
