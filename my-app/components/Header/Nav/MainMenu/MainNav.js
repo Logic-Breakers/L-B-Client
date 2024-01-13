@@ -1,3 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faImage } from '@fortawesome/free-regular-svg-icons';
+
 export default function MainNav() {
   const userFilter = [
     '열대지역',
@@ -22,7 +25,8 @@ export default function MainNav() {
   return (
     <div className="flex justify-around">
       {userFilter.map((item) => (
-        <div key={1} className="mt-4 cursor-pointer mb-5">
+        <div key={1} className="flex flex-col mt-4 cursor-pointer mb-5">
+          <FontAwesomeIcon icon={faImage} size='2x'/>
           {item}
         </div>
       ))}
