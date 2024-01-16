@@ -36,7 +36,7 @@ export default function LoginAndSecurity() {
       <Title text={"로그인 및 보안 - 계정 관리 - 에어비앤비"}></Title>
       <HeaderBasic />
       <main className="bnb_md_xl:mt-[80px] flex flex-row w-full min-h-screen">
-        <div className="w-[1048px] px-[24px] mx-auto">
+        <div className="w-[1048px] px-[24px] mx-auto bnb_sm:mt-[100px]">
           <AccountItemTitle
             title_route={"로그인 및 보안"}
             title_h2={"로그인 및 보안"}
