@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from "react";
 
 import MenuLogin from "./Menu/MenuLogin";
 import MenuLogout from "./Menu/MenuLogout";
-import LoginSignUpModal from "../Modals/LoginSignUpModal";
 
 export default function MenuBtn() {
   const [showMenu, setShowMenu] = useState(false);
