@@ -4,7 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import HeaderBasic from "@/components/Header/HeaderBasic";
 import NavApp from "@/components/Header/Nav/NavApp";
 
-export default function Hosting() {
+export default function Register() {
   return (
     <>
       <Title text={"호스트 알림판 - Aribnb"} />
@@ -15,7 +15,7 @@ export default function Hosting() {
             <h1 className="text-[32px] font-[500] mt-[36px]">
               ○○ 님, 반갑습니다!
             </h1>
-            <Link href="/">
+            <Link href="/hosting/register">
               <button className="border-black border-solid border-[1px] px-4 py-1 rounded-md text-md hover:bg-[#F7F7F7]">
                 숙소 등록하기
               </button>
