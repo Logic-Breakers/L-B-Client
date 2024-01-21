@@ -3,22 +3,21 @@
 @tailwind utilities;
 
 :root {
-    --brand-color:#FF385C;
-    --menu-gray-color: #5e5e5e;
-    
-    --modal-inner-bg: #fff;
-    --modal-outside-bg: rgba(0,0,0,0.5);
+  --brand-color: #ff385c;
+  --menu-gray-color: #5e5e5e;
+
+  --modal-inner-bg: #fff;
+  --modal-outside-bg: rgba(0, 0, 0, 0.5);
 }
 
-
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    background-color: #fff;
+  background-color: #fff;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
