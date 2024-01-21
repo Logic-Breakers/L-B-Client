@@ -50,7 +50,7 @@ export default function Footer() {
         <section className="border-t-[1px] border-solid border-[#DDDDDD] py-[24px] ">
           <section className="flex flex-row bnb_md:flex-col justify-between">
             <div className="flex flex-row bnb_md:flex-col items-center text-[14px] text-[--menu-gray-color]">
-              <span>2023 Airbnb Clone Coding</span>
+              <span>2024 Airbnb Clone Coding</span>
               <div className="flex gap-[6px] bnb_md:my-[10px]">
                 <span className="bnb_md:hidden ml-[6px]">∙</span>
                 <FooterItem link={"/"} text={"개인정보 처리방침"} />

@@ -27,44 +27,52 @@ export default function LoginSignUpModal({ closeLoginModal }) {
     // 전화번호 유효성 검사를 통과한 경우
     if (isValid) {
       // 서버로 로그인 & 회원가입 요청보내기
+
+      // 임의로 test 겸 숙소 등록하는 코드 적어놨음 (나중에 숙소 등록하는 페이지 구현 되면 적용할 것)
       const test = async (event) => {
         // API 요청을 보내기 위한 데이터 준비
-        const requestData = {
-          stay: {
-            info: "테스트7",
-            price: 220000,
-            beds: 1,
-            bedrooms: 1,
-            bathrooms: 1,
-            propertyType: "HOTEL",
-            country: "대한민국",
-            guest: 2,
-            address: "제주특별자치도 제주시 중앙로 3047",
-            guestFavourite: true,
-            placeType: "ENTIRE_HOME",
-          },
-          image: "example1.jpg",
-        };
+        const requestData = new FormData();
+        requestData.append(
+          "stay",
+          new Blob(
+            [
+              JSON.stringify({
+                info: "테스트9",
+                price: 220000,
+                beds: 1,
+                bedrooms: 1,
+                bathrooms: 1,
+                propertyType: "HOTEL",
+                country: "대한민국",
+                guest: 2,
+                address: "제주특별자치도 제주시 중앙로 3062",
+                guestFavourite: true,
+                placeType: "ENTIRE_HOME",
+              }),
+            ],
+            { type: "application/json" }
+          )
+        );
+        requestData.append("image", new File(["example1.jpg"], "example1.jpg"));
 
         try {
           // 서버 API 호출
           const response = await axios.post(
-            `https://b7e3-1-241-234-30.ngrok-free.app/stays?categoryIds=1&categoryIds=2`,
+            `https://594c-1-241-234-30.ngrok-free.app/stays?categoryIds=1&categoryIds=2`,
             requestData,
             {
               headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "multipart/form-data",
                 "ngrok-skip-browser-warning": "69420",
               },
             }
           );
-          console.log(response);
+          console.log(response.data);
         } catch (error) {
           console.log("에러", error);
         }
       };
       test();
-      console.log("aaaaa");
     }
   };
 

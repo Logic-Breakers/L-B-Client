@@ -223,7 +223,7 @@ export default function AccountSettings() {
             로그아웃
           </button>
           <div className="flex flex-row justify-center text-[12px] text-[#888888] mt-[20px] pb-[40px]">
-            2023 Airbnb Clone Coding
+            2024 Airbnb Clone Coding
           </div>
         </section>
       </main>
