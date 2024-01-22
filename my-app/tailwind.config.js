@@ -26,6 +26,7 @@ module.exports = {
         bnb_md_lg: { min: "744px", max: "1127px" },
         bnb_xl: { min: "1128px" },
         bnb_md_xl: { min: "744px" },
+        bnb_lg_xl: { min: "950px" },
       },
     },
   },

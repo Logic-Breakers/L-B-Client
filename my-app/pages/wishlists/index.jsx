@@ -42,21 +42,25 @@ export default function Wishlists() {
                         alt="picture"
                         className="w-[100%] rounded-[12px] p-[4px] shadow-cc"
                       />
+
                       <div className="pt-[8px]">
                         <div className="flex flex-row justify-between">
                           <span className="font-[500]">{el.location}</span>
                           <span>
                             <span>★</span>
-                            <span className="ml-[4px] text-[#5e5e5e]">
+                            <span className="ml-[4px] text-gray-500">
                               {el.star}
                             </span>
                           </span>
                         </div>
-                        <div>
-                          <span className="font-[500]">
-                            {`₩${el.price.toLocaleString()} `}
-                          </span>
-                          <span className="text-[#5e5e5e]">/박</span>
+                        <div className="text-gray-500">{el.feature}</div>
+                        <div className="flex flex-row justify-between items-center">
+                          <div>
+                            <span className="font-[500]">
+                              {`₩${el.price.toLocaleString()} `}
+                            </span>
+                            <span className="text-gray-500">/박</span>
+                          </div>
                         </div>
                       </div>
                     </div>
