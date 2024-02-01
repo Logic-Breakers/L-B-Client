@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import AccountAppDetailItem from "@/components/Account/AccountAppDetailItem";
 
+// (App) 계정페이지에서 계정을 누른 경우 나타나는 페이지
+// /account-settings/detail
 export default function Detail() {
   return (
     <main className="bnb_sm:block bnb_md_xl:hidden m-[24px]">

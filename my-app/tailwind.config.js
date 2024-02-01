@@ -22,6 +22,7 @@ module.exports = {
       screens: {
         bnb_sm: { max: "743px" },
         bnb_md: { min: "744px", max: "949px" },
+        bnb_sm_md: { max: "949px" },
         bnb_lg: { min: "950px", max: "1127px" },
         bnb_md_lg: { min: "744px", max: "1127px" },
         bnb_xl: { min: "1128px" },

@@ -1,10 +1,10 @@
+import axios from "axios";
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faCircleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
-import axios from "axios";
 
 export default function LoginSignUpModal({ closeLoginModal }) {
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -27,52 +27,6 @@ export default function LoginSignUpModal({ closeLoginModal }) {
     // 전화번호 유효성 검사를 통과한 경우
     if (isValid) {
       // 서버로 로그인 & 회원가입 요청보내기
-
-      // 임의로 test 겸 숙소 등록하는 코드 적어놨음 (나중에 숙소 등록하는 페이지 구현 되면 적용할 것)
-      const test = async (event) => {
-        // API 요청을 보내기 위한 데이터 준비
-        const requestData = new FormData();
-        requestData.append(
-          "stay",
-          new Blob(
-            [
-              JSON.stringify({
-                info: "테스트9",
-                price: 220000,
-                beds: 1,
-                bedrooms: 1,
-                bathrooms: 1,
-                propertyType: "HOTEL",
-                country: "대한민국",
-                guest: 2,
-                address: "제주특별자치도 제주시 중앙로 3062",
-                guestFavourite: true,
-                placeType: "ENTIRE_HOME",
-              }),
-            ],
-            { type: "application/json" }
-          )
-        );
-        requestData.append("image", new File(["example1.jpg"], "example1.jpg"));
-
-        try {
-          // 서버 API 호출
-          const response = await axios.post(
-            `https://594c-1-241-234-30.ngrok-free.app/stays?categoryIds=1&categoryIds=2`,
-            requestData,
-            {
-              headers: {
-                "Content-Type": "multipart/form-data",
-                "ngrok-skip-browser-warning": "69420",
-              },
-            }
-          );
-          console.log(response.data);
-        } catch (error) {
-          console.log("에러", error);
-        }
-      };
-      test();
     }
   };
 
@@ -103,14 +57,14 @@ export default function LoginSignUpModal({ closeLoginModal }) {
           <form onSubmit={handleSubmit}>
             <label
               htmlFor="country"
-              className="relative flex flex-col justify-center border-[1px] border-solid border-[#cccccc] rounded-t-[10px] w-full h-[55px] pl-[12px] pr-[20px] "
+              className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
             >
-              <div className="text-[12px] text-gray-500">국가/지역</div>
               <select
                 id="country"
-                className="appearance-none"
-                defaultValue={"82"}
+                className="appearance-none w-full h-full pl-4 rounded-md text-md text-gray-600"
+                defaultValue={"none"}
               >
+                <option value="none">국가/지역을 선택해주세요</option>
                 <option value="1">미국 (+1)</option>
                 <option value="44">영국 (+44)</option>
                 <option value="81">일본 (+81)</option>
@@ -120,16 +74,15 @@ export default function LoginSignUpModal({ closeLoginModal }) {
 
               <FontAwesomeIcon
                 icon={faChevronDown}
-                className="absolute left-[480px]"
+                className="absolute right-[10px] pointer-events-none"
               />
             </label>
-
             <input
               required
               type="tel"
               onChange={getPhoneNumber}
               placeholder="전화번호"
-              className="border-[1px] border-solid border-[#cccccc] mt-[-1px] w-full rounded-b-[12px] h-[55px] px-[10px] appearance-none"
+              className="border-[1px] border-solid border-[#cccccc] w-full rounded-md h-[55px] px-4 appearance-none"
             ></input>
 
             {(isValid || phoneNumber.length === 0) && (
@@ -149,7 +102,7 @@ export default function LoginSignUpModal({ closeLoginModal }) {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="w-full h-[45px] rounded-[12px] text-white bg-[#E31C5B] active:scale-95 ease-in duration-[0.1s] "
+              className="w-full h-[45px] rounded-md text-white bg-[var(--brand-color)] hover:bg-[var(--brand-color-hover)] active:bg-[var(--brand-color)] active:scale-95 ease-in duration-[0.1s]"
             >
               계속
             </button>
@@ -166,7 +119,7 @@ export default function LoginSignUpModal({ closeLoginModal }) {
           {/* 구글 소셜로그인 */}
           <button
             type="button"
-            className="w-full h-[48px] border-[1px] border-solid border-black rounded-[10px] hover:bg-[#F7F7F7] flex flex-row items-center px-[23px] gap-[170px]"
+            className="w-full h-[48px] border-[1px] border-solid border-black rounded-[10px] hover:bg-[#F7F7F7] active:bg-white flex flex-row items-center px-[23px] gap-[170px]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

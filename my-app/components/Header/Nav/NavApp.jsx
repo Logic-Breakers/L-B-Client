@@ -23,7 +23,7 @@ export default function NavApp() {
               router.pathname === "/"
                 ? "text-[var(--brand-color)]"
                 : "text-[#717171]"
-            } flex flex-col justify-center items-center gap-[4px]`}
+            } flex flex-col justify-center items-center gap-[4px] px-4`}
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} className="text-[24px]" />
             <div className="text-[10px]">둘러보기</div>
@@ -36,7 +36,7 @@ export default function NavApp() {
               router.pathname === "/wishlists"
                 ? "text-[var(--brand-color)]"
                 : "text-[#717171]"
-            } flex flex-col justify-center items-center gap-[4px]`}
+            } flex flex-col justify-center items-center gap-[4px] px-4`}
           >
             <FontAwesomeIcon icon={faHeart} className="text-[24px]" />
             <div className="text-[10px]">위시리스트</div>
@@ -49,7 +49,7 @@ export default function NavApp() {
               router.pathname === "/trips/v1"
                 ? "text-[var(--brand-color)]"
                 : "text-[#717171]"
-            } flex flex-col justify-center items-center gap-[4px]`}
+            } flex flex-col justify-center items-center gap-[4px] px-4`}
           >
             <FontAwesomeIcon icon={faAirbnb} className="text-[24px]" />
             <div className="text-[10px]">여행</div>
@@ -62,7 +62,7 @@ export default function NavApp() {
               router.pathname === "/guest/inbox"
                 ? "text-[var(--brand-color)]"
                 : "text-[#717171]"
-            } flex flex-col justify-center items-center gap-[4px]`}
+            } flex flex-col justify-center items-center gap-[4px] px-4`}
           >
             <FontAwesomeIcon icon={faMessage} className="text-[24px]" />
             <div className="text-[10px]">메시지</div>
@@ -75,7 +75,7 @@ export default function NavApp() {
               router.pathname === "/account-settings"
                 ? "text-[var(--brand-color)]"
                 : "text-[#717171]"
-            } flex flex-col justify-center items-center gap-[4px]`}
+            } flex flex-col justify-center items-center gap-[4px] px-4`}
           >
             <FontAwesomeIcon icon={faCircleUser} className="text-[24px]" />
             <div className="text-[10px]">프로필</div>

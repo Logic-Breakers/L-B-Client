@@ -187,9 +187,9 @@ export default function AccountSettings() {
         <section className="border-b-[1px] pb-[16px]">
           <h3 className="text-[22px] mt-[40px] pb-[24px]">호스팅</h3>
           <AccountAppItem
-            link={"/host/homes"}
+            link={"/hosting"}
             icon={<FontAwesomeIcon icon={faToggleOn} />}
-            itemName={"숙소 호스팅"}
+            itemName={"숙소 관리"}
           />
         </section>
         <section className="border-b-[1px] pb-[16px]">

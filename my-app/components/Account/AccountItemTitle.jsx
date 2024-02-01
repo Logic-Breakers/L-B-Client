@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
+import BackPageBtn from "../Buttons/BackPageBtn";
 
 export default function AccountItemTitle({ title_route, title_h2 }) {
   return (
@@ -13,11 +12,7 @@ export default function AccountItemTitle({ title_route, title_h2 }) {
           <span>{">"}</span>
           <span>{title_route}</span>
         </div>
-        <div className="bnb_md_xl:hidden flex flex-row items-center h-[64px] shadow-sm px-[24px]">
-          <Link href={"/account-settings"} className="p-[12px] ml-[-12px]">
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </Link>
-        </div>
+        <BackPageBtn />
         <h2 className="text-[30px] font-[700] bnb_sm:text-[20px] bnb_sm:hidden ">
           {title_h2}
         </h2>

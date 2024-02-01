@@ -3,11 +3,10 @@ import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
 import HeaderBasic from "@/components/Header/HeaderBasic";
 import NavApp from "@/components/Header/Nav/NavApp";
-import HostingReservationItem from "@/components/Hosting/HostingReservationItem";
-import HostingPresentHostingItem from "@/components/Hosting/HostingPresentHostingItem";
-import HostingReviewItem from "@/components/Hosting/HostingReviewItem";
-
-import { useState } from "react";
+import HostingPresentHostingItem from "@/components/Hosting/indexPage/HostingPresentHostingItem";
+import HostingReservationItem from "@/components/Hosting/indexPage/HostingReservationItem";
+import HostingReviewItem from "@/components/Hosting/indexPage/HostingReviewItem";
+import { useState, useEffect } from "react";
 
 export default function Hosting() {
   const [reservation, setReservation] = useState(true);
@@ -30,6 +29,30 @@ export default function Hosting() {
     setReview(true);
   };
 
+  // 호스트가 등록한 숙소 전체 조회
+  // hostId 안에 id, houseName, createAt 있으면 좋겠음.
+  const getDataAllHouse = async () => {
+    try {
+      const allHouseData = await axios.get(
+        `${process.env.REACT_APP_SERVER_URL}/example/api`,
+        {
+          headers: {
+            // Authorization : "Bearer " + localStorage.getItem("Authorization"),
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "69420",
+          },
+        }
+      );
+      console.log(allHouseData);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    // getDataAllHouse()
+  }, []);
+
   return (
     <>
       <Title text={"호스트 알림판 - Aribnb"} />
@@ -51,31 +74,25 @@ export default function Hosting() {
           <section className="pt-10">
             <h2 className="text-2xl font-medium">숙소</h2>
             {/* 등록된 숙소를 누르면 해당 숙소 세부정보 사이트로 이동하도록 구현하기 */}
-            <div className="mt-8 mb-6 grid gap-8 bnb_sm:grid-cols-1 bnb_md:grid-cols-2 bnb_lg:grid-cols-3 bnb_xl:grid-cols-4">
-              <div>
-                <div className="bg-gray-300 aspect-square rounded-md mb-2" />
-                <div className="font-semibold">숙소 이름1</div>
-                <div className="text-gray-600">등록일 : 2024년 1월 1일</div>
-              </div>
-              <div>
-                <div className="bg-gray-300 aspect-square rounded-md mb-2" />
-                <div className="font-semibold">숙소 이름2</div>
-                <div className="text-gray-600">등록일 : 2024년 1월 2일</div>
-              </div>
-              <div>
-                <div className="bg-gray-300 aspect-square rounded-md mb-2" />
-                <div className="font-semibold">숙소 이름3</div>
-                <div className="text-gray-600">등록일 : 2024년 1월 3일</div>
-              </div>
-              <div>
-                <div className="bg-gray-300 aspect-square rounded-md mb-2" />
-                <div className="font-semibold">숙소 이름4</div>
-                <div className="text-gray-600">등록일 : 2024년 1월 4일</div>
-              </div>
+            {/* 서버로부터 등록한 전체 숙소 데이터 가져오기 */}
+            <div className="mt-2 mb-6 py-6 overflow-x-scroll flex flex-row justify-between space-x-6 ">
+              {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => (
+                <div
+                  key={index}
+                  className="flex-shrink-0 aspect-square w-[250px]"
+                >
+                  <div className="bg-gray-300 aspect-square rounded-md mb-2" />
+                  <div className="font-semibold">숙소 이름1</div>
+                  <div className="text-gray-600">
+                    <span>등록일 : </span>
+                    <span>2024년 1월 1일</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </section>
 
-          <section className="pt-10 pb-16">
+          <section className="pt-10 pb-16 bnb_sm:pb-24">
             <h2 className="text-2xl font-medium">예약</h2>
             <div className="mt-8 mb-6 flex flex-row items-center space-x-3">
               <button
@@ -87,7 +104,7 @@ export default function Hosting() {
                     : "border-[1px] border-gray-300 hover:border-black transition-colors"
                 }`}
               >
-                호스팅 예약 중
+                호스팅 예정
               </button>
               <button
                 type="button"
@@ -113,6 +130,8 @@ export default function Hosting() {
               </button>
             </div>
             <section>
+              {/* 밑 컴포넌트 3가지 수정하기 */}
+              {/* 불러온 데이터가 있으면 데이터를 보여주고, 없으면 <HostingNoItem/> 보여주기 */}
               {reservation ? <HostingReservationItem /> : ""}
               {hosting ? <HostingPresentHostingItem /> : ""}
               {review ? <HostingReviewItem /> : ""}
@@ -125,30 +144,3 @@ export default function Hosting() {
     </>
   );
 }
-
-// 등록한 전체 숙소 정보 조회 시 가져오는 데이터
-// {
-//   "id" : 1,
-//   "hostId" : 1,
-//   "info" : "숙소 설명",  (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//   "categoryId" : 1,    (카테고리 id?) (필요 없을 듯, 특정 숙소 정보 조회시 필요할 듯)
-//   "charge" : 200000,   (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//   "beds" : 1,          (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//   "bedrooms" : 1,      (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//   "bathrooms" : 1,     (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//   "propertyType" : "HOTEL", (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//   "country" : "대한민국",
-//   "guest" : 2, (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//   "star" : 4.1, (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//   "address" : "제주특별자치도 제주시 중앙로 3221", (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//   "guestFavourite" : true, (숙소를 등록한 사람 입장에서는 필요 없을 듯)
-//   "placeType" : "ROOM" (전체 숙소 정보 조회 말고 특정 숙소 정보 조회시 필요할 듯)
-//  },
-
-// --> 변경되면 좋을 듯
-// {
-//   "id" : 1,
-//   "hostId" : 1,
-//   "country" : "대한민국",
-//   "createAt" : "2024년 1월 22일",
-//  },
