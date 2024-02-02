@@ -119,48 +119,48 @@ export default function SignUp() {
             <section className="mt-8 mb-20 space-y-8">
               {/* 이름 */}
               <section>
-                <HostingRegisterItemTitle text={"이름"} require />
+                <HostingRegisterItemTitle text={"이름"} require mb />
                 <input
                   onBlur={onBlurName}
                   onChange={(event) => setName(event.target.value)}
                   type="text"
-                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 mt-2"
+                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                   placeholder="성함을 적어주세요"
                 ></input>
               </section>
 
               {/* 이메일 */}
               <section>
-                <HostingRegisterItemTitle text={"이메일"} require />
+                <HostingRegisterItemTitle text={"이메일"} require mb />
                 <input
                   onBlur={onBlurEmail}
                   onChange={(event) => setEmail(event.target.value)}
                   type="email"
-                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 mt-2"
+                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                   placeholder="abcde@example.com"
                 ></input>
               </section>
 
               {/* 비밀번호 */}
               <section>
-                <HostingRegisterItemTitle text={"비밀번호"} require />
+                <HostingRegisterItemTitle text={"비밀번호"} require mb />
                 <input
                   onBlur={onBlurPassword}
                   onChange={(event) => setPassword(event.target.value)}
                   type="password"
-                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 mt-2"
+                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                   placeholder="∙∙∙∙∙∙∙∙"
                 ></input>
               </section>
 
               {/* 국가 */}
               <section>
-                <HostingRegisterItemTitle text={"국가"} require />
+                <HostingRegisterItemTitle text={"국가"} require mb />
                 <label
                   onBlur={onBlurCountry}
                   onChange={(event) => setCountry(event.target.value)}
                   htmlFor="country"
-                  className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative mt-2"
+                  className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                 >
                   <select
                     id="country"
@@ -184,25 +184,25 @@ export default function SignUp() {
 
               {/* 전화번호 */}
               <section>
-                <HostingRegisterItemTitle text={"전화번호"} require />
+                <HostingRegisterItemTitle text={"전화번호"} require mb />
                 <input
                   required
                   type="tel"
                   onBlur={onBlurPhone}
                   onChange={(event) => setPhone(event.target.value)}
                   placeholder="ex) 01012345678"
-                  className="border-[1px] border-solid border-[#cccccc] w-full rounded-md h-[55px] px-4 appearance-none mt-2"
+                  className="border-[1px] border-solid border-[#cccccc] w-full rounded-md h-[55px] px-4 appearance-none"
                 ></input>
               </section>
 
               {/* 생년월일 */}
               <section>
-                <HostingRegisterItemTitle text={"생년월일"} require />
+                <HostingRegisterItemTitle text={"생년월일"} require mb />
                 <input
                   onBlur={onBlurBirthDate}
                   onChange={(event) => setBirthDate(event.target.value)}
                   type="date"
-                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 mt-2"
+                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                 ></input>
               </section>
 

@@ -2,7 +2,7 @@ export default function PictureUpload({ picture, onChangePicture }) {
   return (
     <label
       onChange={onChangePicture}
-      className="w-full cursor-pointer text-gray-600 hover:border-[var(--brand-color)] hover:text-[var(--brand-color)] flex items-center justify-center border-2 border-dashed border-gray-300 h-48 rounded-md mt-2"
+      className="w-full cursor-pointer text-gray-600 hover:border-[var(--brand-color)] hover:text-[var(--brand-color)] flex items-center justify-center border-2 border-dashed border-gray-300 h-48 rounded-md"
     >
       {picture ? (
         <img src={picture}></img>
