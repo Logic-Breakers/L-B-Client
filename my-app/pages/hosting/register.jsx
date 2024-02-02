@@ -13,7 +13,6 @@ import PictureUpload from "@/components/PictureUpload";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-// Header -> Modals -> LoginSignUpModal에 숙소 등록하는 api 있음. (나중에 가져오기)
 export default function Register() {
   const router = useRouter();
 
@@ -179,7 +178,7 @@ export default function Register() {
       // 서버 API 호출
       // 사진도 같이 보내야하기에 multipart/form-data로 보낸다.
       const response = await axios.post(
-        `${process.env.SERVER_URL}/stays?categoryIds=1&categoryIds=2`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?categoryIds=1&categoryIds=2`,
         requestData,
         {
           headers: {
@@ -199,7 +198,7 @@ export default function Register() {
 
   return (
     <>
-      <Title text={"호스팅 시작하기 - Aribnb"} />
+      <Title text={"호스팅 시작하기 - Airbnb"} />
       <HeaderBasic />
       <main className="flex flex-row justify-center w-full min-h-screen mt-[40px]">
         <div className="w-[600px] bnb_md_xl:pt-[80px] bnb_sm:px-[24px]">
@@ -293,6 +292,7 @@ export default function Register() {
               </section>
 
               {/* 숙소 유형 */}
+              {/* 숙소 유형이 아니고 카테고리임 변경할 것!, 숙소 유형 따로 만들 것 */}
               <section>
                 <HostingRegisterItemTitle text={"숙소 유형"} require />
                 <label

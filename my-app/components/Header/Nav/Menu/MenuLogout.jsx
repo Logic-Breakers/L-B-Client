@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import LoginSignUpModal from "../../Modals/LoginSignUpModal";
+import LoginModal from "../../Modals/LoginModal";
 import NewsItem from "./items/NewsItem";
 import BasicItem from "./items/BasicItem";
 import CeilingBarItem from "./items/CeilingBarItem";
@@ -33,12 +33,11 @@ export default function MenuLogout() {
             <span className={`font-[500]`}>로그인</span>
           </li>
 
-          <li
-            onClick={openLoginModal}
-            className="px-[20px] py-[12px] text-[var(--menu-gray-color)] hover:cursor-pointer hover:bg-gray-100"
-          >
-            <span className={`font-[500]`}>회원 가입</span>
-          </li>
+          <Link href={"/signup"}>
+            <li className="px-[20px] py-[12px] text-[var(--menu-gray-color)] hover:cursor-pointer hover:bg-gray-100">
+              <span className={`font-[500]`}>회원 가입</span>
+            </li>
+          </Link>
 
           <Link href={"/host/homes"}>
             <CeilingBarItem text={"당신의 공간을 에어비앤비하세요"} />
@@ -51,7 +50,7 @@ export default function MenuLogout() {
           </Link>
         </ul>
       </div>
-      {showLoginModal && <LoginSignUpModal closeLoginModal={closeLoginModal} />}
+      {showLoginModal && <LoginModal closeLoginModal={closeLoginModal} />}
     </>
   );
 }

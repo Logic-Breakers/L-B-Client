@@ -55,7 +55,7 @@ export default function Hosting() {
 
   return (
     <>
-      <Title text={"호스트 알림판 - Aribnb"} />
+      <Title text={"호스트 알림판 - Airbnb"} />
       <HeaderBasic />
       <main className="flex flex-row justify-center w-full mt-[40px]">
         <div className="w-full bnb_md_xl:pt-[80px] bnb_lg_xl:px-[80px] bnb_md:px-[40px] bnb_sm:px-[24px]">
