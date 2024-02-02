@@ -42,7 +42,7 @@ export default function MenuLogout() {
           <Link href={"/host/homes"}>
             <CeilingBarItem text={"당신의 공간을 에어비앤비하세요"} />
           </Link>
-          <Link href={"/help"}>
+          <Link href={"/help/1"}>
             <BasicItem
               text={"도움말 센터"}
               font_color={"var(--menu-gray-color)"}

@@ -62,7 +62,8 @@ export default function Hosting() {
           <section className="flex flex-row justify-between items-center">
             {/* 나중에 서버로부터 유저 이름 가져오기 */}
             <h1 className="text-[32px] font-[500]">○○ 님, 반갑습니다!</h1>
-            <Link href="/hosting/register">
+            {/* 나중에 유저 id 입력하기 */}
+            <Link href="/hosting/register/1">
               <button
                 type="button"
                 className="border-black border-solid border-[1px] px-4 py-1 rounded-md text-md hover:bg-[#F7F7F7]"

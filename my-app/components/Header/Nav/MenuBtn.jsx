@@ -51,11 +51,11 @@ export default function MenuBtn() {
         </div>
         {/* 비로그인 상태일 때 */}
         {/* 로그인 기능을 만들면 비로그인 때만 보이도록 조건 추가하기 */}
-        {showMenu && <MenuLogout />}
+        {/* {showMenu && <MenuLogout />} */}
 
         {/* 로그인 상태일 때 */}
         {/* 로그인 기능을 만들면 로그인일 때만 보이도록 조건 추가하기 */}
-        {/* {showMenu && <MenuLogin />} */}
+        {showMenu && <MenuLogin />}
       </div>
     </div>
   );

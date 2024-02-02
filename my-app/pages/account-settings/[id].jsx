@@ -44,7 +44,9 @@ export default function AccountSettings() {
             <div className="text-[18px]">
               <span className="font-[400] mr-[4px]">이름 성,</span>
               <span className="font-[300]">example@gmail.com∙</span>
-              <Link href={"/users/show"}>
+
+              {/* 나중에 유저 id로 바꾸기 */}
+              <Link href={"/users/show/1"}>
                 <span className="font-[400] underline decoration-solid decoration-[1.5px]">
                   프로필로 이동
                 </span>
@@ -52,59 +54,59 @@ export default function AccountSettings() {
             </div>
           </div>
 
-          {/* 각각의 페이지 만들고 라우터 시키기 */}
+          {/* 나중에 유저 id로 바꾸기 */}
           <div className="grid bnb_xl:grid-cols-3 bnb_md_lg:grid-cols-2 grid-rows-auto gap-[16px] ">
             <AccountWebItem
-              link={"/account-settings/personal-info"}
+              link={"/account-settings/personal-info/1"}
               icon={<FontAwesomeIcon icon={faAddressCard} />}
               itemName={"개인정보"}
               itemDetail={"개인정보 및 연락처를 알려주세요"}
             />
 
             <AccountWebItem
-              link={"/account-settings/login-and-security"}
+              link={"/account-settings/login-and-security/1"}
               icon={<FontAwesomeIcon icon={faShieldHalved} />}
               itemName={"로그인 및 보안"}
               itemDetail={"비밀번호를 변경하고 계정을 안정하게 보호하세요"}
             />
 
             <AccountWebItem
-              link={"/account-settings/payments/payment-methods"}
+              link={"/account-settings/payments/payment-methods/1"}
               icon={<FontAwesomeIcon icon={faMoneyBill} />}
               itemName={"결제 및 대금 수령"}
               itemDetail={"결제, 대금 수령, 쿠폰, 기프트카드를 검토해주세요"}
             />
 
             <AccountWebItem
-              link={"/account-settings/taxes/taxpayers"}
+              link={"/account-settings/taxes/taxpayers/1"}
               icon={<FontAwesomeIcon icon={faFile} />}
               itemName={"세금"}
               itemDetail={"납세자 정보 및 세금 서류 관리"}
             />
 
             <AccountWebItem
-              link={"/account-settings/notifications"}
+              link={"/account-settings/notifications/1"}
               icon={<FontAwesomeIcon icon={faVolumeLow} />}
               itemName={"알림"}
               itemDetail={"알림 환경설정 및 연락 방식을 선택하세요"}
             />
 
             <AccountWebItem
-              link={"/account-settings/privacy-and-sharing"}
+              link={"/account-settings/privacy-and-sharing/1"}
               icon={<FontAwesomeIcon icon={faEye} />}
               itemName={"개인정보 및 공개 설정"}
               itemDetail={"개인정보, 연결된 서비스 및 데이터 공유 설정 관리"}
             />
 
             <AccountWebItem
-              link={"/account-settings/preferences"}
+              link={"/account-settings/preferences/1"}
               icon={<FontAwesomeIcon icon={faToggleOff} />}
               itemName={"글로벌 환경 설정"}
               itemDetail={"기본 언어, 통화, 시간대 설정하기"}
             />
 
             <AccountWebItem
-              link={"/account-settings/airbnb-for-work"}
+              link={"/account-settings/airbnb-for-work/1"}
               icon={<FontAwesomeIcon icon={faBriefcase} />}
               itemName={"출장"}
               itemDetail={
@@ -113,7 +115,7 @@ export default function AccountSettings() {
             />
 
             <AccountWebItem
-              link={"/account-settings/professional-hosting"}
+              link={"/account-settings/professional-hosting/1"}
               icon={<FontAwesomeIcon icon={faChartSimple} />}
               itemName={"전문 호스팅 도구"}
               itemDetail={
@@ -122,7 +124,7 @@ export default function AccountSettings() {
             />
 
             <AccountWebItem
-              link={"/invite"}
+              link={"/invite/1"}
               icon={<FontAwesomeIcon icon={faGift} />}
               itemName={"추천 크레딧 및 쿠폰"}
               itemDetail={"₩0의 추천 크레딧과 쿠폰이 있습니다. 자세히 알아보기"}
@@ -130,8 +132,8 @@ export default function AccountSettings() {
           </div>
 
           <div className="my-[50px] text-center">
-            <div className="text-[14px]">계정을 비활성화하셔야 하나요?</div>
-            <Link href={"/account-delete/reasons"}>
+            <div className="text-[14px]">계정을 탈퇴하셔야 하나요?</div>
+            <Link href={"/account-delete/1"}>
               <div className="text-[12px] font-[500] mt-[8px] underline decoration-solid ">
                 지금 처리하기
               </div>
@@ -143,7 +145,9 @@ export default function AccountSettings() {
       {/* sm 사이즈 일 때 */}
       <main className="bnb_sm:block bnb_md_xl:hidden mx-[24px] mb-[64px]">
         <h2 className="text-[30px] font-[500] mt-[48px] mb-[32px]">프로필</h2>
-        <Link href={"/users/show"}>
+
+        {/* 나중에 유저 id로 변경하기 */}
+        <Link href={"/users/show/1"}>
           <section className="flex flex-row items-center gap-[16px] border-b-[1px] pb-[16px]">
             <FontAwesomeIcon icon={faCircleUser} className="text-[56px]" />
             <div className="flex flex-row justify-between items-center w-full">
@@ -173,13 +177,13 @@ export default function AccountSettings() {
             </section>
           </Link>
           <AccountAppItem
-            link={"/account-settings/personal-info"}
+            link={"/account-settings/personal-info/1"}
             icon={<FontAwesomeIcon icon={faCircleUser} />}
             itemName={"개인정보"}
           />
 
           <AccountAppItem
-            link={"/account-settings/detail"}
+            link={"/account-settings/detail/1"}
             icon={<FontAwesomeIcon icon={faGear} />}
             itemName={"계정"}
           />
@@ -187,7 +191,7 @@ export default function AccountSettings() {
         <section className="border-b-[1px] pb-[16px]">
           <h3 className="text-[22px] mt-[40px] pb-[24px]">호스팅</h3>
           <AccountAppItem
-            link={"/hosting"}
+            link={"/hosting/1"}
             icon={<FontAwesomeIcon icon={faToggleOn} />}
             itemName={"숙소 관리"}
           />
@@ -195,17 +199,17 @@ export default function AccountSettings() {
         <section className="border-b-[1px] pb-[16px]">
           <h3 className="text-[22px] mt-[40px] pb-[24px]">지원 서비스</h3>
           <AccountAppItem
-            link={"/help"}
+            link={"/help/1"}
             icon={<FontAwesomeIcon icon={faCircleQuestion} />}
             itemName={"도움말 센터 방문하기"}
           />
           <AccountAppItem
-            link={"/guest/inbox"}
+            link={"/guest/inbox/1"}
             icon={<FontAwesomeIcon icon={faShieldHalved} />}
             itemName={"안전 문제 관련 도움받기"}
           />
           <AccountAppItem
-            link={"/help/article"}
+            link={"/help/article/1"}
             icon={<FontAwesomeIcon icon={faHeadphones} />}
             itemName={"이웃 민원 신고"}
           />

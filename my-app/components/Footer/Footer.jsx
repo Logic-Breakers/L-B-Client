@@ -2,6 +2,7 @@ import FooterItem from "./FooterItem";
 import Developer from "../Developer/Developer";
 
 // screen : tailwind.config.js 참고
+// 밑에 링크에 나중에 유저 id값 입력해야함
 export default function Footer() {
   return (
     <>
@@ -10,9 +11,9 @@ export default function Footer() {
           <div className="bnb_md_lg:py-[24px]">
             <h3 className="font-[500] mb-[10px]">에어비앤비 지원</h3>
             <ul className="flex flex-col gap-[10px]">
-              <FooterItem link={"/help"} text={"도움말 센터"} />
+              <FooterItem link={"/help/1"} text={"도움말 센터"} />
               <FooterItem
-                link={"/guest/inbox"}
+                link={"/guest/inbox/1"}
                 text={"안전 문제 관련 도움받기"}
               />
               <FooterItem link={"/"} text={"에어커버"} />

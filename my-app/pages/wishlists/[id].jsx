@@ -9,6 +9,7 @@ import wishlistsDummy from "./wishlistsDummy";
 
 // api 만들어지면 삭제기능 구현해볼 예정
 export default function Wishlists() {
+  // 필터 사용해서 하면 될 듯
   const deleteItem = () => {};
 
   return (

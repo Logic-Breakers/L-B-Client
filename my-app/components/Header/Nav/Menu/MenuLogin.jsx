@@ -12,30 +12,41 @@ export default function MenuLogin() {
       >
         <NewsItem />
 
-        <Link href={"/guest/inbox"}>
+        {/* 뒤에 유저의 id값 넣기 */}
+        <Link href={"/guest/inbox/1"}>
           <BasicItem text={"메시지"} font_weight={500} />
         </Link>
-        <Link href={"/trips/v1"}>
+
+        {/* 뒤에 유저의 id값 넣기 */}
+        <Link href={"/trips/1"}>
           <BasicItem text={"여행"} font_weight={500} />
         </Link>
-        <Link href={"/wishlists"}>
+
+        {/* 뒤에 유저의 id값 넣기 */}
+        <Link href={"/wishlists/1"}>
           <BasicItem text={"위시리스트"} font_weight={500} />
         </Link>
 
-        <Link href={"/hosting"}>
+        {/* 뒤에 유저의 id값 넣기 */}
+        <Link href={"/hosting/1"}>
           <CeilingBarItem text={"숙소 관리"} />
         </Link>
-        <Link href={"/refer"}>
+
+        {/* 뒤에 유저의 id값 넣기 */}
+        <Link href={"/refer/1"}>
           <BasicItem
             text={"호스트 추천하기"}
             font_color={"var(--menu-gray-color)"}
           />
         </Link>
-        <Link href={"/account-settings"}>
+
+        {/* 뒤에 유저의 id값 넣기 */}
+        <Link href={"/account-settings/1"}>
           <BasicItem text={"계정"} font_color={"var(--menu-gray-color)"} />
         </Link>
 
-        <Link href={"/help"}>
+        {/* 뒤에 유저의 id값 넣기 */}
+        <Link href={"/help/1"}>
           <CeilingBarItem text={"도움말 센터"} />
         </Link>
         <BasicItem text={"로그아웃"} font_color={"var(--menu-gray-color)"} />
