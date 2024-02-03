@@ -5,6 +5,8 @@ import Footer from "@/components/Footer/Footer";
 import NavApp from "@/components/Header/Nav/NavApp";
 import AccountWebItem from "@/components/Account/AccountWebItem";
 import AccountAppItem from "@/components/Account/AccountAppItem";
+import axios from "axios";
+import { useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -31,6 +33,33 @@ import {
 import { faAirbnb } from "@fortawesome/free-brands-svg-icons";
 
 export default function AccountSettings() {
+  const getUserData = async () => {
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/user/${user_id}`,
+        null,
+        {
+          headers: {
+            // Authorization : "Bearer " + localStorage.getItem("Authorization"),
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "69420",
+          },
+        }
+      );
+      console.log(response);
+      // '유저 이름, 이메일' 데이터가 필요함
+    } catch (err) {
+      console.log(err);
+
+      // 만약 authToken이 만료된 경우
+      // refreshToken으로 갱신하고, 다시 api 호출한다.
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
   return (
     <>
       <Title text={"계정 관리 - 에어비앤비"} />
