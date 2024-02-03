@@ -64,7 +64,6 @@ export default function PersonalInfo() {
     setPasswordEdit(false);
     setCountryEdit(false);
     setPhoneEdit(!phoneEdit);
-    setBirthDateEdit(false);
   };
 
   const onBlurName = () => {
