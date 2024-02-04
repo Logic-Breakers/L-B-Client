@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Title from "@/components/Title";
 import { useRouter } from "next/router";
-import HeaderBasic from "@/components/Header/HeaderBasic";
+import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import NavApp from "@/components/Header/Nav/NavApp";
 
@@ -69,13 +69,13 @@ export default function userDelete() {
   return (
     <>
       <Title text={"계정 탈퇴 - 에어비앤비"} />
-      <HeaderBasic />
+      <Header />
       <main className="flex flex-row justify-center items-center w-full min-h-screen">
         <div className="w-[500px] bnb_sm:px-[24px]">
           <div className="mb-10 space-y-2">
             <h1 className="text-[32px] font-[500]">회원 탈퇴</h1>
             <h2 className="text-xl text-gray-500 ">
-              정말로 회원 탈퇴 하시겠습니까?
+              정말로 회원 탈퇴하시겠습니까?
             </h2>
           </div>
           <section className="flex flex-row justify-center items-center space-x-4 ">

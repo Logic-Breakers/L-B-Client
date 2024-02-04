@@ -1,5 +1,5 @@
 import Title from "@/components/Title";
-import HeaderBasic from "@/components/Header/HeaderBasic";
+import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AccountItemTitle from "@/components/Account/AccountItemTitle";
 import { useState } from "react";
@@ -119,7 +119,7 @@ export default function PersonalInfo() {
           "에어비앤비: 휴가용 임대 숙소, 통나무집, 비치 하우스, 독특한 숙소 및 체험"
         }
       />
-      <HeaderBasic />
+      <Header />
       <main className="bnb_md_xl:mt-[80px] flex flex-row w-full min-h-screen">
         <div className="w-[1048px] px-[24px] mx-auto bnb_sm:mt-[100px]">
           <AccountItemTitle title_route={"개인정보"} title_h2={"개인정보"} />

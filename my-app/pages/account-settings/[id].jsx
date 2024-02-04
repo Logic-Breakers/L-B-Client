@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Title from "@/components/Title";
-import HeaderBasic from "@/components/Header/HeaderBasic";
+import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import NavApp from "@/components/Header/Nav/NavApp";
 import AccountWebItem from "@/components/Account/AccountWebItem";
@@ -63,7 +63,7 @@ export default function AccountSettings() {
   return (
     <>
       <Title text={"계정 관리 - 에어비앤비"} />
-      <HeaderBasic />
+      <Header />
 
       {/* 나중에 userName, email 받기 */}
       <main className="bnb_sm:hidden flex flex-row justify-center items-center w-full bnb_md_lg:px-[24px]">

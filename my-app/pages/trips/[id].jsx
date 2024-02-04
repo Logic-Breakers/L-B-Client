@@ -1,5 +1,5 @@
 import Link from "next/link";
-import HeaderBasic from "@/components/Header/HeaderBasic";
+import Header from "@/components/Header/Header";
 import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
 import SearchBtn from "@/components/Buttons/tripsPage/SerachBtn";
@@ -9,7 +9,7 @@ export default function Trips() {
   return (
     <>
       <Title text={"여행 목록 - 에어비앤비"} />
-      <HeaderBasic />
+      <Header />
       <main className="flex flex-row justify-center w-full h-[100vh]">
         <div className="w-[100%] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] bnb_md_xl:mt-[70px]">
           <div>

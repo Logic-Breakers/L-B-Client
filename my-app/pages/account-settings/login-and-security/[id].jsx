@@ -1,5 +1,5 @@
 import Title from "@/components/Title";
-import HeaderBasic from "@/components/Header/HeaderBasic";
+import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AccountItemTitle from "@/components/Account/AccountItemTitle";
 import { useState } from "react";
@@ -34,7 +34,7 @@ export default function LoginAndSecurity() {
   return (
     <>
       <Title text={"로그인 및 보안 - 계정 관리 - 에어비앤비"}></Title>
-      <HeaderBasic />
+      <Header />
       <main className="bnb_md_xl:mt-[80px] flex flex-row w-full min-h-screen">
         <div className="w-[1048px] px-[24px] mx-auto bnb_sm:mt-[100px]">
           <AccountItemTitle

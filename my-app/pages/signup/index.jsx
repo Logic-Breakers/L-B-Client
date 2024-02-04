@@ -1,7 +1,7 @@
 import axios from "axios";
 import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
-import HeaderBasic from "@/components/Header/HeaderBasic";
+import Header from "@/components/Header/Header";
 import NavApp from "@/components/Header/Nav/NavApp";
 
 import { useState } from "react";
@@ -111,7 +111,7 @@ export default function SignUp() {
   return (
     <>
       <Title text={"회원가입 - Airbnb"} />
-      <HeaderBasic />
+      <Header />
       <main className="flex flex-row justify-center w-full min-h-screen mt-[40px]">
         <div className="w-[600px] bnb_md_xl:pt-[80px] bnb_sm:px-[24px]">
           <h1 className="text-[32px] font-[500]">회원가입</h1>
