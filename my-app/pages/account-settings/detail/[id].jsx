@@ -1,19 +1,15 @@
-import Link from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import AccountAppDetailItem from "@/components/Account/AccountAppDetailItem";
+import BackPageBtn from "@/components/Buttons/BackPageBtn";
 
 // (App) 계정페이지에서 계정을 누른 경우 나타나는 페이지
-// /account-settings/detail
+// /account-settings/detail/{id}
 
 // 나중에 유저의 id값으로 다 변경하기
 export default function Detail() {
   return (
     <main className="bnb_sm:block bnb_md_xl:hidden m-[24px]">
       <div className="h-[64px]">
-        <Link href={"/account-settings"} className="p-[12px] ml-[-12px]">
-          <FontAwesomeIcon icon={faChevronLeft} />
-        </Link>
+        <BackPageBtn />
       </div>
       <h2 className="text-[20px] font-[700] mt-[12px] mb-[16px]">계정</h2>
       <section className="mb-[60px]">

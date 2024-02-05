@@ -22,7 +22,7 @@ export default function PersonalInfo() {
 
   const [name, setName] = useState("○○○");
   const [email, setEmail] = useState("abcde@example.com");
-  const [password, setPassword] = useState("∙∙∙∙∙∙∙∙");
+  const [password, setPassword] = useState("");
   const [phone, setPhone] = useState("01012345678");
 
   // 이름
@@ -203,8 +203,7 @@ export default function PersonalInfo() {
                     <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
                       {passwordEdit
                         ? "변경하실 비밀번호를 입력해주세요"
-                        : password +
-                          "  <-- 서버로부터 받아온 데이터에서 유저 정보 넣기"}
+                        : "보안상 이유로 현재 비밀번호를 보여드리지 않습니다."}
                     </div>
                   </div>
                   <button

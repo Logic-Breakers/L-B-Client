@@ -10,7 +10,7 @@ export default function BackPageBtn() {
   };
 
   return (
-    <div className="bnb_md_xl:hidden flex flex-row items-center h-[64px] shadow-sm px-[24px] fixed top-0 left-0">
+    <div className="bnb_md_xl:hidden flex flex-row items-center w-full h-[64px] shadow-sm px-[24px] fixed top-0 left-0 bg-[#ffffff]">
       <button type="button" onClick={backPage} className="p-[12px] ml-[-12px]">
         <FontAwesomeIcon icon={faChevronLeft} />
       </button>
