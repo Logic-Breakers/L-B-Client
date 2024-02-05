@@ -166,7 +166,7 @@ export default function Register() {
             houseName,
             country,
             address: "제주특별자치도 제주시 중앙로 3062",
-            charge: price,
+            price,
             propertyType,
             placeType,
             guest: guestNum,
@@ -185,7 +185,7 @@ export default function Register() {
       // 서버 API 호출
       // 사진도 같이 보내야하기에 multipart/form-data로 보낸다.
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?category_name=${category}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?categoryName=${category}`,
         requestData,
         {
           headers: {
@@ -195,12 +195,15 @@ export default function Register() {
         }
       );
       console.log(response);
+      alert(response.data);
+
+      // 숙소 등록 한 뒤, hosting 페이지로 이동한다.
+      // 나중에 id값으로 변경하기!
+      router.push("/hosting/1");
     } catch (error) {
+      alert("숙소 등록을 실패했습니다.");
       console.log("에러", error);
     }
-
-    // 숙소 등록 한 뒤, hosting 페이지로 이동한다.
-    // router.push("/hosting");
   };
 
   return (

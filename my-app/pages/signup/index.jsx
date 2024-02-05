@@ -67,14 +67,15 @@ export default function SignUp() {
 
   // 생년월일
   const onBlurBirthDate = (event) => {
-    setBirthDate(event.target.value);
+    // 형식 맞추기 위해 뒤에 "T00:00:00" 추가함
+    setBirthDate(event.target.value + "T00:00:00");
     console.log("생년월일 : ", birthDate);
   };
 
   // 서버로 회원가입 요청
   const onClickSubmitBtn = async () => {
     const request = {
-      name,
+      username: name,
       email,
       password,
       country,

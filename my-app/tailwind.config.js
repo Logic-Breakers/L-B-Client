@@ -17,6 +17,8 @@ module.exports = {
         xx: "0px 7px 29px 0px rgba(100, 100, 111, 0.2)",
         xxx: "0px 5px 15px rgba(0, 0, 0, 0.35)",
         cc: "0px 1px 2px 0px rgba(60, 64, 67, 0.3), 0px 2px 6px 2px rgba(60, 64, 67, 0.15)",
+        ccc: "0px 2px 5px -1px rgba(50, 50, 93, 0.25), 0px 1px 3px -1px rgba(0, 0, 0, 0.3)",
+        cccc: "0px 1px 4px rgba(0, 0, 0, 0.16)",
       },
 
       screens: {

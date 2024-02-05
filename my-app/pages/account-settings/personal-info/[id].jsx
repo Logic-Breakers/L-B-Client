@@ -14,55 +14,46 @@ import { faEye } from "@fortawesome/free-regular-svg-icons";
 
 // 계정 -> 개인정보
 export default function PersonalInfo() {
-  // 이름, 이메일, 비밀번호, 국가, 전화번호
+  // 이름, 이메일, 비밀번호, 전화번호
   const [nameEdit, setNameEdit] = useState(false);
   const [emailEdit, setEmailEdit] = useState(false);
   const [passwordEdit, setPasswordEdit] = useState(false);
-  const [countryEdit, setCountryEdit] = useState(false);
   const [phoneEdit, setPhoneEdit] = useState(false);
 
   const [name, setName] = useState("○○○");
   const [email, setEmail] = useState("abcde@example.com");
   const [password, setPassword] = useState("∙∙∙∙∙∙∙∙");
-  const [country, setCountry] = useState("대한민국");
   const [phone, setPhone] = useState("01012345678");
 
+  // 이름
   const handleNameEdit = () => {
     setNameEdit(!nameEdit);
     setEmailEdit(false);
     setPasswordEdit(false);
-    setCountryEdit(false);
     setPhoneEdit(false);
   };
 
+  // 이메일
   const handleEmailEdit = () => {
     setNameEdit(false);
     setEmailEdit(!emailEdit);
     setPasswordEdit(false);
-    setCountryEdit(false);
     setPhoneEdit(false);
   };
 
+  // 비밀번호
   const handlePasswordEdit = () => {
     setNameEdit(false);
     setEmailEdit(false);
     setPasswordEdit(!passwordEdit);
-    setCountryEdit(false);
     setPhoneEdit(false);
   };
 
-  const handleCountryEdit = () => {
-    setNameEdit(false);
-    setEmailEdit(false);
-    setPasswordEdit(false);
-    setCountryEdit(!countryEdit);
-    setPhoneEdit(false);
-  };
+  // 전화번호
   const handlePhoneEdit = () => {
     setNameEdit(false);
     setEmailEdit(false);
     setPasswordEdit(false);
-    setCountryEdit(false);
     setPhoneEdit(!phoneEdit);
   };
 
@@ -81,11 +72,6 @@ export default function PersonalInfo() {
     console.log("password : ", password);
   };
 
-  const onBlurCountry = () => {
-    setCountry(country);
-    console.log("country : ", country);
-  };
-
   const onBlurPhone = () => {
     setPhone(phone);
     console.log("phone : ", phone);
@@ -101,10 +87,6 @@ export default function PersonalInfo() {
 
   const handlePasswordSubmit = () => {
     console.log("Password submit");
-  };
-
-  const handleCountrySubmit = () => {
-    console.log("Country submit");
   };
 
   const handlePhoneSubmit = () => {
@@ -249,64 +231,6 @@ export default function PersonalInfo() {
                     <button
                       type="submit"
                       onClick={handlePasswordSubmit}
-                      className="bg-black text-white w-[76px] h-[48px] px-[24px] py-[14px] rounded-[10px] flex flex-row justify-center items-center active:scale-95 duration-[0.1s]"
-                    >
-                      저장
-                    </button>
-                  </form>
-                )}
-              </section>
-
-              {/* 국가 */}
-              <section className="py-[24px] border-b-[1px]">
-                <div className="flex flex-row justify-between items-start ">
-                  <div>
-                    <div>국적</div>
-                    <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
-                      {countryEdit
-                        ? "바뀌신 국적을 선택해주세요"
-                        : country +
-                          "  <-- 서버로부터 받아온 데이터에서 유저 정보 넣기"}
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleCountryEdit}
-                    className="text-[14px] font-[500] underline"
-                  >
-                    {countryEdit ? "취소" : "수정"}
-                  </button>
-                </div>
-
-                {countryEdit && (
-                  <form onSubmit={(event) => event.preventDefault()}>
-                    <label
-                      onBlur={onBlurCountry}
-                      onChange={(event) => setCountry(event.target.value)}
-                      htmlFor="country"
-                      className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[50px] relative my-[20px]"
-                    >
-                      <select
-                        id="country"
-                        className="appearance-none w-full h-full pl-4 rounded-md text-md text-gray-600"
-                        defaultValue={""}
-                      >
-                        <option value="">국적을 선택해주세요</option>
-                        <option value="미국">미국 (United States)</option>
-                        <option value="영국">영국 (United Kingdom)</option>
-                        <option value="일본">일본 (Japan)</option>
-                        <option value="대한민국">한국 (Korea)</option>
-                        <option value="중국">중국 (China)</option>
-                      </select>
-
-                      <FontAwesomeIcon
-                        icon={faChevronDown}
-                        className="absolute right-[10px] pointer-events-none"
-                      />
-                    </label>
-                    <button
-                      type="submit"
-                      onClick={handleCountrySubmit}
                       className="bg-black text-white w-[76px] h-[48px] px-[24px] py-[14px] rounded-[10px] flex flex-row justify-center items-center active:scale-95 duration-[0.1s]"
                     >
                       저장
