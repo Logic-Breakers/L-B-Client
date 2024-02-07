@@ -48,7 +48,7 @@ export default function NavApp() {
           <Link
             href={"/trips/1"}
             className={`${
-              router.pathname === "/trips/v1"
+              router.pathname === "/trips/1"
                 ? "text-[var(--brand-color)]"
                 : "text-[#717171]"
             } flex flex-col justify-center items-center gap-[4px] px-4`}
@@ -61,7 +61,7 @@ export default function NavApp() {
           <Link
             href={"/guest/inbox/1"}
             className={`${
-              router.pathname === "/guest/inbox"
+              router.pathname === "/guest/inbox/1"
                 ? "text-[var(--brand-color)]"
                 : "text-[#717171]"
             } flex flex-col justify-center items-center gap-[4px] px-4`}
@@ -74,7 +74,7 @@ export default function NavApp() {
           <Link
             href={"/account-settings/1"}
             className={`${
-              router.pathname === "/account-settings"
+              router.pathname === "/account-settings/1"
                 ? "text-[var(--brand-color)]"
                 : "text-[#717171]"
             } flex flex-col justify-center items-center gap-[4px] px-4`}
