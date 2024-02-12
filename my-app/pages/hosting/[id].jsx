@@ -76,7 +76,7 @@ export default function Hosting() {
             <h2 className="text-2xl font-medium">숙소</h2>
             {/* 등록된 숙소를 누르면 해당 숙소 세부정보 사이트로 이동하도록 구현하기 */}
             {/* 서버로부터 등록한 전체 숙소 데이터 가져오기 */}
-            <div className="mt-2 mb-6 py-6 overflow-x-scroll flex flex-row justify-between space-x-6 ">
+            <div className="mt-2 mb-6 py-6 overflow-x-scroll scrollbar-hide flex flex-row justify-between space-x-6 ">
               {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => (
                 <div
                   key={index}

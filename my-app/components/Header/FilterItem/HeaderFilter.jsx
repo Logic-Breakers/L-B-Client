@@ -4,24 +4,70 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faSliders } from "@fortawesome/free-solid-svg-icons";
 
 import {
+  // 캐슬, 속세를 벗어난 숙소
+  faFortAwesome,
+  faBuromobelexperte,
+} from "@fortawesome/free-brands-svg-icons";
+
+import {
   faFire,
   faMountainSun,
   faCow,
   faWheatAwn,
   faWarehouse,
-  // 방
-  faUmbrellaBeach,
-  // 한옥
+  faDoorClosed,
   faPersonSwimming,
+  faVihara,
+  faWaterLadder,
   faEye,
-  faTents,
-  // 스키
-  faChessRook,
-  // 기상천외한 숙소
+  faBinoculars,
+  faPersonSkiingNordic,
+  faGhost,
   faHouseFloodWater,
   faPalette,
-  // 속세를 벗어난 숙소
+  faToriiGate,
+  faArrowUpFromWaterPump,
+  faPaintbrush,
+  faUmbrellaBeach,
+  faDungeon,
+  faIgloo,
+  faChampagneGlasses,
+  faFolderPlus,
+  faFan,
+  faTreeCity,
+  faMugHot,
+  faPersonShelter,
+  faSailboat,
+  faArchway,
+  faChessRook,
+  faFlag,
+  faCampground,
+  faPlaceOfWorship,
+  faBellConcierge,
+  faWater,
+  faLifeRing,
+  faBuildingColumns,
+  faChildren,
+  faVanShuttle,
+  faPersonSnowboarding,
+  faGolfBallTee,
+  faStore,
+  faUtensils,
+  faTents,
+  faSynagogue,
+  faPersonSkiing,
+  faHouseChimneyWindow,
+  faCaravan,
+  faTrailer,
+  faMusic,
+  faTowerObservation,
+  faHatCowboy,
+  faShop,
+  faShip,
+  faWheelchairMove,
   faHouse,
+  faMosque,
+  faGopuram,
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function HeaderFilter() {
@@ -50,19 +96,19 @@ export default function HeaderFilter() {
           text={"통나무집"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faDoorClosed} />}
           text={"방"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faUmbrellaBeach} />}
+          icon={<FontAwesomeIcon icon={faPersonSwimming} />}
           text={"해변 근처"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faVihara} />}
           text={"한옥"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faPersonSwimming} />}
+          icon={<FontAwesomeIcon icon={faWaterLadder} />}
           text={"멋진 수영장"}
         />
         <HeaderFilterItem
@@ -70,19 +116,19 @@ export default function HeaderFilter() {
           text={"최고의 전망"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faTents} />}
+          icon={<FontAwesomeIcon icon={faBinoculars} />}
           text={"캠핑장"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faPersonSkiingNordic} />}
           text={"스키"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faChessRook} />}
+          icon={<FontAwesomeIcon icon={faFortAwesome} />}
           text={"캐슬"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faGhost} />}
           text={"기상천외한 숙소"}
         />
         <HeaderFilterItem
@@ -94,167 +140,167 @@ export default function HeaderFilter() {
           text={"창작 공간"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faBuromobelexperte} />}
           text={"속세를 벗어난 숙소"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faToriiGate} />}
           text={"료칸"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faArrowUpFromWaterPump} />}
           text={"호수근처"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faPaintbrush} />}
           text={"디자인"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faUmbrellaBeach} />}
           text={"열대 지역"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faDungeon} />}
           text={"동굴"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faIgloo} />}
           text={"북극"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faChampagneGlasses} />}
           text={"와인농장"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faFolderPlus} />}
           text={"신규"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faFan} />}
           text={"풍차"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faTreeCity} />}
           text={"트리하우스"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faMugHot} />}
           text={"B&B"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faPersonShelter} />}
           text={"돔하우스"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faSailboat} />}
           text={"보트"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faArchway} />}
           text={"키클라데스 주택"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faChessRook} />}
           text={"유서 깊은 주택"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faFlag} />}
           text={"세상의 꼭대기"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faCampground} />}
           text={"A자형 주택"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faPlaceOfWorship} />}
           text={"저택"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faBellConcierge} />}
           text={"Luxe"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faWater} />}
           text={"호숫가"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faLifeRing} />}
           text={"섬"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faBuildingColumns} />}
           text={"상징적 도시"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faChildren} />}
           text={"키즈"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faVanShuttle} />}
           text={"캠핑카"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faPersonSnowboarding} />}
           text={"서핑"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faGolfBallTee} />}
           text={"골프장"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faStore} />}
           text={"복토 주택"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faUtensils} />}
           text={"전문가급 주방"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faTents} />}
           text={"유르트"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faSynagogue} />}
           text={"민수"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faPersonSkiing} />}
           text={"스키 타고 출입"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faHouseChimneyWindow} />}
           text={"카사 파르티쿨라르"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faCaravan} />}
           text={"마차"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faTrailer} />}
           text={"컨테이너하우스"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faMusic} />}
           text={"그랜드 피아노"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faTowerObservation} />}
           text={"타워"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faHatCowboy} />}
           text={"사막"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faShop} />}
           text={"헛간"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faShip} />}
           text={"하우스보트"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faWheelchairMove} />}
           text={"무장애"}
         />
         <HeaderFilterItem
@@ -262,11 +308,11 @@ export default function HeaderFilter() {
           text={"담무소"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faMosque} />}
           text={"리아드"}
         />
         <HeaderFilterItem
-          icon={<FontAwesomeIcon icon={faHouse} />}
+          icon={<FontAwesomeIcon icon={faGopuram} />}
           text={"트룰로"}
         />
       </section>
