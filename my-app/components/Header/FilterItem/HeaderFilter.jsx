@@ -4,77 +4,76 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faSliders } from "@fortawesome/free-solid-svg-icons";
 
 import {
-  // 캐슬, 속세를 벗어난 숙소
-  faFortAwesome,
-  faBuromobelexperte,
+  faFortAwesome, // 캐슬
+  faBuromobelexperte, // 속세를 벗어난 숙소
 } from "@fortawesome/free-brands-svg-icons";
 
 import {
-  faFire,
-  faMountainSun,
-  faCow,
-  faWheatAwn,
-  faWarehouse,
-  faDoorClosed,
-  faPersonSwimming,
-  faVihara,
-  faWaterLadder,
-  faEye,
-  faBinoculars,
-  faPersonSkiingNordic,
-  faGhost,
-  faHouseFloodWater,
-  faPalette,
-  faToriiGate,
-  faArrowUpFromWaterPump,
-  faPaintbrush,
-  faUmbrellaBeach,
-  faDungeon,
-  faIgloo,
-  faChampagneGlasses,
-  faFolderPlus,
-  faFan,
-  faTreeCity,
-  faMugHot,
-  faPersonShelter,
-  faSailboat,
-  faArchway,
-  faChessRook,
-  faFlag,
-  faCampground,
-  faPlaceOfWorship,
-  faBellConcierge,
-  faWater,
-  faLifeRing,
-  faBuildingColumns,
-  faChildren,
-  faVanShuttle,
-  faPersonSnowboarding,
-  faGolfBallTee,
-  faStore,
-  faUtensils,
-  faTents,
-  faSynagogue,
-  faPersonSkiing,
-  faHouseChimneyWindow,
-  faCaravan,
-  faTrailer,
-  faMusic,
-  faTowerObservation,
-  faHatCowboy,
-  faShop,
-  faShip,
-  faWheelchairMove,
-  faHouse,
-  faMosque,
-  faGopuram,
+  faFire, // 인기 급상승
+  faMountainSun, // 국립공원
+  faCow, // 농장
+  faWheatAwn, // 한적한 시골
+  faWarehouse, // 통나무집
+  faDoorClosed, // 방
+  faPersonSwimming, // 해변 근처
+  faVihara, // 한옥
+  faWaterLadder, // 멋진 수영장
+  faEye, // 최고의 전망
+  faBinoculars, // 캠핑장
+  faPersonSkiingNordic, // 스키
+  faGhost, // 기상천외한 숙소
+  faHouseFloodWater, // 해변 바로 앞
+  faPalette, // 창작 공간
+  faToriiGate, // 료칸
+  faArrowUpFromWaterPump, // 호수근처
+  faPaintbrush, // 디자인
+  faUmbrellaBeach, // 열대 지역
+  faDungeon, // 동굴
+  faIgloo, // 북극
+  faChampagneGlasses, // 와인농장
+  faFolderPlus, // 신규
+  faFan, // 풍차
+  faTreeCity, // 트리하우스
+  faMugHot, // B&B
+  faPersonShelter, // 돔하우스
+  faSailboat, // 보트
+  faArchway, // 키클라데스 주택
+  faChessRook, // 유서 깊은 주택
+  faFlag, // 세상의 꼭대기
+  faCampground, // A자형 주택
+  faPlaceOfWorship, // 저택
+  faBellConcierge, // Luxe
+  faWater, // 호숫가
+  faLifeRing, // 섬
+  faBuildingColumns, // 상징적 도시
+  faChildren, // 키즈
+  faVanShuttle, // 캠핑카
+  faPersonSnowboarding, // 서핑
+  faGolfBallTee, // 골프장
+  faStore, // 복토 주택
+  faUtensils, // 전문가급 주방
+  faTents, // 유르트
+  faSynagogue, // 민수
+  faPersonSkiing, // 스키 타고 출입
+  faHouseChimneyWindow, // 카사 파르티쿨라르
+  faCaravan, // 마차
+  faTrailer, // 컨테이너하우스
+  faMusic, // 그랜드 피아노
+  faTowerObservation, // 타워
+  faHatCowboy, // 사막
+  faShop, // 헛간
+  faShip, // 하우스보트
+  faWheelchairMove, // 무장애
+  faHouse, // 담무소
+  faMosque, // 리아드
+  faGopuram, // 트룰로
 } from "@fortawesome/free-solid-svg-icons";
 
 export default function HeaderFilter() {
   return (
-    <section className="bnb_xl:px-[80px] px-[40px] border-t-[1px] border-solid border-[#eeeeee] pt-3 flex flex-row justify-between items-center">
+    <section className="bnb_xl:px-[80px] px-[40px] border-t-[1px] border-solid border-[#eeeeee] pt-3 flex flex-row justify-between items-center space-x-4">
       {/* 카테고리 아이템들 */}
-      <section className="w-[84%] overflow-x-scroll scrollbar-hide flex flex-row space-x-6">
+      <section className="overflow-x-scroll scrollbar-hide flex flex-row space-x-6">
         <HeaderFilterItem
           icon={<FontAwesomeIcon icon={faFire} />}
           text={"인기 급상승"}
@@ -321,7 +320,7 @@ export default function HeaderFilter() {
       <div className="flex flex-row justify-between items-center space-x-8">
         <button
           type="button"
-          className="w-[27px] h-[27px] rounded-full border-solid border-[1px] border-gray-300 hover:scale-[1.05] hover:shadow-cc duration-[0.1s] "
+          className="w-[27px] h-[27px] rounded-full border-solid border-[1px] border-gray-300 hover:scale-[1.05] hover:shadow-cc active:scale-100 duration-[0.1s] "
         >
           <FontAwesomeIcon icon={faAngleRight} />
         </button>
@@ -329,12 +328,12 @@ export default function HeaderFilter() {
         {/* 필터 모달 버튼 */}
         <button
           type="button"
-          className="h-[48px] rounded-xl border border-gray-300 hover:scale-[1.05] hover:shadow-cc duration-[0.1s] flex flex-row items-center space-x-2 px-4 "
+          className="w-fit h-[48px] rounded-xl border border-gray-300 hover:scale-[1.05] hover:shadow-cc active:scale-100 duration-[0.1s] flex flex-row items-center space-x-2 px-4 "
         >
           <div>
             <FontAwesomeIcon icon={faSliders} />
           </div>
-          <div className="text-sm">필터</div>
+          <div className="text-sm w-[25px]">필터</div>
         </button>
       </div>
     </section>
