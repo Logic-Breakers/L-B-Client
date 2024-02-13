@@ -1,3 +1,4 @@
+import axios from "axios";
 import Link from "next/link";
 import Title from "@/components/Title";
 import Header from "@/components/Header/Header";
@@ -5,8 +6,8 @@ import Footer from "@/components/Footer/Footer";
 import NavApp from "@/components/Header/Nav/NavApp";
 import AccountWebItem from "@/components/Account/AccountWebItem";
 import AccountAppItem from "@/components/Account/AccountAppItem";
-import axios from "axios";
 import { useEffect } from "react";
+import WhiteBtn from "@/components/Buttons/WhiteBtn";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -33,6 +34,10 @@ import {
 import { faAirbnb } from "@fortawesome/free-brands-svg-icons";
 
 export default function AccountSettings() {
+  const handleLogout = () => {
+    console.log("로그아웃 버튼 누름");
+  };
+
   const getUserData = async () => {
     try {
       const response = await axios.get(
@@ -248,13 +253,15 @@ export default function AccountSettings() {
             itemName={"에어비앤비 이용 방법"}
           />
         </section>
+
         <section className="mt-[40px]">
-          <button
-            type="button"
-            className="border-black border-solid border-[1px] w-full h-[48px] rounded-[10px] hover:bg-[#F7F7F7]"
-          >
-            로그아웃
-          </button>
+          <WhiteBtn
+            onClick={handleLogout}
+            text={"로그아웃"}
+            width={"full"}
+            px={"[23px]"}
+            py={"[13px]"}
+          />
           <div className="flex flex-row justify-center text-[12px] text-[#888888] mt-[20px] pb-[40px]">
             2024 Airbnb Clone Coding
           </div>

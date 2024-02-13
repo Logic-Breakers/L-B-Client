@@ -107,18 +107,20 @@ export default function Header() {
           {/* 메인 페이지 중간 아이템 : 숙소, 체험, 온라인 체험 */}
           {router.pathname === "/" ? (
             <section>
-              <div className="space-x-1">
-                <HeaderCenterTopBtn
-                  onClick={handleLodging}
-                  state={lodging}
-                  text={"숙소"}
-                />
+              <div className="flex flex-row">
+                <div>
+                  <HeaderCenterTopBtn
+                    onClick={handleLodging}
+                    state={lodging}
+                    text={"숙소"}
+                  />
 
-                <HeaderCenterTopBtn
-                  onClick={handleExperience}
-                  state={experience}
-                  text={"체험"}
-                />
+                  <HeaderCenterTopBtn
+                    onClick={handleExperience}
+                    state={experience}
+                    text={"체험"}
+                  />
+                </div>
 
                 <Link href={"/"}>
                   <button

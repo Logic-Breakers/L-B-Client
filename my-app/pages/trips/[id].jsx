@@ -2,8 +2,8 @@ import Link from "next/link";
 import Header from "@/components/Header/Header";
 import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
-import SearchBtn from "@/components/Buttons/tripsPage/SerachBtn";
 import NavApp from "@/components/Header/Nav/NavApp";
+import WhiteBtn from "@/components/Buttons/WhiteBtn";
 
 export default function Trips() {
   return (
@@ -22,7 +22,12 @@ export default function Trips() {
                 여행 가방에 쌓인 먼지를 털어내고 다음 여행 계획을 세워보세요.
               </div>
               <Link href={"/"}>
-                <SearchBtn />
+                <WhiteBtn
+                  text={"숙소 검색하기"}
+                  width={"fit"}
+                  px={"[24px]"}
+                  py={"[12px]"}
+                />
               </Link>
             </div>
             <div className="pt-[24px] pb-[36px] flex flex-row gap-[4px] text-[14px]">
