@@ -1,7 +1,8 @@
 import HeaderFilterItem from "./HeaderFilterItem";
+import ScrollArrowBtn from "@/components/Buttons/ScrollArrowBtn";
+import FilterBtn from "@/components/Buttons/FilterBtn";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleRight, faSliders } from "@fortawesome/free-solid-svg-icons";
 
 import {
   faFortAwesome, // 캐슬
@@ -69,6 +70,7 @@ import {
   faGopuram, // 트룰로
 } from "@fortawesome/free-solid-svg-icons";
 
+// 메인페이지 헤더 하단에 있는 여러 카테고리들과 필터버튼
 export default function HeaderFilter() {
   return (
     <section className="bnb_xl:px-[80px] px-[40px] border-t-[1px] border-solid border-[#eeeeee] pt-3 flex flex-row justify-between items-center space-x-4">
@@ -316,25 +318,12 @@ export default function HeaderFilter() {
         />
       </section>
 
-      {/* 오른쪽 화살표 버튼 */}
       <div className="flex flex-row justify-between items-center space-x-8">
-        <button
-          type="button"
-          className="w-[27px] h-[27px] rounded-full border-solid border-[1px] border-gray-300 hover:scale-[1.05] hover:shadow-cc active:scale-100 duration-[0.1s] "
-        >
-          <FontAwesomeIcon icon={faAngleRight} />
-        </button>
+        {/* 오른쪽 화살표 버튼 */}
+        <ScrollArrowBtn />
 
         {/* 필터 모달 버튼 */}
-        <button
-          type="button"
-          className="w-fit h-[48px] rounded-xl border border-gray-300 hover:scale-[1.05] hover:shadow-cc active:scale-100 duration-[0.1s] flex flex-row items-center space-x-2 px-4 "
-        >
-          <div>
-            <FontAwesomeIcon icon={faSliders} />
-          </div>
-          <div className="text-sm w-[25px]">필터</div>
-        </button>
+        <FilterBtn />
       </div>
     </section>
   );

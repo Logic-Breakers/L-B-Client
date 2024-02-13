@@ -3,6 +3,7 @@ import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import NavApp from "@/components/Header/Nav/NavApp";
+import WhiteBtn from "@/components/Buttons/WhiteBtn";
 import HostingPresentHostingItem from "@/components/Hosting/indexPage/HostingPresentHostingItem";
 import HostingReservationItem from "@/components/Hosting/indexPage/HostingReservationItem";
 import HostingReviewItem from "@/components/Hosting/indexPage/HostingReviewItem";
@@ -64,12 +65,12 @@ export default function Hosting() {
             <h1 className="text-[32px] font-[500]">○○ 님, 반갑습니다!</h1>
             {/* 나중에 유저 id 입력하기 */}
             <Link href="/hosting/register/1">
-              <button
-                type="button"
-                className="border-black border-solid border-[1px] px-4 py-1 rounded-md text-md hover:bg-[#F7F7F7]"
-              >
-                숙소 등록하기
-              </button>
+              <WhiteBtn
+                text={"숙소 등록하기"}
+                width={"fit"}
+                px={"4"}
+                py={"1"}
+              />
             </Link>
           </section>
           <section className="pt-10">

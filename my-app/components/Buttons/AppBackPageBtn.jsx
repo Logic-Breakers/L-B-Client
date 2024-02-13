@@ -3,7 +3,7 @@ import { faChevronLeft } from "@fortawesome/free-solid-svg-icons";
 import { useRouter } from "next/router";
 
 // App 상태(sm 사이즈 일 때) 화면 상단에 고정된 뒤로가기 버튼
-export default function BackPageBtn() {
+export default function AppBackPageBtn() {
   const router = useRouter();
   const backPage = () => {
     router.back();

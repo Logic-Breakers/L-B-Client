@@ -9,6 +9,7 @@ import { useRouter } from "next/router";
 
 import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
 import Warning from "@/components/Warning";
+import RedBtn from "@/components/Buttons/RedBtn";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -208,13 +209,14 @@ export default function SignUp() {
               </section>
 
               {/* 버튼을 누르면 서버에 제출되도록 함수 만들기 */}
-              <button
+              <RedBtn
                 onClick={onClickSubmitBtn}
-                type="submit"
-                className="flex flex-row justify-center items-center bg-[var(--brand-color)] text-white w-full h-12 rounded-md hover:bg-[var(--brand-color-hover)] active:bg-[var(--brand-color)]"
-              >
-                회원가입
-              </button>
+                type={"submit"}
+                text={"회원가입"}
+                width={"full"}
+                hight={"12"}
+                size={"md"}
+              />
             </section>
           </form>
         </div>

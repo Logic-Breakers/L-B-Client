@@ -9,6 +9,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
 import PictureUpload from "@/components/PictureUpload";
+import RedBtn from "@/components/Buttons/RedBtn";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -567,13 +568,16 @@ export default function Register() {
             </section>
 
             {/* 버튼을 누르면 서버에 제출되도록 함수 만들기 */}
-            <button
-              onClick={onClickSubmitBtn}
-              type="submit"
-              className="flex flex-row justify-center items-center bg-[var(--brand-color)] text-white w-full h-12 rounded-md mb-20 hover:bg-[var(--brand-color-hover)] active:bg-[var(--brand-color)]"
-            >
-              등록하기
-            </button>
+            <div className="mb-20">
+              <RedBtn
+                onClick={onClickSubmitBtn}
+                type={"submit"}
+                text={"등록하기"}
+                width={"full"}
+                hight={"12"}
+                size={"md"}
+              />
+            </div>
           </form>
         </div>
       </main>

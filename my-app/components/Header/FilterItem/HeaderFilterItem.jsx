@@ -1,3 +1,4 @@
+// 메인 페이지 헤더 하단에 있는 카테고리
 export default function HeaderFilterItem({ icon, text }) {
   return (
     <div className="flex-shrink-0 mt-3 pb-3 decoration-2 cursor-pointer text-[#8A8A8A] hover:text-gray-600 hover:underline hover:decoration-gray-200 hover:underline-offset-[12px] active:scale-[0.95]">

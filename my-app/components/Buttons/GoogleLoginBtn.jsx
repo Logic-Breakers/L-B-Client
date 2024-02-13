@@ -3,7 +3,7 @@ export default function GoogleLoginBtn() {
   return (
     <button
       type="button"
-      className="w-full h-[48px] border-[1px] border-solid border-black rounded-[10px] hover:bg-[#F7F7F7] active:bg-white flex flex-row items-center px-[23px] gap-[170px]"
+      className="w-full h-[48px] border-[1px] border-solid border-black rounded-[10px] hover:bg-[#F7F7F7] active:bg-white flex flex-row items-center px-[23px] gap-[170px] active:scale-[0.95] duration-[0.1s]"
     >
       <svg
         xmlns="http://www.w3.org/2000/svg"

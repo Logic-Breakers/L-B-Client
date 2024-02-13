@@ -1,5 +1,5 @@
 import Link from "next/link";
-import BackPageBtn from "../Buttons/BackPageBtn";
+import AppBackPageBtn from "../Buttons/AppBackPageBtn";
 
 // 밑에 링크에 나중에 유저 id값 입력해야함
 export default function AccountItemTitle({ title_route, title_h2 }) {
@@ -13,7 +13,7 @@ export default function AccountItemTitle({ title_route, title_h2 }) {
           <span>{">"}</span>
           <span>{title_route}</span>
         </div>
-        <BackPageBtn />
+        <AppBackPageBtn />
         <h2 className="text-[30px] font-[700] bnb_sm:text-[20px] bnb_sm:hidden ">
           {title_h2}
         </h2>

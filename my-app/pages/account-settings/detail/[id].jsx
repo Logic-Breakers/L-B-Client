@@ -1,5 +1,5 @@
 import AccountAppDetailItem from "@/components/Account/AccountAppDetailItem";
-import BackPageBtn from "@/components/Buttons/BackPageBtn";
+import AppBackPageBtn from "@/components/Buttons/AppBackPageBtn";
 
 // (App) 계정페이지에서 계정을 누른 경우 나타나는 페이지
 // /account-settings/detail/{id}
@@ -9,7 +9,7 @@ export default function Detail() {
   return (
     <main className="bnb_sm:block bnb_md_xl:hidden m-[24px]">
       <div className="h-[64px]">
-        <BackPageBtn />
+        <AppBackPageBtn />
       </div>
       <h2 className="text-[20px] font-[700] mt-[12px] mb-[16px]">계정</h2>
       <section className="mb-[60px]">

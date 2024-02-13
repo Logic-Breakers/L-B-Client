@@ -2,8 +2,10 @@ import axios from "axios";
 import Link from "next/link";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import RedBtn from "@/components/Buttons/RedBtn";
 import GoogleLoginBtn from "@/components/Buttons/GoogleLoginBtn";
 
+// 로그인 모달
 // 기본적으로 로그인이 잘 되면, 토큰 저장하기
 // 토큰 관리 잘되면, 유효성 검사 적용시키기
 export default function LoginModal({ closeLoginModal }) {
@@ -73,12 +75,13 @@ export default function LoginModal({ closeLoginModal }) {
           </button>
           <h3 className="pl-[58px] text-[16px] font-[600]">로그인</h3>
           <Link href={"/signup"}>
-            <button
-              type="button"
-              className="w-20 h-10 rounded-md text-white bg-[var(--brand-color)] hover:bg-[var(--brand-color-hover)] active:bg-[var(--brand-color)] active:scale-95 ease-in duration-[0.1s]"
-            >
-              회원가입
-            </button>
+            <RedBtn
+              type={"button"}
+              text={"회원가입"}
+              width={"20"}
+              hight={"10"}
+              size={"md"}
+            />
           </Link>
         </header>
         <section className="mt-[30px] px-[24px]">
@@ -106,21 +109,24 @@ export default function LoginModal({ closeLoginModal }) {
               className="border-[1px] border-solid border-[#cccccc] w-full rounded-md h-[55px] px-4 appearance-none"
             ></input>
 
-            <button
-              onClick={onClickLoginBtn}
-              type="submit"
-              className="w-full h-[45px] rounded-md text-white bg-[var(--brand-color)] hover:bg-[var(--brand-color-hover)] active:bg-[var(--brand-color)] active:scale-95 ease-in duration-[0.1s] mt-4"
-            >
-              로그인
-            </button>
+            <div className="mt-4">
+              <RedBtn
+                onClick={onClickLoginBtn}
+                type={"submit"}
+                text={"로그인"}
+                width={"full"}
+                hight={"[45px]"}
+                size={"md"}
+              />
+            </div>
           </form>
         </section>
 
         <section className="my-[20px] px-[24px]">
-          <div className="text-[12px] text-gray-500 flex flex-row justify-center items-center mb-[16px]">
-            <div className="border-t-[1px] border-solid border-[#cccccc] w-[44%]"></div>
-            <div className="px-[20px]">또는</div>
-            <div className="border-t-[1px] border-solid border-[#cccccc] w-[44%]"></div>
+          <div className="my-6 border-b-[1px] border-[#cccccc] relative">
+            <span className="absolute top-[-7px] left-[230px] bg-[#fff] px-5 text-xs text-gray-500">
+              또는
+            </span>
           </div>
           <GoogleLoginBtn />
         </section>

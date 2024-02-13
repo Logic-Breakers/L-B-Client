@@ -10,7 +10,7 @@ import HeaderFilter from "./FilterItem/HeaderFilter";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-// 대부분 (계정관리, 위시리스트, 메시지, 여행 ...) 페이지에 사용되는 헤더
+// (Web) 모든 페이지에 사용되는 헤더
 export default function Header() {
   const router = useRouter();
 

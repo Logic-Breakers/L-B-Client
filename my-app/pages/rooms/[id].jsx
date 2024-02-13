@@ -8,6 +8,7 @@ import RoomsHighlightItem from "@/components/Rooms/RoomsHighlightItem";
 import RoomsAccommodationPlaceItem from "@/components/Rooms/RoomsAccommodationPlaceItem";
 import RoomsFacilitiesItem from "@/components/Rooms/RoomsFacilitiesItem";
 import WhiteBtn from "@/components/Buttons/WhiteBtn";
+import RedBtn from "@/components/Buttons/RedBtn";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -276,12 +277,13 @@ export default function Rooms() {
                     </button>
                   </div>
                 </div>
-                <button
-                  type="button"
-                  className="w-full h-[48px] rounded-lg duration-[0.1s] active:scale-[0.95] bg-[#F12954] text-white text-lg font-semibold"
-                >
-                  예약하기
-                </button>
+                <RedBtn
+                  type={"button"}
+                  text={"예약하기"}
+                  width={"full"}
+                  hight={"12"}
+                  size={"lg"}
+                />
                 <div className="text-gray-500 mt-2 text-center">
                   예약 확정 전에는 요금이 청구되지 않습니다.
                 </div>

@@ -1,3 +1,4 @@
+// 메인페이지 헤더 중앙에 있는 버튼들 (숙소, 체험, 온라인 체험)
 export default function HeaderCenterTopBtn({ onClick, state, text }) {
   return (
     <button

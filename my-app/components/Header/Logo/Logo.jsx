@@ -2,6 +2,7 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAirbnb } from "@fortawesome/free-brands-svg-icons";
 
+// 헤더 왼쪽에 사용되는 로고
 export default function Logo() {
   return (
     <Link
