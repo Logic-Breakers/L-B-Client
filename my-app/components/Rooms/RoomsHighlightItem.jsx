@@ -1,3 +1,4 @@
+// Rooms 페이지의 호스트 밑의 하이라이트 아이템
 export default function RoomsHighlightItem({ icon, title, detail }) {
   return (
     <div className="flex flex-row items-center space-x-6 py-2">

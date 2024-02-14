@@ -258,7 +258,6 @@ export default function AccountSettings() {
           <WhiteBtn
             onClick={handleLogout}
             text={"로그아웃"}
-            width={"full"}
             px={"[23px]"}
             py={"[13px]"}
           />
