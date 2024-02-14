@@ -312,7 +312,7 @@ export default function Rooms() {
         <section className="py-12 border-b-[1px]">
           <div className="space-x-1 text-2xl font-semibold">
             <span>★</span>
-            <span>5.0</span>
+            <span>4.5</span>
             <span>∙</span>
             <span>
               <span>후기 </span>
