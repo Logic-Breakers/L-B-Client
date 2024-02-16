@@ -122,7 +122,7 @@ export default function Header() {
                   />
                 </div>
 
-                <Link href={"/"}>
+                <Link href={"/experiences/online"}>
                   <button
                     type="button"
                     className={`px-4 py-2 rounded-full text-md text-gray-500 hover:bg-gray-100 hover:text-gray-700`}

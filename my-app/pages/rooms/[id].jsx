@@ -5,6 +5,8 @@ import Footer from "@/components/Footer/Footer";
 import AppBackPageBtn from "@/components/Buttons/AppBackPageBtn";
 import NavApp from "@/components/Header/Nav/NavApp";
 
+import { useRef } from "react";
+
 import LikedBtn from "@/components/Buttons/LikedBtn";
 import SeeMoreBtn from "@/components/Buttons/SeeMoreBtn";
 import WhiteBtn from "@/components/Buttons/WhiteBtn";
@@ -25,18 +27,25 @@ import {
   faFlag,
   faShieldHalved,
 } from "@fortawesome/free-solid-svg-icons";
+import RoomsHeader from "@/components/Header/RoomsHeader";
 
+// 숙소 상세내용
 export default function Rooms() {
+  const scrollRef = useRef([]);
+
   const showFacilitiesModal = () => {
     console.log("편의시설 모두 보기 버튼 눌림");
   };
 
   return (
-    <>
+    <div>
       <Title text={"에어비앤비 | 휴가지 숙소, 통나무집, 해변가 주택 등"} />
-      <Header />
+      <RoomsHeader scrollRef={scrollRef} />
       <AppBackPageBtn />
-      <main className="mt-[80px] w-full max-w-[1280px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] bnb_sm:mb-[60px] mx-auto">
+      <main
+        ref={(el) => (scrollRef.current[0] = el)}
+        className="mt-[80px] w-full max-w-[1280px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] bnb_sm:mb-[60px] mx-auto"
+      >
         <section>
           {/* 숙소 제목, 좋아요 버튼 */}
           <div className="flex flex-row justify-between items-center">
@@ -74,26 +83,22 @@ export default function Rooms() {
               <div className="space-x-1 text-lg mb-2">
                 <span>
                   <span className="mr-1">최대 인원</span>
-                  <span>6</span>
-                  <span>명</span>
+                  <span>6명</span>
                 </span>
                 <span>∙</span>
                 <span>
                   <span className="mr-1">침실</span>
-                  <span>2</span>
-                  <span>개</span>
+                  <span>2개</span>
                 </span>
                 <span>∙</span>
                 <span>
                   <span className="mr-1">침대</span>
-                  <span>2</span>
-                  <span>개</span>
+                  <span>2개</span>
                 </span>
                 <span>∙</span>
                 <span>
                   <span className="mr-1">욕실</span>
-                  <span>2</span>
-                  <span>개</span>
+                  <span>2개</span>
                 </span>
               </div>
 
@@ -103,8 +108,7 @@ export default function Rooms() {
                 <span>∙</span>
                 <button type="button" className="cursor-pointer underline">
                   <span>후기 </span>
-                  <span>19</span>
-                  <span>개</span>
+                  <span>19개</span>
                 </button>
               </div>
             </section>
@@ -182,7 +186,10 @@ export default function Rooms() {
               </div>
             </section>
 
-            <section className="py-12">
+            <section
+              ref={(el) => (scrollRef.current[1] = el)}
+              className="py-12"
+            >
               <h2 className="text-2xl font-semibold pb-6">숙소 편의시설</h2>
               <ul className="grid grid-cols-2 gap-4">
                 {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => (
@@ -309,7 +316,10 @@ export default function Rooms() {
         </section>
 
         {/* 후기 */}
-        <section className="py-12 border-b-[1px]">
+        <section
+          ref={(el) => (scrollRef.current[2] = el)}
+          className="py-12 border-b-[1px]"
+        >
           <div className="space-x-1 text-2xl font-semibold">
             <span>★</span>
             <span>4.5</span>
@@ -334,7 +344,10 @@ export default function Rooms() {
         </section>
 
         {/* 호스팅 지역 */}
-        <section className="py-12 border-b-[1px]">
+        <section
+          ref={(el) => (scrollRef.current[3] = el)}
+          className="py-12 border-b-[1px]"
+        >
           <h2 className="text-2xl font-semibold pb-6">호스팅 지역</h2>
           <div className="bg-gray-200 w-full h-[480px]" />
           <div className="my-4 font-semibold">
@@ -472,6 +485,6 @@ export default function Rooms() {
       </main>
       <NavApp />
       <Footer />
-    </>
+    </div>
   );
 }
