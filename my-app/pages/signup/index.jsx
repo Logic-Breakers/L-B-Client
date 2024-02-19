@@ -214,8 +214,7 @@ export default function SignUp() {
                 type={"submit"}
                 text={"회원가입"}
                 width={"full"}
-                hight={"12"}
-                size={"md"}
+                textSize={"md"}
               />
             </section>
           </form>

@@ -22,7 +22,7 @@ export default function Trips() {
                 여행 가방에 쌓인 먼지를 털어내고 다음 여행 계획을 세워보세요.
               </div>
               <Link href={"/"}>
-                <WhiteBtn text={"숙소 검색하기"} px={"[24px]"} py={"[12px]"} />
+                <WhiteBtn text={"숙소 검색하기"} />
               </Link>
             </div>
             <div className="pt-[24px] pb-[36px] flex flex-row gap-[4px] text-[14px]">

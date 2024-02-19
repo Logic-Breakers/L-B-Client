@@ -205,8 +205,6 @@ export default function Rooms() {
                 <WhiteBtn
                   onClick={showFacilitiesModal}
                   text={"편의시설 모두 보기"}
-                  px={"[23px]"}
-                  py={"[13px]"}
                 />
               </div>
             </section>
@@ -261,8 +259,7 @@ export default function Rooms() {
                   type={"button"}
                   text={"예약하기"}
                   width={"full"}
-                  hight={"12"}
-                  size={"lg"}
+                  textSize={"lg"}
                 />
                 <div className="text-gray-500 mt-2 text-center">
                   예약 확정 전에는 요금이 청구되지 않습니다.
@@ -339,7 +336,7 @@ export default function Rooms() {
             <RoomsReviewItem />
           </div>
           <div className="mt-8">
-            <WhiteBtn text={"후기 모두 보기"} px={"[23px]"} py={"[13px]"} />
+            <WhiteBtn text={"후기 모두 보기"} />
           </div>
         </section>
 
@@ -440,11 +437,7 @@ export default function Rooms() {
               </div>
             </div>
             <div className="mt-8 mb-6">
-              <WhiteBtn
-                text={"호스트에게 연락하기"}
-                px={"[23px]"}
-                py={"[13px]"}
-              />
+              <WhiteBtn text={"호스트에게 연락하기"} />
             </div>
             <div className="flex flex-row items-center space-x-4">
               <div className="text-2xl text-[#E31C5F]">

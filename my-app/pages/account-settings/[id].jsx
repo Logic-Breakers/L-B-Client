@@ -255,12 +255,7 @@ export default function AccountSettings() {
         </section>
 
         <section className="mt-[40px]">
-          <WhiteBtn
-            onClick={handleLogout}
-            text={"로그아웃"}
-            px={"[23px]"}
-            py={"[13px]"}
-          />
+          <WhiteBtn onClick={handleLogout} text={"로그아웃"} />
           <div className="flex flex-row justify-center text-[12px] text-[#888888] mt-[20px] pb-[40px]">
             2024 Airbnb Clone Coding
           </div>

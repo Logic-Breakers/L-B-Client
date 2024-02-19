@@ -78,9 +78,8 @@ export default function LoginModal({ closeLoginModal }) {
             <RedBtn
               type={"button"}
               text={"회원가입"}
-              width={"20"}
-              hight={"10"}
-              size={"md"}
+              width={"fit"}
+              textSize={"md"}
             />
           </Link>
         </header>
@@ -115,8 +114,7 @@ export default function LoginModal({ closeLoginModal }) {
                 type={"submit"}
                 text={"로그인"}
                 width={"full"}
-                hight={"[45px]"}
-                size={"md"}
+                textSize={"md"}
               />
             </div>
           </form>

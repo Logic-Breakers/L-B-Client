@@ -65,7 +65,7 @@ export default function Hosting() {
             <h1 className="text-[32px] font-[500]">○○ 님, 반갑습니다!</h1>
             {/* 나중에 유저 id 입력하기 */}
             <Link href="/hosting/register/1">
-              <WhiteBtn text={"숙소 등록하기"} px={"4"} py={"1"} />
+              <WhiteBtn text={"숙소 등록하기"} px={"4"} />
             </Link>
           </section>
           <section className="pt-10">
