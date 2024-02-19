@@ -574,8 +574,7 @@ export default function Register() {
                 type={"submit"}
                 text={"등록하기"}
                 width={"full"}
-                hight={"12"}
-                size={"md"}
+                textSize={"md"}
               />
             </div>
           </form>

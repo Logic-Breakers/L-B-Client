@@ -261,8 +261,7 @@ export default function Rooms() {
                   type={"button"}
                   text={"예약하기"}
                   width={"full"}
-                  hight={"12"}
-                  size={"lg"}
+                  textSize={"lg"}
                 />
                 <div className="text-gray-500 mt-2 text-center">
                   예약 확정 전에는 요금이 청구되지 않습니다.
