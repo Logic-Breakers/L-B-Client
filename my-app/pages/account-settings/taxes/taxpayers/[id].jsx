@@ -11,7 +11,7 @@ export default function Taxpayers() {
           "에어비앤비: 휴가용 임대 숙소, 통나무집, 비치 하우스, 독특한 숙소 및 체험"
         }
       ></Title>
-      <Header />
+      <Header fixed />
       <Footer />
     </>
   );

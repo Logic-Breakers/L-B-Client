@@ -68,7 +68,7 @@ export default function AccountSettings() {
   return (
     <>
       <Title text={"계정 관리 - 에어비앤비"} />
-      <Header />
+      <Header fixed />
 
       {/* 나중에 userName, email 받기 */}
       <main className="bnb_sm:hidden flex flex-row justify-center items-center w-full bnb_md_lg:px-[24px]">

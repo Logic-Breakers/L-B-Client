@@ -6,7 +6,7 @@ export default function UserInfo() {
   return (
     <>
       <Title text={"게스트 프로필 - 에어비앤비"} />
-      <Header />
+      <Header fixed />
     </>
   );
 }

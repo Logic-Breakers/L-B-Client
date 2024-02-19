@@ -12,7 +12,7 @@ export default function LikedBtn() {
   };
 
   return (
-    <div onClick={onClickLiked} className="text-xl cursor-pointer px-2 py-1">
+    <div onClick={onClickLiked} className="text-xl cursor-pointer">
       {liked ? (
         <FontAwesomeIcon icon={faHeart} style={{ color: "#FE375C" }} />
       ) : (

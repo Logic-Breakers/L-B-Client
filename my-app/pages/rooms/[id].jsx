@@ -38,14 +38,12 @@ export default function Rooms() {
   };
 
   return (
-    <div>
+    <div ref={(el) => (scrollRef.current[0] = el)}>
       <Title text={"에어비앤비 | 휴가지 숙소, 통나무집, 해변가 주택 등"} />
+      <Header />
       <RoomsHeader scrollRef={scrollRef} />
       <AppBackPageBtn />
-      <main
-        ref={(el) => (scrollRef.current[0] = el)}
-        className="mt-[80px] w-full max-w-[1280px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] bnb_sm:mb-[60px] mx-auto"
-      >
+      <main className="w-full max-w-[1280px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] bnb_sm:mt-[80px] bnb_sm:mb-[60px] mx-auto">
         <section>
           {/* 숙소 제목, 좋아요 버튼 */}
           <div className="flex flex-row justify-between items-center">
@@ -104,7 +102,7 @@ export default function Rooms() {
 
               <div className="space-x-1 text-lg font-medium">
                 <span>★</span>
-                <span>5.0</span>
+                <span>4.0</span>
                 <span>∙</span>
                 <button type="button" className="cursor-pointer underline">
                   <span>후기 </span>
@@ -319,7 +317,7 @@ export default function Rooms() {
         >
           <div className="space-x-1 text-2xl font-semibold">
             <span>★</span>
-            <span>4.5</span>
+            <span>4.0</span>
             <span>∙</span>
             <span>
               <span>후기 </span>

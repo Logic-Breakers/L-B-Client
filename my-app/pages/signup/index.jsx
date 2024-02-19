@@ -113,7 +113,7 @@ export default function SignUp() {
   return (
     <>
       <Title text={"회원가입 - Airbnb"} />
-      <Header />
+      <Header fixed />
       <main className="flex flex-row justify-center w-full min-h-screen mt-[40px]">
         <div className="w-[600px] bnb_md_xl:pt-[80px] bnb_sm:px-[24px]">
           <h1 className="text-[32px] font-[500]">회원가입</h1>

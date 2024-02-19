@@ -9,7 +9,7 @@ export default function AirbnbForWork() {
       <Title
         text={"에어비앤비 비즈니스 프로그램 - 계정 관리 - 에어비앤비"}
       ></Title>
-      <Header />
+      <Header fixed />
       <Footer />
     </>
   );
