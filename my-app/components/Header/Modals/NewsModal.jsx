@@ -1,5 +1,6 @@
 import Developer from "@/components/Developer/Developer";
 
+// 새소식 모달
 export default function NewsModal({ closeNewsModal }) {
   // 상위 컴포넌트로 이벤트 전파 방지 (버블링 방지)
   const bubblingDepend = (event) => {
