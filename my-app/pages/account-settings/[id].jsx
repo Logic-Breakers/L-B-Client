@@ -195,7 +195,7 @@ export default function AccountSettings() {
         </Link>
         <section className="pb-[16px] border-b-[1px]">
           <Link href={"/host/homes"}>
-            <section className="my-[24px] p-[24px] border-[1px] border-solid border-[#DDDDDD] shadow-cc rounded-[12px] h-[138px] w-full flex flex-row justify-between items-center">
+            <section className="my-[24px] p-[24px] border-[1px] border-solid border-[#DDDDDD] shadow-cc rounded-lg h-[138px] w-full flex flex-row justify-between items-center">
               <div className="flex flex-col gap-[6px]">
                 <div className="text-[18px] font-[500]">
                   당신의 공간을 에어비앤비하세요

@@ -41,7 +41,7 @@ export default function Wishlists() {
                         width="100"
                         height="100"
                         alt="picture"
-                        className="w-[100%] rounded-[12px] p-[4px] shadow-cc"
+                        className="w-[100%] rounded-lg p-[4px] shadow-cc"
                       />
 
                       <div className="pt-[8px]">

@@ -1,6 +1,6 @@
 import HeaderFilterItem from "./HeaderFilterItem";
 import ScrollArrowBtn from "@/components/Buttons/ScrollArrowBtn";
-import FilterBtn from "@/components/Buttons/FilterBtn";
+import FilterBtn from "@/components/Header/Nav/FilterBtn";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 

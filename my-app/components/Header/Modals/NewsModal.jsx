@@ -1,28 +1,19 @@
 import Developer from "@/components/Developer/Developer";
+import CloseModalBtn from "@/components/Buttons/CloseModalBtn";
 
 // 새소식 모달
 export default function NewsModal({ closeNewsModal }) {
-  // 상위 컴포넌트로 이벤트 전파 방지 (버블링 방지)
-  const bubblingDepend = (event) => {
-    event.stopPropagation();
-  };
-
   return (
     <>
       {/* News 모달 내용 */}
       <div
-        onClick={bubblingDepend}
-        className="bg-[#fff] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-[12px] w-[615px] h-[400px] z-[1000] p-[20px]"
+        // 상위 컴포넌트로 이벤트 전파 방지 (버블링 방지)
+        onClick={(event) => event.stopPropagation()}
+        className="bg-[#fff] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-lg w-[615px] h-[400px] z-[1000] p-[20px]"
       >
-        <button
-          type="button"
-          onClick={closeNewsModal}
-          className={`text-[16px] px-[8px] py-[2px] rounded-[20px] hover:shadow-inner hover:bg-[#F7F7F7]`}
-        >
-          ✕
-        </button>
+        <CloseModalBtn onClick={closeNewsModal} />
 
-        <div className="flex flex-row justify-center items-center text-[30px] my-[20px] bg-[#e52448] text-white px-[6px] py-[1px] rounded-[12px] w-[100px]">
+        <div className="flex flex-row justify-center items-center text-[30px] my-[20px] bg-[#e52448] text-white px-[6px] py-[1px] rounded-lg w-[100px]">
           새소식
         </div>
 
