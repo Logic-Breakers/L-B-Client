@@ -12,12 +12,13 @@ export default function LikedBtn() {
   };
 
   return (
-    <div onClick={onClickLiked} className="text-xl cursor-pointer">
-      {liked ? (
-        <FontAwesomeIcon icon={faHeart} style={{ color: "#FE375C" }} />
-      ) : (
-        <FontAwesomeIcon icon={faHeart} style={{ color: "#6E7170" }} />
-      )}
+    <div
+      onClick={onClickLiked}
+      className={`text-xl cursor-pointer ${
+        liked ? "text-[#FE375C]" : "text-[#6E7170]"
+      }`}
+    >
+      <FontAwesomeIcon icon={faHeart} />
     </div>
   );
 }

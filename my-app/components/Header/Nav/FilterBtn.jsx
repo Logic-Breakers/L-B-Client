@@ -8,7 +8,6 @@ export default function FilterBtn() {
 
   const openFilterModal = () => {
     setShowFilterModal(true);
-    console.log(showFilterModal);
   };
 
   const closeFilterModal = () => {
