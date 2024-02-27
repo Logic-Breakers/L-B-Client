@@ -2,6 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLanguage, faCheck } from "@fortawesome/free-solid-svg-icons";
 import globalDummy from "./GlobalDummy";
+import CloseModalBtn from "@/components/Buttons/CloseModalBtn";
 
 // 지구본 버튼을 누르면 나타나는 모달
 export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
@@ -26,14 +27,10 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
   return (
     <div>
       {/* 모달 내용 */}
-      <div className="flex flex-col justify-start items-start fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[1032px] w-[90%] h-[90%] bg-[var(--modal-inner-bg)] rounded-[12px] z-[1000] px-[24px]">
-        <button
-          type="button"
-          onClick={closeGlobalModal}
-          className={`text-[16px] px-[8px] py-[2px] rounded-[20px] hover:shadow-inner hover:bg-[#F7F7F7] mt-[20px] ml-[-8px]`}
-        >
-          ✕
-        </button>
+      <div className="flex flex-col justify-start items-start fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[1032px] w-[90%] h-[90%] bg-[var(--modal-inner-bg)] rounded-lg z-[1000] px-[24px]">
+        <div className="mt-[20px] ml-[-8px]">
+          <CloseModalBtn onClick={closeGlobalModal} />
+        </div>
         <div className="w-full">
           <div className="mt-[20px] flex flex-row gap-[20px] border-b-[1px] border-[#DDDDDD] border-solid">
             <button
@@ -61,7 +58,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
           {/* 글로벌 모달 ON + 언어와 지역 버튼 ON 인 경우 */}
           {showGlobalModal && showLanguageAndLocal && (
             <div className="">
-              <section className="relative flex flex-col justify-center text-[16px] bg-[#F7F7F7] rounded-[12px] w-[326px] h-[80px] mt-[50px] p-[16px]">
+              <section className="relative flex flex-col justify-center text-[16px] bg-[#F7F7F7] rounded-lg w-[326px] h-[80px] mt-[50px] p-[16px]">
                 <div className="mb-[8px] flex flex-row items-center gap-[8px]">
                   <span>번역</span>
                   <FontAwesomeIcon icon={faLanguage} className="text-[20px]" />
@@ -108,7 +105,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
                   {globalDummy.map((el) => (
                     <li
                       key={el.id}
-                      className="flex flex-col flex-grow justify-center hover:bg-[#F7F7F7] rounded-[12px] cursor-pointer h-[56px] px-[13px] py-[10px]"
+                      className="flex flex-col flex-grow justify-center hover:bg-[#F7F7F7] rounded-lg cursor-pointer h-[56px] px-[13px] py-[10px]"
                     >
                       <div className="text-[14px]">{el.language}</div>
                       <div className="text-[14px] text-[#737373]">
@@ -131,7 +128,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
                 {globalDummy.map((el) => (
                   <li
                     key={el.id}
-                    className="flex flex-col flex-grow justify-center hover:bg-[#F7F7F7] rounded-[12px] cursor-pointer h-[56px] px-[13px] py-[10px]"
+                    className="flex flex-col flex-grow justify-center hover:bg-[#F7F7F7] rounded-lg cursor-pointer h-[56px] px-[13px] py-[10px]"
                   >
                     <div className="text-[14px]">
                       <span className="mr-[4px]">{el.country_kor}</span>

@@ -6,7 +6,7 @@ export default function GuestInbox() {
   return (
     <>
       <Title text={"메시지 • 에어비앤비"} />
-      <Header />
+      <Header fixed />
       <NavApp />
     </>
   );

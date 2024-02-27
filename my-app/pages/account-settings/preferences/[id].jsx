@@ -7,7 +7,7 @@ export default function Preferences() {
   return (
     <>
       <Title text={"글로벌 환경 설정 - 계정 관리 - 에어비앤비"}></Title>
-      <Header />
+      <Header fixed />
       <Footer />
     </>
   );

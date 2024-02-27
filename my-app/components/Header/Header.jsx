@@ -11,7 +11,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 // (Web) 모든 페이지에 사용되는 헤더
-export default function Header() {
+export default function Header({ fixed }) {
   const router = useRouter();
 
   // 숙소, 체험
@@ -93,7 +93,9 @@ export default function Header() {
 
   return (
     <header
-      className={`bnb_sm:hidden bg-[#fff] fixed top-0 left-0 w-full z-[100] duration-[0.1s] ${
+      className={`bnb_sm:hidden bg-[#fff] ${
+        fixed ? "fixed top-0 left-0" : null
+      } w-full z-[100] duration-[0.1s] ${
         router.pathname === "/"
           ? null
           : "border-b-[1px] border-solid border-[#eeeeee]"

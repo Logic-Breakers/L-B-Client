@@ -69,7 +69,7 @@ export default function userDelete() {
   return (
     <>
       <Title text={"계정 탈퇴 - 에어비앤비"} />
-      <Header />
+      <Header fixed />
       <main className="flex flex-row justify-center items-center w-full min-h-screen">
         <div className="w-[500px] bnb_sm:px-[24px]">
           <div className="mb-10 space-y-2">

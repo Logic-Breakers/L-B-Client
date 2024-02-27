@@ -19,7 +19,7 @@ export default function Wishlists() {
           "에어비앤비: 휴가용 임대 숙소, 통나무집, 비치 하우스, 독특한 숙소 및 체험"
         }
       />
-      <Header />
+      <Header fixed />
       <main className="flex flex-row justify-center items-center w-full bnb_sm:mb-[60px]">
         <div className="w-[100%] min-h-[100vh] bnb_md_xl:pt-[80px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px]">
           <h1 className="text-[32px] font-[500] mt-[36px]">위시리스트</h1>
@@ -41,7 +41,7 @@ export default function Wishlists() {
                         width="100"
                         height="100"
                         alt="picture"
-                        className="w-[100%] rounded-[12px] p-[4px] shadow-cc"
+                        className="w-[100%] rounded-lg p-[4px] shadow-cc"
                       />
 
                       <div className="pt-[8px]">

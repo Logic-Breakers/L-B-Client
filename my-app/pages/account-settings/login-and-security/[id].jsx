@@ -34,7 +34,7 @@ export default function LoginAndSecurity() {
   return (
     <>
       <Title text={"로그인 및 보안 - 계정 관리 - 에어비앤비"}></Title>
-      <Header />
+      <Header fixed />
       <main className="bnb_md_xl:mt-[80px] flex flex-row w-full min-h-screen">
         <div className="w-[1048px] px-[24px] mx-auto bnb_sm:mt-[100px]">
           <AccountItemTitle
@@ -192,7 +192,7 @@ export default function LoginAndSecurity() {
             </article>
 
             {/* 오른쪽 상자 부분 */}
-            <article className="bnb_sm:hidden bnb_xl:w-[334px] bnb_md_lg:w-[32%] border-[1px] border-solid border-[#DDDDDD] rounded-[12px] p-[24px] mb-[40px] h-fit">
+            <article className="bnb_sm:hidden bnb_xl:w-[334px] bnb_md_lg:w-[32%] border-[1px] border-solid border-[#DDDDDD] rounded-lg p-[24px] mb-[40px] h-fit">
               {login ? (
                 <>
                   <section>

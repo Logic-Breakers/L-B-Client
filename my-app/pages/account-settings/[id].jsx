@@ -68,7 +68,7 @@ export default function AccountSettings() {
   return (
     <>
       <Title text={"계정 관리 - 에어비앤비"} />
-      <Header />
+      <Header fixed />
 
       {/* 나중에 userName, email 받기 */}
       <main className="bnb_sm:hidden flex flex-row justify-center items-center w-full bnb_md_lg:px-[24px]">
@@ -195,7 +195,7 @@ export default function AccountSettings() {
         </Link>
         <section className="pb-[16px] border-b-[1px]">
           <Link href={"/host/homes"}>
-            <section className="my-[24px] p-[24px] border-[1px] border-solid border-[#DDDDDD] shadow-cc rounded-[12px] h-[138px] w-full flex flex-row justify-between items-center">
+            <section className="my-[24px] p-[24px] border-[1px] border-solid border-[#DDDDDD] shadow-cc rounded-lg h-[138px] w-full flex flex-row justify-between items-center">
               <div className="flex flex-col gap-[6px]">
                 <div className="text-[18px] font-[500]">
                   당신의 공간을 에어비앤비하세요

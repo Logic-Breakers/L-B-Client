@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import RedBtn from "@/components/Buttons/RedBtn";
 import GoogleLoginBtn from "@/components/Buttons/GoogleLoginBtn";
+import CloseModalBtn from "@/components/Buttons/CloseModalBtn";
 
 // 로그인 모달
 // 기본적으로 로그인이 잘 되면, 토큰 저장하기
@@ -64,15 +65,9 @@ export default function LoginModal({ closeLoginModal }) {
     // 상위 컴포넌트로 이벤트 전파 방지 (버블링 방지)
     <div onClick={(event) => event.stopPropagation()}>
       {/* 로그인 내용 */}
-      <section className="border-[1px] border-solid border-black w-[568px] max-h-[746px] z-[1000] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[#fff] rounded-[12px] cursor-default">
+      <section className="w-[568px] max-h-[746px] z-[1000] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[var(--modal-inner-bg)] rounded-lg cursor-default">
         <header className="flex flex-row justify-between items-center h-[63px] px-[24px] border-b-[1px] border-solid border-[#DDDDDD]">
-          <button
-            type="button"
-            onClick={closeLoginModal}
-            className={`text-[16px] px-[8px] py-[2px] rounded-[20px] hover:shadow-inner hover:bg-[#F7F7F7]`}
-          >
-            ✕
-          </button>
+          <CloseModalBtn onClick={closeLoginModal} />
           <h3 className="pl-[58px] text-[16px] font-[600]">로그인</h3>
           <Link href={"/signup"}>
             <RedBtn
