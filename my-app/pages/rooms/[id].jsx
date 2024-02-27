@@ -37,6 +37,14 @@ export default function Rooms() {
     console.log("편의시설 모두 보기 버튼 눌림");
   };
 
+  const GoogleMap = (location) => {
+    return (
+      <div>
+        <iframe className="w-full h-[480px]" src={location} />
+      </div>
+    );
+  };
+
   return (
     <div ref={(el) => (scrollRef.current[0] = el)}>
       <Title text={"에어비앤비 | 휴가지 숙소, 통나무집, 해변가 주택 등"} />
@@ -344,7 +352,11 @@ export default function Rooms() {
           className="py-12 border-b-[1px]"
         >
           <h2 className="text-2xl font-semibold pb-6">호스팅 지역</h2>
-          <div className="bg-gray-200 w-full h-[480px]" />
+          {/* <div className="bg-gray-400 w-full h-[480px]" /> AIzaSyD-WNZvPB9vxkcapA7K8LlEhfjX9bvPQWY */}
+          {/* 구글맵 함수에 인자로 해당 주소지를 받음. */}
+          {GoogleMap(
+            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.067639052783!2d126.97405607632359!3d37.5770249235258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2c06b408d39%3A0xedaef20ae4fc4c0b!2z7ISc7Jq47Yq567OE7IucIOyiheuhnOq1rCDtmqjsnpDroZwgMTI!5e0!3m2!1sko!2skr!4v1709027145508!5m2!1sko!2skr"
+          )}
           <div className="my-4 font-semibold">
             효자로 12, 종로구, 서울특별시, 한국
           </div>
