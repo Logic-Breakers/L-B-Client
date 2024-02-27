@@ -2,6 +2,7 @@ import Title from "@/components/Title";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AccountItemTitle from "@/components/Account/AccountItemTitle";
+import BlackBtn from "@/components/Buttons/BlackBtn";
 import { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -140,13 +141,11 @@ export default function PersonalInfo() {
                         className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
                       ></input>
                     </div>
-                    <button
-                      type="submit"
+                    <BlackBtn
+                      type={"submit"}
                       onClick={handleNameSubmit}
-                      className="bg-black text-white w-[76px] h-[48px] px-[24px] py-[14px] rounded-[10px] flex flex-row justify-center items-center active:scale-95 duration-[0.1s]"
-                    >
-                      저장
-                    </button>
+                      text={"저장"}
+                    />
                   </form>
                 )}
               </section>
@@ -184,13 +183,11 @@ export default function PersonalInfo() {
                         className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
                       ></input>
                     </div>
-                    <button
-                      type="submit"
+                    <BlackBtn
+                      type={"submit"}
                       onClick={handleEmailSubmit}
-                      className="bg-black text-white w-[76px] h-[48px] px-[24px] py-[14px] rounded-[10px] flex flex-row justify-center items-center active:scale-95 duration-[0.1s]"
-                    >
-                      저장
-                    </button>
+                      text={"저장"}
+                    />
                   </form>
                 )}
               </section>
@@ -227,13 +224,11 @@ export default function PersonalInfo() {
                         className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
                       ></input>
                     </div>
-                    <button
-                      type="submit"
+                    <BlackBtn
+                      type={"submit"}
                       onClick={handlePasswordSubmit}
-                      className="bg-black text-white w-[76px] h-[48px] px-[24px] py-[14px] rounded-[10px] flex flex-row justify-center items-center active:scale-95 duration-[0.1s]"
-                    >
-                      저장
-                    </button>
+                      text={"저장"}
+                    />
                   </form>
                 )}
               </section>
@@ -271,13 +266,11 @@ export default function PersonalInfo() {
                         className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
                       ></input>
                     </div>
-                    <button
-                      type="submit"
+                    <BlackBtn
+                      type={"submit"}
                       onClick={handlePhoneSubmit}
-                      className="bg-black text-white w-[76px] h-[48px] px-[24px] py-[14px] rounded-[10px] flex flex-row justify-center items-center active:scale-95 duration-[0.1s]"
-                    >
-                      저장
-                    </button>
+                      text={"저장"}
+                    />
                   </form>
                 )}
               </section>

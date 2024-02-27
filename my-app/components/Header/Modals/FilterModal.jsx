@@ -1,7 +1,16 @@
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {} from "@fortawesome/free-solid-svg-icons";
+import BlackBtn from "@/components/Buttons/BlackBtn";
 import CloseModalBtn from "@/components/Buttons/CloseModalBtn";
+import FilterModalPropertyTypeBtn from "@/components/Buttons/FilterModalPropertyTypeBtn";
+import FilterModalNumberBtn from "@/components/Buttons/FilterModalNumberBtn";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faHouse,
+  faBuilding,
+  faTent,
+  faHotel,
+} from "@fortawesome/free-solid-svg-icons";
 
 // 필터 버튼을 누르면 나타나는 모달
 export default function FilterModal({ closeFilterModal, showFilterModal }) {
@@ -124,12 +133,45 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
           <section className="py-8">
             <h1 className="font-medium text-[22px] pb-2">침실과 침대</h1>
             <div>
-              <div className="text-gray-600">침실</div>
+              <div className="text-gray-600 pt-7 pb-5">침실</div>
               <div className="flex flex-row space-x-2">
-                <button className="border px-[20px] py-[10px] rounded-full text-sm hover:border-black duration-[0.1s] active:scale-[0.95]">
-                  상관없음
-                </button>
-                <button className="">상관없음</button>
+                <FilterModalNumberBtn text={"상관없음"} />
+                <FilterModalNumberBtn text={"1"} />
+                <FilterModalNumberBtn text={"2"} />
+                <FilterModalNumberBtn text={"3"} />
+                <FilterModalNumberBtn text={"4"} />
+                <FilterModalNumberBtn text={"5"} />
+                <FilterModalNumberBtn text={"6"} />
+                <FilterModalNumberBtn text={"7"} />
+                <FilterModalNumberBtn text={"8+"} />
+              </div>
+            </div>
+            <div>
+              <div className="text-gray-600 pt-7 pb-5">침대</div>
+              <div className="flex flex-row space-x-2">
+                <FilterModalNumberBtn text={"상관없음"} />
+                <FilterModalNumberBtn text={"1"} />
+                <FilterModalNumberBtn text={"2"} />
+                <FilterModalNumberBtn text={"3"} />
+                <FilterModalNumberBtn text={"4"} />
+                <FilterModalNumberBtn text={"5"} />
+                <FilterModalNumberBtn text={"6"} />
+                <FilterModalNumberBtn text={"7"} />
+                <FilterModalNumberBtn text={"8+"} />
+              </div>
+            </div>
+            <div>
+              <div className="text-gray-600 pt-7 pb-5">욕실</div>
+              <div className="flex flex-row space-x-2">
+                <FilterModalNumberBtn text={"상관없음"} />
+                <FilterModalNumberBtn text={"1"} />
+                <FilterModalNumberBtn text={"2"} />
+                <FilterModalNumberBtn text={"3"} />
+                <FilterModalNumberBtn text={"4"} />
+                <FilterModalNumberBtn text={"5"} />
+                <FilterModalNumberBtn text={"6"} />
+                <FilterModalNumberBtn text={"7"} />
+                <FilterModalNumberBtn text={"8+"} />
               </div>
             </div>
           </section>
@@ -137,11 +179,23 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
           {/* 건물 유형 */}
           <section className="py-8">
             <h1 className="font-medium text-[22px] pb-6">건물 유형</h1>
-            <div className="grid grid-cols-4 gap-x-2 font-medium">
-              <div className="flex flex-col justify-between p-4 h-[124px] border rounded-lg hover:border-black active:scale-[0.95] duration-[0.1s] cursor-pointer">
-                <div className="mb-4">icon</div>
-                <div>단독 또는 다세대 주택</div>
-              </div>
+            <div className="grid grid-cols-4 gap-x-2">
+              <FilterModalPropertyTypeBtn
+                icon={<FontAwesomeIcon icon={faHouse} />}
+                text={"단독 또는 다세대 주택"}
+              />
+              <FilterModalPropertyTypeBtn
+                icon={<FontAwesomeIcon icon={faBuilding} />}
+                text={"아파트"}
+              />
+              <FilterModalPropertyTypeBtn
+                icon={<FontAwesomeIcon icon={faTent} />}
+                text={"게스트용 별채"}
+              />
+              <FilterModalPropertyTypeBtn
+                icon={<FontAwesomeIcon icon={faHotel} />}
+                text={"호텔"}
+              />
             </div>
           </section>
         </main>
@@ -153,13 +207,8 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
           >
             전체 해제
           </button>
-          <button
-            type="submit"
-            onClick={submitFilter}
-            className="bg-black text-white px-[24px] py-[14px] rounded-lg flex flex-row justify-center items-center active:scale-95 duration-[0.1s]"
-          >
-            숙소 보기
-          </button>
+
+          <BlackBtn type={"submit"} onClick={submitFilter} text={"숙소 보기"} />
         </footer>
       </form>
 
