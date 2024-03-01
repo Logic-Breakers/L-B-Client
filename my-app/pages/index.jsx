@@ -1,3 +1,4 @@
+import axios from "axios";
 import Link from "next/link";
 import Title from "@/components/Title";
 import Header from "@/components/Header/Header";
@@ -5,7 +6,34 @@ import MainPageHeaderApp from "@/components/Header/MainPageHeaderApp";
 import LikedBtn from "@/components/Buttons/LikedBtn";
 import NavApp from "@/components/Header/Nav/NavApp";
 
+import { useEffect } from "react";
+
 export default function Home() {
+  // 기존의 방식대로면 전체 숙소 조회가 아닌 맨 첫 번째 카테고리의 데이터를 불러와야함
+  // 전체 숙소 조회
+  const getAllHouseData = async () => {
+    try {
+      // 서버 api 호출
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?page={1}&size={1}`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "69420",
+          },
+        }
+      );
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      alert("전체 숙소 조회 데이터를 불러오는데 실패했습니다.");
+    }
+  };
+
+  useEffect(() => {
+    getAllHouseData();
+  }, []);
+
   return (
     <>
       <Title text={"에어비앤비 | 휴가지 숙소, 통나무집, 해변가 주택 등"} />

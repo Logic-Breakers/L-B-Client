@@ -35,7 +35,7 @@ export default function LoginModal({ closeLoginModal }) {
   const onClickLoginBtn = async () => {
     // 서버로 보낼 데이터
     const request = {
-      username: email,
+      email,
       password,
     };
     console.log(request);
