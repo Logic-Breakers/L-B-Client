@@ -6,16 +6,17 @@ import MainPageHeaderApp from "@/components/Header/MainPageHeaderApp";
 import LikedBtn from "@/components/Buttons/LikedBtn";
 import NavApp from "@/components/Header/Nav/NavApp";
 
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export default function Home() {
-  // 기존의 방식대로면 전체 숙소 조회가 아닌 맨 첫 번째 카테고리의 데이터를 불러와야함
+  const [allHouseData, setAllHouseData] = useState([]);
+
   // 전체 숙소 조회
   const getAllHouseData = async () => {
     try {
       // 서버 api 호출
       const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?page={1}&size={1}`,
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?page=1&size=20`,
         {
           headers: {
             "Content-Type": "application/json",
@@ -23,7 +24,8 @@ export default function Home() {
           },
         }
       );
-      console.log(response);
+      setAllHouseData(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
       alert("전체 숙소 조회 데이터를 불러오는데 실패했습니다.");
@@ -40,13 +42,13 @@ export default function Home() {
       <Header fixed />
       <MainPageHeaderApp />
       <main className="bnb_md_xl:mt-[270px] bnb_sm:mt-[100px] mb-[20px] bnb_sm:mb-[80px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] grid bnb_sm_md:grid-cols-2 bnb_lg:grid-cols-3 bnb_xl_2xl:grid-cols-4 bnb_3xl:grid-cols-5 gap-x-10 gap-y-6">
-        {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => (
-          <div key={index} className="min-w-[240px] cursor-pointer relative">
-            <Link href={"/rooms/1"}>
+        {allHouseData?.map((el) => (
+          <div key={el.id} className="min-w-[240px] cursor-pointer relative">
+            <Link href={`/rooms/${el.id}`}>
               <div className="bg-gray-200 aspect-square rounded-xl" />
               <div className="my-2">
                 <div className="flex flex-row justify-between">
-                  <div className="font-semibold">한국 양평군</div>
+                  <div className="font-semibold">{el.houseName}</div>
                   <div className="font-light">
                     <span className="mr-1">★</span>
                     <span>4.84</span>

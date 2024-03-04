@@ -103,7 +103,7 @@ export default function SignUp() {
       // 메인페이지로 이동하기 전에 받아온 토큰 로컬스토리지에 저장하기!
 
       // 회원가입 성공하면 메인페이지로 이동함
-      // router.push("/");
+      router.push("/");
     } catch (error) {
       console.log(error);
       alert("회원가입에 실패했습니다.");

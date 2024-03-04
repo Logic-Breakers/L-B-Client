@@ -40,7 +40,7 @@ export default function MenuBtn() {
         onClick={openMenu}
         ref={menuRef}
         className={`border-[1px] border-solid border-[#DDDDDD] ml-[4px] pl-[14px] pr-[8px] flex flex-row justify-center items-center cursor-pointer rounded-[40px] hover:shadow-md ${
-          showMenu ? "shadow-md relative" : ""
+          showMenu ? "shadow-md relative" : null
         }`}
       >
         <div className="text-[16px] mr-[14px]">
@@ -50,12 +50,10 @@ export default function MenuBtn() {
           <FontAwesomeIcon icon={faCircleUser} />
         </div>
         {/* 비로그인 상태일 때 */}
-        {/* 로그인 기능을 만들면 비로그인 때만 보이도록 조건 추가하기 */}
         {showMenu && <MenuLogout />}
 
         {/* 로그인 상태일 때 */}
-        {/* 로그인 기능을 만들면 로그인일 때만 보이도록 조건 추가하기 */}
-        {/* {showMenu && <MenuLogin />} */}
+        {showMenu && <MenuLogin />}
       </div>
     </div>
   );

@@ -10,7 +10,7 @@ export default function HeaderFilterItem({ icon, text }) {
       // 서버 api 호출
       const response = await axios.get(
         `${process.env.NEXT_PUBLIC_SERVER_URL}
-        /stays/category?page={1}&size={1}&categoryName={${underlineText}}`,
+        /stays/category?page=1&size=20&categoryName=${underlineText}`,
         {
           headers: {
             "Content-Type": "application/json",

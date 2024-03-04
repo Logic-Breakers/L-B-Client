@@ -53,8 +53,14 @@ export default function LoginModal({ closeLoginModal }) {
       );
       console.log(response);
 
+      const acToken = response.data.accessToken;
+      const reToken = response.data.refreshToken;
+
+      localStorage.setItem("acToken", acToken);
+      localStorage.setItem("reToken", reToken);
+
       // 로그인 성공하면 페이지 reload 함
-      // router.reload();
+      router.reload();
     } catch (error) {
       console.log(error);
       alert("로그인에 실패했습니다.");
