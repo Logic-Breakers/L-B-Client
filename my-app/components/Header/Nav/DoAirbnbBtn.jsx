@@ -1,16 +1,34 @@
 import Link from "next/link";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 // 헤더 오른쪽에 '당신의 공간을 에어비앤비하세요' & '호스트 모드로 전환' 버튼
+// 로그인 된 경우 : '호스트 모드로 전환' 버튼
+// 로그인 안 된 경우 : '당신의 공간을 에어비앤비하세요' 버튼
 export default function DoAirbnbBtn() {
-  // 조건 설정하기 (로그인 기능 된 후 설정하기)
-  // 로그인된 경우 : '호스트 모드로 전환'  link : '/hosting'
-  // 비로그인인 경우 : '당신의 공간을 에어비앤비하세요'  link : '/host/home'
+  const [isAuth, setIsAuth] = useState(false);
 
-  return (
+  useEffect(() => {
+    const acToken = localStorage.getItem("acToken");
+    const reToken = localStorage.getItem("reToken");
+
+    if (acToken && reToken) {
+      setIsAuth(true);
+    } else {
+      setIsAuth(false);
+    }
+  }, []);
+
+  return isAuth ? (
+    <Link
+      href="/hosting/1"
+      className="px-[12px] py-[8px] hover:bg-gray-100 hover:rounded-[30px] font-medium cursor-pointer"
+    >
+      <div>호스트 모드로 전환</div>
+    </Link>
+  ) : (
     <Link
       href="/host/homes"
-      className="px-[12px] py-[8px] hover:bg-gray-100 hover:rounded-[30px] cursor-pointer"
+      className="px-[12px] py-[8px] hover:bg-gray-100 hover:rounded-[30px] font-medium cursor-pointer"
     >
       <div>당신의 공간을 에어비앤비하세요</div>
     </Link>
