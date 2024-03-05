@@ -8,6 +8,7 @@ import MenuLogout from "./Menu/MenuLogout";
 
 export default function MenuBtn() {
   const [showMenu, setShowMenu] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
 
   const menuRef = useRef(null);
 
@@ -34,6 +35,19 @@ export default function MenuBtn() {
     };
   }, [showMenu]);
 
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const acToken = localStorage.getItem("acToken");
+      const reToken = localStorage.getItem("reToken");
+
+      if (acToken && reToken) {
+        setIsAuth(true);
+      } else {
+        setIsAuth(false);
+      }
+    }
+  }, []);
+
   return (
     <div>
       <div
@@ -50,10 +64,10 @@ export default function MenuBtn() {
           <FontAwesomeIcon icon={faCircleUser} />
         </div>
         {/* 비로그인 상태일 때 */}
-        {showMenu && <MenuLogout />}
+        {!isAuth && showMenu && <MenuLogout />}
 
         {/* 로그인 상태일 때 */}
-        {showMenu && <MenuLogin />}
+        {isAuth && showMenu && <MenuLogin />}
       </div>
     </div>
   );

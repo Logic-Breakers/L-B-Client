@@ -3,7 +3,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import AccountItemTitle from "@/components/Account/AccountItemTitle";
 import BlackBtn from "@/components/Buttons/BlackBtn";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -78,20 +78,55 @@ export default function PersonalInfo() {
     console.log("phone : ", phone);
   };
 
-  const handleNameSubmit = () => {
-    console.log("Name submit");
-  };
+  // 저장 버튼을 눌렸을 때
+  const onClickEditSubmit = async () => {
+    console.log("edit submit");
 
-  const handleEmailSubmit = () => {
-    console.log("Email submit");
-  };
+    // 페이지가 클라이언트에 마운트 될 때까지 기다림
+    // window 객체가 참조되지 않을 경우, undefined를 반환함
+    if (typeof window !== "undefined") {
+      const acToken = localStorage.getItem("acToken");
+      const reToken = localStorage.getItem("reToken");
 
-  const handlePasswordSubmit = () => {
-    console.log("Password submit");
-  };
+      if (acToken && reToken) {
+        // 서버로 보낼 데이터
+        const request = {
+          accessToken: acToken,
+          refreshToken: reToken,
 
-  const handlePhoneSubmit = () => {
-    console.log("Phone submit");
+          username: name,
+          email,
+          password,
+          phone,
+        };
+
+        try {
+          // 서버 api 호출
+          const response = await axios.patch(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/user`,
+            request,
+            {
+              headers: {
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "69420",
+              },
+            }
+          );
+
+          console.log("edit response", response);
+
+          setNameEdit(false);
+          setEmailEdit(false);
+          setPasswordEdit(false);
+          setPhoneEdit(false);
+        } catch (error) {
+          console.log(error);
+          alert("회원정보 변경을 실패하였습니다.");
+        }
+      } else {
+        alert("로그인 상태가 아닙니다.");
+      }
+    }
   };
 
   // 나중에 유저의 이름과 이메일 전화번호 등을 받아서 넣기
@@ -108,7 +143,7 @@ export default function PersonalInfo() {
           <AccountItemTitle title_route={"개인정보"} title_h2={"개인정보"} />
           <div className="flex flex-row justify-between">
             {/* 왼쪽 개인정보 변경 부분 */}
-            <article className="bnb_xl:w-[596px] bnb_md_lg:w-[58%] bnb_sm:w-full  ">
+            <article className="bnb_xl:w-[596px] bnb_md_lg:w-[58%] bnb_sm:w-full">
               {/* 이름 */}
               <section className="py-[24px] border-b-[1px]">
                 <div className="flex flex-row justify-between items-start ">
@@ -143,7 +178,7 @@ export default function PersonalInfo() {
                     </div>
                     <BlackBtn
                       type={"submit"}
-                      onClick={handleNameSubmit}
+                      onClick={onClickEditSubmit}
                       text={"저장"}
                     />
                   </form>
@@ -185,7 +220,7 @@ export default function PersonalInfo() {
                     </div>
                     <BlackBtn
                       type={"submit"}
-                      onClick={handleEmailSubmit}
+                      onClick={onClickEditSubmit}
                       text={"저장"}
                     />
                   </form>
@@ -226,7 +261,7 @@ export default function PersonalInfo() {
                     </div>
                     <BlackBtn
                       type={"submit"}
-                      onClick={handlePasswordSubmit}
+                      onClick={onClickEditSubmit}
                       text={"저장"}
                     />
                   </form>
@@ -268,7 +303,7 @@ export default function PersonalInfo() {
                     </div>
                     <BlackBtn
                       type={"submit"}
-                      onClick={handlePhoneSubmit}
+                      onClick={onClickEditSubmit}
                       text={"저장"}
                     />
                   </form>

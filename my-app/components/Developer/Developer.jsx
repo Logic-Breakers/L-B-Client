@@ -18,16 +18,6 @@ export default function Developer() {
             <FontAwesomeIcon icon={faSquareGithub} />
           </li>
         </Link>
-        {/* <Link
-          href={"https://github.com/toystory23"}
-          target="_blank"
-          title="[FE] Developer 정회엽"
-          className="text-[30px] text-[#f5711f] hover:animate-bounce"
-        >
-          <li>
-            <FontAwesomeIcon icon={faSquareGithub} />
-          </li>
-        </Link> */}
         <Link
           href={"https://github.com/KSJ-0"}
           target="_blank"
