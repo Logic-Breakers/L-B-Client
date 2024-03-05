@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // 메인 페이지 헤더 하단에 있는 카테고리
-export default function HeaderFilterItem({ icon, text }) {
+export default function HeaderCategoryItem({ icon, text }) {
   // 카테고리별 숙소 조회
   const getCategoryData = async () => {
     const underlineText = text.replaceAll(" ", "_");

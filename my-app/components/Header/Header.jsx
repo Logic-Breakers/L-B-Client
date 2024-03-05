@@ -5,7 +5,7 @@ import { useRouter } from "next/router";
 
 import Logo from "./Logo/Logo";
 import HeaderCenterTopBtn from "./CenterItem/Btn/HeaderCenterTopBtn";
-import HeaderFilter from "./FilterItem/HeaderFilter";
+import HeaderCategory from "./CategoryItem/HeaderCategory";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
@@ -309,7 +309,7 @@ export default function Header({ fixed }) {
       </section>
 
       {/* 메인페이지 헤더 밑의 필터 */}
-      {router.pathname === "/" ? <HeaderFilter /> : null}
+      {router.pathname === "/" ? <HeaderCategory /> : null}
     </header>
   );
 }
