@@ -17,7 +17,7 @@ export default function MenuLogin() {
       const acToken = localStorage.getItem("acToken");
       const reToken = localStorage.getItem("reToken");
 
-      if (acToken) {
+      if (acToken && reToken) {
         // 서버로 보낼 데이터
         const request = {
           accessToken: acToken,
@@ -28,11 +28,9 @@ export default function MenuLogin() {
           // 서버 api 호출
           // axios가 delete 요청에서도 data 옵션을 지원한다.
           // 대부분의 웹 서버는 delete 요청에서 요청 본문의 데이터를 무시하거나 지원하지 않을 수 있다.
-          const logoutResponse = await axios.delete(
+          const logoutResponse = await axios.post(
             `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/logout`,
-            {
-              data: request,
-            },
+            request,
             {
               headers: {
                 "Content-Type": "application/json",

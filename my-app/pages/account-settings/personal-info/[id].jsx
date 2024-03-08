@@ -4,13 +4,10 @@ import Footer from "@/components/Footer/Footer";
 import AccountItemTitle from "@/components/Account/AccountItemTitle";
 import BlackBtn from "@/components/Buttons/BlackBtn";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faUserShield,
-  faUserPen,
-  faChevronDown,
-} from "@fortawesome/free-solid-svg-icons";
+import { faUserShield, faUserPen } from "@fortawesome/free-solid-svg-icons";
 import { faEye } from "@fortawesome/free-regular-svg-icons";
 
 // 계정 -> 개인정보
@@ -23,7 +20,7 @@ export default function PersonalInfo() {
 
   const [name, setName] = useState("○○○");
   const [email, setEmail] = useState("abcde@example.com");
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState("12341234");
   const [phone, setPhone] = useState("01012345678");
 
   // 이름
@@ -91,9 +88,6 @@ export default function PersonalInfo() {
       if (acToken && reToken) {
         // 서버로 보낼 데이터
         const request = {
-          accessToken: acToken,
-          refreshToken: reToken,
-
           username: name,
           email,
           password,
@@ -107,6 +101,7 @@ export default function PersonalInfo() {
             request,
             {
               headers: {
+                Authorization: "Bearer " + localStorage.getItem("acToken"),
                 "Content-Type": "application/json",
                 "ngrok-skip-browser-warning": "69420",
               },
@@ -119,6 +114,10 @@ export default function PersonalInfo() {
           setEmailEdit(false);
           setPasswordEdit(false);
           setPhoneEdit(false);
+
+          // 저장 한 후 다시 유저데이터 불러와야함!
+
+          getUserData();
         } catch (error) {
           console.log(error);
           alert("회원정보 변경을 실패하였습니다.");
@@ -128,6 +127,42 @@ export default function PersonalInfo() {
       }
     }
   };
+
+  // 특정 유저 데이터 가져오기
+  const getUserData = async () => {
+    if (typeof window !== "undefined") {
+      const acToken = localStorage.getItem("acToken");
+      const reToken = localStorage.getItem("reToken");
+
+      if (acToken && reToken) {
+        try {
+          const userResponse = await axios.get(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/user`,
+            null,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("acToken"),
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "69420",
+              },
+            }
+          );
+          console.log("userResponse", userResponse);
+          // '유저 이름, 이메일' 데이터가 필요함
+
+          // 만약 authToken이 만료된 경우
+          // refreshToken으로 갱신하고, 다시 api 호출한다.
+        } catch (err) {
+          console.log(err);
+          alert("유저 정보를 가져오는데 실패했습니다.");
+        }
+      }
+    }
+  };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   // 나중에 유저의 이름과 이메일 전화번호 등을 받아서 넣기
   return (
@@ -152,8 +187,7 @@ export default function PersonalInfo() {
                     <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
                       {nameEdit
                         ? "허가증이나 여권 등 여행 서류에 기재되어 있는 이름을 말합니다."
-                        : name +
-                          "  <-- 서버로부터 받아온 데이터에서 유저 정보 넣기"}
+                        : name}
                     </div>
                   </div>
                   <button
@@ -193,8 +227,7 @@ export default function PersonalInfo() {
                     <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
                       {emailEdit
                         ? "언제든지 확인하실 수 있는 주소를 사용하세요"
-                        : email +
-                          "  <-- 서버로부터 받아온 데이터에서 유저 정보 넣기"}
+                        : email}
                     </div>
                   </div>
                   <button
@@ -235,7 +268,7 @@ export default function PersonalInfo() {
                     <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
                       {passwordEdit
                         ? "변경하실 비밀번호를 입력해주세요"
-                        : "보안상 이유로 현재 비밀번호를 보여드리지 않습니다."}
+                        : "∙".repeat(password.length)}
                     </div>
                   </div>
                   <button
@@ -276,8 +309,9 @@ export default function PersonalInfo() {
                     <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
                       {phoneEdit
                         ? "자주 사용하시는 전화번호를 입력해주세요"
-                        : phone +
-                          "  <-- 서버로부터 받아온 데이터에서 유저 정보 넣기"}
+                        : phone.length === 11
+                        ? phone.slice(0, 3) + "∙∙∙∙" + phone.slice(7)
+                        : phone.slice(0, 3) + "∙∙∙" + phone.slice(6)}
                     </div>
                   </div>
                   <button

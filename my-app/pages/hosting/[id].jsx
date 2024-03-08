@@ -38,7 +38,7 @@ export default function Hosting() {
         `${process.env.REACT_APP_SERVER_URL}/example/api`,
         {
           headers: {
-            // Authorization : "Bearer " + localStorage.getItem("Authorization"),
+            // Authorization : "Bearer " + localStorage.getItem("acToken"),
             "Content-Type": "application/json",
             "ngrok-skip-browser-warning": "69420",
           },

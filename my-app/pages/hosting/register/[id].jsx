@@ -190,6 +190,7 @@ export default function Register() {
         requestData,
         {
           headers: {
+            Authorization: "Bearer " + localStorage.getItem("acToken"),
             "Content-Type": "multipart/form-data",
             "ngrok-skip-browser-warning": "69420",
           },

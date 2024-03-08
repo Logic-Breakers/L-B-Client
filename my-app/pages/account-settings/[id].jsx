@@ -32,23 +32,9 @@ import {
 } from "@fortawesome/free-regular-svg-icons";
 import { faAirbnb } from "@fortawesome/free-brands-svg-icons";
 
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 
 export default function AccountSettings() {
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
-    if (localStorage.getItem("acToken") && localStorage.getItem("reToken")) {
-      setIsAuth(true);
-    } else {
-      setIsAuth(false);
-    }
-
-    if (isAuth) {
-      getUserData();
-    }
-  }, []);
-
   // 로그아웃 버튼을 눌렸을 때
   const onClickLogOut = async () => {
     // 페이지가 클라이언트에 마운트 될 때까지 기다림
@@ -57,7 +43,7 @@ export default function AccountSettings() {
       const acToken = localStorage.getItem("acToken");
       const reToken = localStorage.getItem("reToken");
 
-      if (acToken) {
+      if (acToken && reToken) {
         // 서버로 보낼 데이터
         const request = {
           accessToken: acToken,
@@ -68,11 +54,9 @@ export default function AccountSettings() {
           // 서버 api 호출
           // axios가 delete 요청에서도 data 옵션을 지원한다.
           // 대부분의 웹 서버는 delete 요청에서 요청 본문의 데이터를 무시하거나 지원하지 않을 수 있다.
-          const logoutResponse = await axios.delete(
+          const logoutResponse = await axios.post(
             `${process.env.NEXT_PUBLIC_SERVER_URL}/auth/logout`,
-            {
-              data: request,
-            },
+            request,
             {
               headers: {
                 "Content-Type": "application/json",
@@ -99,35 +83,39 @@ export default function AccountSettings() {
 
   // 특정 유저 데이터 가져오기
   const getUserData = async () => {
-    const acToken = localStorage.getItem("acToken");
-    const reToken = localStorage.getItem("reToken");
+    if (typeof window !== "undefined") {
+      const acToken = localStorage.getItem("acToken");
+      const reToken = localStorage.getItem("reToken");
 
-    const request = {
-      accessToken: acToken,
-      refreshToken: reToken,
-    };
+      if (acToken && reToken) {
+        try {
+          const userResponse = await axios.get(
+            `${process.env.NEXT_PUBLIC_SERVER_URL}/user`,
+            null,
+            {
+              headers: {
+                Authorization: "Bearer " + localStorage.getItem("acToken"),
+                "Content-Type": "application/json",
+                "ngrok-skip-browser-warning": "69420",
+              },
+            }
+          );
+          console.log("userResponse", userResponse);
+          // '유저 이름, 이메일' 데이터가 필요함
 
-    try {
-      const userResponse = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/user`,
-        request,
-        {
-          headers: {
-            // Authorization : "Bearer " + localStorage.getItem("Authorization"),
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "69420",
-          },
+          // 만약 authToken이 만료된 경우
+          // refreshToken으로 갱신하고, 다시 api 호출한다.
+        } catch (err) {
+          console.log(err);
+          alert("유저 정보를 가져오는데 실패했습니다.");
         }
-      );
-      console.log("userResponse", userResponse);
-      // '유저 이름, 이메일' 데이터가 필요함
-    } catch (err) {
-      console.log(err);
-
-      // 만약 authToken이 만료된 경우
-      // refreshToken으로 갱신하고, 다시 api 호출한다.
+      }
     }
   };
+
+  useEffect(() => {
+    getUserData();
+  }, []);
 
   return (
     <>
@@ -140,7 +128,7 @@ export default function AccountSettings() {
           <div className="mb-[65px]">
             <h1 className="font-[500] text-[32px]">계정</h1>
             <div className="text-[18px]">
-              <span className="font-[400] mr-[4px]">이름 성,</span>
+              <span className="font-[400] mr-[4px]">userName,</span>
               <span className="font-[300]">example@gmail.com∙</span>
 
               {/* 나중에 유저 id로 바꾸기 */}
