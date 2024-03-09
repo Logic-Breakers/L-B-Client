@@ -38,7 +38,11 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
   };
 
   return (
-    <div>
+    // 모달 바깥 부분
+    <div
+      onClick={closeFilterModal}
+      className="fixed top-0 left-0 w-full h-full z-[101] bg-[var(--modal-outside-bg)]"
+    >
       {/* 모달 내용 */}
       <form
         onSubmit={(event) => event.preventDefault()}
@@ -211,12 +215,6 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
           <BlackBtn type={"submit"} onClick={submitFilter} text={"숙소 보기"} />
         </footer>
       </form>
-
-      {/* 모달 밖 (어두운 배경) */}
-      <div
-        onClick={closeFilterModal}
-        className="fixed top-0 left-0 w-full h-full z-[101] bg-[var(--modal-outside-bg)]"
-      ></div>
     </div>
   );
 }

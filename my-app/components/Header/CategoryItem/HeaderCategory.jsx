@@ -318,7 +318,7 @@ export default function HeaderCategory() {
         />
       </section>
 
-      <div className="flex flex-row justify-between items-center space-x-8">
+      <div className="flex flex-row justify-between items-center gap-x-8">
         {/* 오른쪽 화살표 버튼 */}
         <ScrollArrowBtn />
 

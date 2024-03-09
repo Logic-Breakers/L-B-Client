@@ -4,7 +4,11 @@ import CloseModalBtn from "@/components/Buttons/CloseModalBtn";
 // 새소식 모달
 export default function NewsModal({ closeNewsModal }) {
   return (
-    <>
+    // 모달 바깥 부분
+    <div
+      onClick={closeNewsModal}
+      className="fixed top-0 left-0 w-full h-full z-[101] bg-[var(--modal-outside-bg)]"
+    >
       {/* News 모달 내용 */}
       <div
         // 상위 컴포넌트로 이벤트 전파 방지 (버블링 방지)
@@ -32,12 +36,6 @@ export default function NewsModal({ closeNewsModal }) {
           <Developer />
         </div>
       </div>
-
-      {/* 모달 밖 (어두운 배경) */}
-      <div
-        onClick={closeNewsModal}
-        className="fixed top-0 left-0 w-full h-full z-[101] bg-[var(--modal-outside-bg)]"
-      ></div>
-    </>
+    </div>
   );
 }
