@@ -3,13 +3,13 @@ import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import NavApp from "@/components/Header/Nav/NavApp";
-
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
-
+import Address from "@/components/Address";
 import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
 import PictureUpload from "@/components/PictureUpload";
 import RedBtn from "@/components/Buttons/RedBtn";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 import { useState } from "react";
 import { useRouter } from "next/router";
@@ -122,24 +122,7 @@ export default function Register() {
   };
 
   // 도로명 주소 찾기 팝업
-  // 행정안전부 도로명 주소 api 사용법을 잘 모르겠음... (현재 에러 발생 중)
-  const searchAddress = async (keyword) => {
-    const request = {
-      confmKey: process.env.ADDRESS_SEARCH_KEY,
-      returnUrl: "http://localhost:3000/hosting/register",
-      keyword: keyword,
-      resultType: "json",
-    };
-
-    try {
-      const addressResponse = await axios.get(process.env.ADDRESS_SEARCH_KEY, {
-        request,
-      });
-      return addressResponse;
-    } catch (error) {
-      console.error(error);
-    }
-  };
+  // 다음 주소 api
 
   // 등록하기 버튼 눌렸을 때
   const onClickSubmitBtn = async () => {
@@ -263,26 +246,7 @@ export default function Register() {
               {/* 주소찾기로 가져온 값 각각의 칸에 넣어주기! */}
               <section>
                 <HostingRegisterItemTitle text={"주소"} require mb />
-                <div className="space-y-2">
-                  <div className="flex flex-row space-x-4">
-                    <div className="flex flex-row justify-center items-center border-[1px] border-solid border-[#cccccc] rounded-md w-[100px] h-[55px] text-gray-600 pointer-events-none">
-                      11111
-                    </div>
-                    <button
-                      onClick={searchAddress}
-                      type="button"
-                      className="bg-gray-300 rounded-md w-[100px] h-[55px] px-4 py-2 hover:bg-gray-400 active:bg-gray-300"
-                    >
-                      주소 찾기
-                    </button>
-                  </div>
-                  <div className="flex flex-row items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] px-4 text-gray-600">
-                    서울 ㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
-                  </div>
-                  <div className="flex flex-row items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] px-4 text-gray-600">
-                    (상세주소) ㄹㅇㄴㅁㄹㄴㅁㄹㄴㅁ
-                  </div>
-                </div>
+                <Address />
               </section>
 
               {/* 요금 */}
