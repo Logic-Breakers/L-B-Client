@@ -5,7 +5,7 @@ import Header from "@/components/Header/Header";
 import NavApp from "@/components/Header/Nav/NavApp";
 import Address from "@/components/Address";
 import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
-import PictureUpload from "@/components/PictureUpload";
+import ImagesPreview from "@/components/ImagesPreview";
 import RedBtn from "@/components/Buttons/RedBtn";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -522,10 +522,7 @@ export default function Register() {
               {/* 사진 등록 */}
               <section>
                 <HostingRegisterItemTitle text={"사진"} require mb />
-                <PictureUpload
-                  picture={picture}
-                  onChangePicture={onChangePicture}
-                />
+                <ImagesPreview />
               </section>
             </section>
 
