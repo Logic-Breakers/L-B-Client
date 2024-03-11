@@ -27,6 +27,10 @@ export default function Register() {
   const [picture, setPicture] = useState("");
   const [category, setCategory] = useState("");
 
+  // 주소, 우편번호 (Address.jsx 에서 가져옴)
+  const [addrNum, setAddrNum] = useState("우편번호");
+  const [addr, setAddr] = useState("주소");
+
   // 게스트, 침실, 침대, 욕실 수
   const [guestNum, setGuestNum] = useState(1);
   const [bedroomsNum, setBedroomsNum] = useState(0);
@@ -121,14 +125,13 @@ export default function Register() {
     console.log("사진 : ", picture);
   };
 
-  // 도로명 주소 찾기 팝업
-  // 다음 주소 api
-
   // 등록하기 버튼 눌렸을 때
   const onClickSubmitBtn = async () => {
     console.log("숙소 등록함");
     console.log("숙소 이름 : ", houseName);
     console.log("국가 : ", country);
+    console.log("우편번호 : ", addrNum);
+    console.log("주소 : ", addr);
     console.log("요금 : ", price);
     console.log("건물 유형 : ", propertyType);
     console.log("숙소 유형 : ", placeType);
@@ -149,7 +152,7 @@ export default function Register() {
           JSON.stringify({
             houseName,
             country,
-            address: "제주특별자치도 제주시 중앙로 3062",
+            address: addr,
             price,
             propertyType,
             placeType,
@@ -212,7 +215,6 @@ export default function Register() {
                   placeholder="숙소 이름을 적어주세요"
                 ></input>
               </section>
-
               {/* 국가 */}
               <section>
                 <HostingRegisterItemTitle text={"국가"} require mb />
@@ -243,12 +245,15 @@ export default function Register() {
               </section>
 
               {/* 주소 */}
-              {/* 주소찾기로 가져온 값 각각의 칸에 넣어주기! */}
               <section>
                 <HostingRegisterItemTitle text={"주소"} require mb />
-                <Address />
+                <Address
+                  addrNum={addrNum}
+                  setAddrNum={setAddrNum}
+                  addr={addr}
+                  setAddr={setAddr}
+                />
               </section>
-
               {/* 요금 */}
               <section>
                 <HostingRegisterItemTitle text={"요금"} require mb />
@@ -266,7 +271,6 @@ export default function Register() {
                   </div>
                 </div>
               </section>
-
               {/* 건물 유형 */}
               <section>
                 <HostingRegisterItemTitle text={"건물 유형"} require mb />
@@ -295,7 +299,6 @@ export default function Register() {
                   />
                 </label>
               </section>
-
               {/* 숙소 유형 */}
               <section>
                 <HostingRegisterItemTitle text={"숙소 유형"} require mb />
@@ -321,7 +324,6 @@ export default function Register() {
                   />
                 </label>
               </section>
-
               {/* 카테고리 */}
               <section>
                 <HostingRegisterItemTitle text={"카테고리"} require mb />
@@ -432,7 +434,6 @@ export default function Register() {
                   </button>
                 </div>
               </section>
-
               {/* 침실 */}
               <section className="flex flex-row justify-between items-center">
                 <HostingRegisterItemTitle text={"침실"} require />
@@ -458,7 +459,6 @@ export default function Register() {
                   </button>
                 </div>
               </section>
-
               {/* 침대 */}
               <section className="flex flex-row justify-between items-center">
                 <HostingRegisterItemTitle text={"침대"} require />
@@ -484,7 +484,6 @@ export default function Register() {
                   </button>
                 </div>
               </section>
-
               {/* 욕실 */}
               <section className="flex flex-row justify-between items-center">
                 <HostingRegisterItemTitle text={"욕실"} require />
@@ -510,7 +509,6 @@ export default function Register() {
                   </button>
                 </div>
               </section>
-
               {/* 설명 */}
               <section>
                 <HostingRegisterItemTitle text={"설명"} require mb />
@@ -521,7 +519,6 @@ export default function Register() {
                   placeholder="숙소를 설명해주세요"
                 />
               </section>
-
               {/* 사진 등록 */}
               <section>
                 <HostingRegisterItemTitle text={"사진"} require mb />

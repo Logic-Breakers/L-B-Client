@@ -1,9 +1,9 @@
 import PostCode from "react-daum-postcode";
 import { useState } from "react";
 
-export default function Address() {
-  const [addrNum, setAddrNum] = useState("우편번호");
-  const [addr, setAddr] = useState("주소");
+export default function Address({ addrNum, setAddrNum, addr, setAddr }) {
+  // const [addrNum, setAddrNum] = useState("우편번호");
+  // const [addr, setAddr] = useState("주소");
 
   const [showAddrModal, setShowAddrModal] = useState(false);
 
