@@ -10,6 +10,7 @@ import { useRouter } from "next/router";
 import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
 import Warning from "@/components/Warning";
 import RedBtn from "@/components/Buttons/RedBtn";
+import ProfileImageUpload from "@/components/profileImageUpload";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -18,6 +19,10 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 // 각 부분 유효성 검사하기
 export default function SignUp() {
   const router = useRouter();
+
+  // 사진
+  // 초기값에 기본 이미지 넣기
+  const [image, setImage] = useState("");
 
   // 이름, 이메일, 비밀번호, 국가, 전화번호
   const [name, setName] = useState("");
@@ -73,6 +78,10 @@ export default function SignUp() {
     console.log("생년월일 : ", birthDate);
   };
 
+  const deleteImage = () => {
+    console.log("프로필 이미지 삭제 버튼 누름");
+  };
+
   // 서버로 회원가입 요청
   const onClickSubmitBtn = async () => {
     const request = {
@@ -115,110 +124,121 @@ export default function SignUp() {
       <Title text={"회원가입 - Airbnb"} />
       <Header fixed />
       <main className="flex flex-row justify-center w-full min-h-screen mt-[40px]">
-        <div className="w-[600px] bnb_md_xl:pt-[80px] bnb_sm:px-[24px]">
+        <form
+          onSubmit={(event) => event.preventDefault()}
+          className="bnb_md_xl:pt-[80px] bnb_sm_md:px-[24px] bnb_sm_md:w-screen"
+        >
           <h1 className="text-[32px] font-[500]">회원가입</h1>
-          <form onSubmit={(event) => event.preventDefault()}>
-            <section className="mt-8 mb-20 space-y-8">
-              {/* 이름 */}
-              <section>
-                <HostingRegisterItemTitle text={"이름"} require mb />
-                <input
-                  onBlur={onBlurName}
-                  onChange={(event) => setName(event.target.value)}
-                  type="text"
-                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
-                  placeholder="성함을 적어주세요"
-                ></input>
-              </section>
-
-              {/* 이메일 */}
-              <section>
-                <HostingRegisterItemTitle text={"이메일"} require mb />
-                <input
-                  onBlur={onBlurEmail}
-                  onChange={(event) => setEmail(event.target.value)}
-                  type="email"
-                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
-                  placeholder="abcde@example.com"
-                ></input>
-              </section>
-
-              {/* 비밀번호 */}
-              <section>
-                <HostingRegisterItemTitle text={"비밀번호"} require mb />
-                <input
-                  onBlur={onBlurPassword}
-                  onChange={(event) => setPassword(event.target.value)}
-                  type="password"
-                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
-                  placeholder="∙∙∙∙∙∙∙∙"
-                ></input>
-              </section>
-
-              {/* 국가 */}
-              <section>
-                <HostingRegisterItemTitle text={"국가"} require mb />
-                <label
-                  onBlur={onBlurCountry}
-                  onChange={(event) => setCountry(event.target.value)}
-                  htmlFor="country"
-                  className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
-                >
-                  <select
-                    id="country"
-                    className="appearance-none w-full h-full pl-4 rounded-md text-md text-gray-600"
-                    defaultValue={"none"}
-                  >
-                    <option value="none">국가를 선택해주세요</option>
-                    <option value="미국">미국 (United States)</option>
-                    <option value="영국">영국 (United Kingdom)</option>
-                    <option value="일본">일본 (Japan)</option>
-                    <option value="대한민국">한국 (Korea)</option>
-                    <option value="중국">중국 (China)</option>
-                  </select>
-
-                  <FontAwesomeIcon
-                    icon={faChevronDown}
-                    className="absolute right-[10px] pointer-events-none"
-                  />
-                </label>
-              </section>
-
-              {/* 전화번호 */}
-              <section>
-                <HostingRegisterItemTitle text={"전화번호"} require mb />
-                <input
-                  required
-                  type="tel"
-                  onBlur={onBlurPhone}
-                  onChange={(event) => setPhone(event.target.value)}
-                  placeholder="ex) 01012345678"
-                  className="border-[1px] border-solid border-[#cccccc] w-full rounded-md h-[55px] px-4 appearance-none"
-                ></input>
-              </section>
-
-              {/* 생년월일 */}
-              <section>
-                <HostingRegisterItemTitle text={"생년월일"} require mb />
-                <input
-                  onBlur={onBlurBirthDate}
-                  onChange={(event) => setBirthDate(event.target.value)}
-                  type="date"
-                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
-                ></input>
-              </section>
-
-              {/* 버튼을 누르면 서버에 제출되도록 함수 만들기 */}
-              <RedBtn
-                onClick={onClickSubmitBtn}
-                type={"submit"}
-                text={"회원가입"}
-                width={"full"}
-                textSize={"md"}
-              />
+          <div className="flex bnb_sm_md:flex-col bnb_lg_xl:flex-row mt-8 mb-24">
+            <section className="bnb_lg_xl:w-[300px]">
+              <HostingRegisterItemTitle text={"프로필 사진"} require mb />
+              <ProfileImageUpload />
             </section>
-          </form>
-        </div>
+            <section className="bnb_lg_xl:w-[600px]">
+              <div>
+                <section className="space-y-8">
+                  {/* 이름 */}
+                  <section>
+                    <HostingRegisterItemTitle text={"이름"} require mb />
+                    <input
+                      onBlur={onBlurName}
+                      onChange={(event) => setName(event.target.value)}
+                      type="text"
+                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                      placeholder="성함을 적어주세요"
+                    ></input>
+                  </section>
+
+                  {/* 이메일 */}
+                  <section>
+                    <HostingRegisterItemTitle text={"이메일"} require mb />
+                    <input
+                      onBlur={onBlurEmail}
+                      onChange={(event) => setEmail(event.target.value)}
+                      type="email"
+                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                      placeholder="abcde@example.com"
+                    ></input>
+                  </section>
+
+                  {/* 비밀번호 */}
+                  <section>
+                    <HostingRegisterItemTitle text={"비밀번호"} require mb />
+                    <input
+                      onBlur={onBlurPassword}
+                      onChange={(event) => setPassword(event.target.value)}
+                      type="password"
+                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                      placeholder="∙∙∙∙∙∙∙∙"
+                    ></input>
+                  </section>
+
+                  {/* 국가 */}
+                  <section>
+                    <HostingRegisterItemTitle text={"국가"} require mb />
+                    <label
+                      onBlur={onBlurCountry}
+                      onChange={(event) => setCountry(event.target.value)}
+                      htmlFor="country"
+                      className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
+                    >
+                      <select
+                        id="country"
+                        className="appearance-none w-full h-full pl-4 rounded-md text-md text-gray-600"
+                        defaultValue={"none"}
+                      >
+                        <option value="none">국가를 선택해주세요</option>
+                        <option value="미국">미국 (United States)</option>
+                        <option value="영국">영국 (United Kingdom)</option>
+                        <option value="일본">일본 (Japan)</option>
+                        <option value="대한민국">한국 (Korea)</option>
+                        <option value="중국">중국 (China)</option>
+                      </select>
+
+                      <FontAwesomeIcon
+                        icon={faChevronDown}
+                        className="absolute right-[10px] pointer-events-none"
+                      />
+                    </label>
+                  </section>
+
+                  {/* 전화번호 */}
+                  <section>
+                    <HostingRegisterItemTitle text={"전화번호"} require mb />
+                    <input
+                      required
+                      type="tel"
+                      onBlur={onBlurPhone}
+                      onChange={(event) => setPhone(event.target.value)}
+                      placeholder="ex) 01012345678"
+                      className="border-[1px] border-solid border-[#cccccc] w-full rounded-md h-[55px] px-4 appearance-none"
+                    ></input>
+                  </section>
+
+                  {/* 생년월일 */}
+                  <section>
+                    <HostingRegisterItemTitle text={"생년월일"} require mb />
+                    <input
+                      onBlur={onBlurBirthDate}
+                      onChange={(event) => setBirthDate(event.target.value)}
+                      type="date"
+                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                    ></input>
+                  </section>
+
+                  {/* 버튼을 누르면 서버에 제출되도록 함수 만들기 */}
+                  <RedBtn
+                    onClick={onClickSubmitBtn}
+                    type={"submit"}
+                    text={"회원가입"}
+                    width={"full"}
+                    textSize={"md"}
+                  />
+                </section>
+              </div>
+            </section>
+          </div>
+        </form>
       </main>
       <Footer />
       <NavApp />

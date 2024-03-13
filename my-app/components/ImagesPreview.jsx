@@ -1,51 +1,54 @@
-import { useState } from "react";
 import DeleteBtn from "./Buttons/DeleteBtn";
+import HostingRegisterItemTitle from "./Hosting/registerPage/HostingRegisterItemTitle";
 
 // 숙소 등록 페이지에서 사진 미리보기 및 삭제 기능
-export default function ImagesPreview() {
-  const [images, setImages] = useState([]);
+export default function ImagesPreview({ images, setImages }) {
+  // const [images, setImages] = useState([]);
 
   // 이미지 선택
   const handleImage = async (event) => {
     const files = event.target.files;
     const imgUrls = [];
-    console.log("files", files);
+    console.log("files 1", files);
     console.log("images", images);
 
-    if (!files) {
+    // 파일을 선택하지 않은 경우
+    if (files.length === 0) {
       return;
-    }
+    } else {
+      // 파일을 선택했다면 기존 값 초기화 시키기
+      setImages([]);
 
-    for (let i = 0; i < files.length; i++) {
-      const file = files[i];
-      const reader = new FileReader();
+      // 반복문을 통해 선택한 file 하나씩 Blob 객체로 변환하기
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const reader = new FileReader();
 
-      reader.onload = (event) => {
-        // 파일 onload가 성공 2, 진행 중 1, 실패 0 을 반환
-        if (reader.readyState === 2) {
-          const imgUrl = event.target.result;
-          imgUrls.push(imgUrl);
+        reader.onload = (event) => {
+          // 파일 onload가 성공 2, 진행 중 1, 실패 0 을 반환
+          if (reader.readyState === 2) {
+            const imgUrl = event.target.result;
+            imgUrls.push(imgUrl);
 
-          // 모든 파일을 처리한 경우
-          if (imgUrls.length === files.length) {
-            setImages(imgUrls);
+            // 모든 파일을 처리한 경우
+            if (imgUrls.length === files.length) {
+              setImages(imgUrls);
+            }
           }
-        }
-      };
-      // Blob 객체로 변환하여 읽기
-      reader.readAsDataURL(file);
-      console.log("imgUrls", imgUrls);
+        };
+        // Blob 객체로 변환하여 읽기
+        reader.readAsDataURL(file);
+        console.log("imgUrls", imgUrls);
+      }
     }
   };
 
   // 이미지 삭제
   const deleteImage = (index) => {
-    console.log("이미지 삭제 버튼 누름");
-    console.log(index);
-
     const newImages = [...images];
     newImages.splice(index, 1);
     setImages(newImages);
+    console.log("삭제된 후 images", images);
   };
 
   return (
@@ -74,27 +77,26 @@ export default function ImagesPreview() {
           type="file"
           accept="image/*"
           onChange={handleImage}
+          multiple
         />
       </label>
 
       {images.length !== 0 ? (
-        <div className="mt-4 w-full flex flex-row gap-x-4 overflow-x-scroll scrollbar-hide">
-          {images.map((el, index) => (
-            <div key={index} className="relative flex-shrink-0 ">
-              <img src={el} className="w-[100px] aspect-square rounded-lg" />
+        <div className="mt-4 w-full">
+          <HostingRegisterItemTitle text={"사진 미리보기"} mb />
+          <div className="flex flex-row gap-x-4 overflow-x-scroll scrollbar-hide">
+            {images.map((el, index) => (
+              <div key={index} className="relative flex-shrink-0 ">
+                <img src={el} className="w-[100px] aspect-square rounded-lg" />
 
-              <div className="absolute top-1 left-1">
-                <DeleteBtn onClick={() => deleteImage(index)} />
+                <div className="absolute top-1 left-1">
+                  <DeleteBtn onClick={() => deleteImage(index)} />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       ) : null}
     </div>
   );
 }
-
-// 추가해야 할 기능
-// 사진 미리보기
-// 새로 이미지 등록 시 기존의 이미지 삭제하고, 새로 등록한 이미지만 등록되도록 하기
-// 여러장 등록하기

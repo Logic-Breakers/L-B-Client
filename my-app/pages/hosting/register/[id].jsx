@@ -24,12 +24,14 @@ export default function Register() {
   const [propertyType, setPropertyType] = useState("none");
   const [placeType, setPlaceType] = useState("none");
   const [info, setInfo] = useState("");
-  const [picture, setPicture] = useState("");
   const [category, setCategory] = useState("");
 
   // 주소, 우편번호 (Address.jsx 에서 가져옴)
   const [addrNum, setAddrNum] = useState("우편번호");
   const [addr, setAddr] = useState("주소");
+
+  // 사진
+  const [images, setImages] = useState([]);
 
   // 게스트, 침실, 침대, 욕실 수
   const [guestNum, setGuestNum] = useState(1);
@@ -119,61 +121,105 @@ export default function Register() {
     console.log("설명 : ", info);
   };
 
-  // 사진
-  const onChangePicture = (event) => {
-    setPicture(event.target.value);
-    console.log("사진 : ", picture);
-  };
+  // // 등록하기 버튼 눌렸을 때
+  // const onClickSubmitBtn = async () => {
+  //   console.log("숙소 등록함");
+  //   console.log("숙소 이름 : ", houseName);
+  //   console.log("국가 : ", country);
+  //   console.log("우편번호 : ", addrNum);
+  //   console.log("주소 : ", addr);
+  //   console.log("요금 : ", price);
+  //   console.log("건물 유형 : ", propertyType);
+  //   console.log("숙소 유형 : ", placeType);
+  //   console.log("카테고리 : ", category);
+  //   console.log("게스트 : ", guestNum);
+  //   console.log("침실 : ", bedroomsNum);
+  //   console.log("침대 : ", bedsNum);
+  //   console.log("욕실 : ", bathroomsNum);
+  //   console.log("설명 : ", info);
+  //   console.log("사진 : ", images);
 
-  // 등록하기 버튼 눌렸을 때
+  //   // API 요청을 보내기 위한 데이터 준비
+  //   const formData = new FormData();
+  //   formData.append(
+  //     "stay",
+  //     new Blob(
+  //       [
+  //         JSON.stringify({
+  //           houseName,
+  //           country,
+  //           address: addr,
+  //           price,
+  //           propertyType,
+  //           placeType,
+  //           guest: guestNum,
+  //           bedrooms: bedroomsNum,
+  //           beds: bedsNum,
+  //           bathrooms: bathroomsNum,
+  //           info,
+  //         }),
+  //       ],
+  //       { type: "application/json" }
+  //     )
+  //   );
+  //   formData.append("image", new File([images], images));
+
+  //   try {
+  //     // 서버 API 호출
+  //     // 사진도 같이 보내야하기에 multipart/form-data로 보낸다.
+  //     const response = await axios.post(
+  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?categoryName=${category}`,
+  //       formData,
+  //       {
+  //         headers: {
+  //           Authorization: "Bearer " + localStorage.getItem("acToken"),
+  //           "Content-Type": "multipart/form-data",
+  //           "ngrok-skip-browser-warning": "69420",
+  //         },
+  //       }
+  //     );
+  //     console.log(response);
+  //     alert(response.data);
+
+  //     // 숙소 등록 한 뒤, hosting 페이지로 이동한다.
+  //     // 나중에 id값으로 변경하기!
+  //     router.push("/hosting/1");
+  //   } catch (error) {
+  //     alert("숙소 등록을 실패했습니다.");
+  //     console.log("에러", error);
+  //   }
+  // };
+
   const onClickSubmitBtn = async () => {
-    console.log("숙소 등록함");
-    console.log("숙소 이름 : ", houseName);
-    console.log("국가 : ", country);
-    console.log("우편번호 : ", addrNum);
-    console.log("주소 : ", addr);
-    console.log("요금 : ", price);
-    console.log("건물 유형 : ", propertyType);
-    console.log("숙소 유형 : ", placeType);
-    console.log("카테고리 : ", category);
-    console.log("게스트 : ", guestNum);
-    console.log("침실 : ", bedroomsNum);
-    console.log("침대 : ", bedsNum);
-    console.log("욕실 : ", bathroomsNum);
-    console.log("설명 : ", info);
-    console.log("사진 : ", picture);
-
     // API 요청을 보내기 위한 데이터 준비
-    const requestData = new FormData();
-    requestData.append(
+    const formData = new FormData();
+    formData.append(
       "stay",
-      new Blob(
-        [
-          JSON.stringify({
-            houseName,
-            country,
-            address: addr,
-            price,
-            propertyType,
-            placeType,
-            guest: guestNum,
-            bedrooms: bedroomsNum,
-            beds: bedsNum,
-            bathrooms: bathroomsNum,
-            info,
-          }),
-        ],
-        { type: "application/json" }
-      )
+      JSON.stringify({
+        houseName,
+        country,
+        address: addr,
+        price,
+        propertyType,
+        placeType,
+        guest: guestNum,
+        bedrooms: bedroomsNum,
+        beds: bedsNum,
+        bathrooms: bathroomsNum,
+        info,
+      })
     );
-    requestData.append("image", new File([picture], picture));
+
+    // 이미지 파일을 FormData에 추가
+    for (let i = 0; i < images.length; i++) {
+      formData.append("image", images[i]);
+    }
 
     try {
       // 서버 API 호출
-      // 사진도 같이 보내야하기에 multipart/form-data로 보낸다.
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?categoryName=${category}`,
-        requestData,
+        formData,
         {
           headers: {
             Authorization: "Bearer " + localStorage.getItem("acToken"),
@@ -522,7 +568,7 @@ export default function Register() {
               {/* 사진 등록 */}
               <section>
                 <HostingRegisterItemTitle text={"사진"} require mb />
-                <ImagesPreview />
+                <ImagesPreview setImages={setImages} images={images} />
               </section>
             </section>
 
