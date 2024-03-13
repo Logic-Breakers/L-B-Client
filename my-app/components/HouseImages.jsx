@@ -2,22 +2,20 @@ import DeleteBtn from "./Buttons/DeleteBtn";
 import HostingRegisterItemTitle from "./Hosting/registerPage/HostingRegisterItemTitle";
 
 // 숙소 등록 페이지에서 사진 미리보기 및 삭제 기능
-export default function ImagesPreview({ images, setImages }) {
-  // const [images, setImages] = useState([]);
+export default function HouseImages({ houseImages, setHouseImages }) {
+  // const [houseImages, setHouseImages] = useState([]);
 
   // 이미지 선택
-  const handleImage = async (event) => {
+  const handleHouseImages = async (event) => {
     const files = event.target.files;
     const imgUrls = [];
-    console.log("files 1", files);
-    console.log("images", images);
 
     // 파일을 선택하지 않은 경우
     if (files.length === 0) {
       return;
     } else {
       // 파일을 선택했다면 기존 값 초기화 시키기
-      setImages([]);
+      setHouseImages([]);
 
       // 반복문을 통해 선택한 file 하나씩 Blob 객체로 변환하기
       for (let i = 0; i < files.length; i++) {
@@ -32,7 +30,7 @@ export default function ImagesPreview({ images, setImages }) {
 
             // 모든 파일을 처리한 경우
             if (imgUrls.length === files.length) {
-              setImages(imgUrls);
+              setHouseImages(imgUrls);
             }
           }
         };
@@ -45,10 +43,10 @@ export default function ImagesPreview({ images, setImages }) {
 
   // 이미지 삭제
   const deleteImage = (index) => {
-    const newImages = [...images];
-    newImages.splice(index, 1);
-    setImages(newImages);
-    console.log("삭제된 후 images", images);
+    const newHouseImages = [...houseImages];
+    newHouseImages.splice(index, 1);
+    setHouseImages(newHouseImages);
+    console.log("삭제된 후 houseImages", houseImages);
   };
 
   return (
@@ -76,16 +74,16 @@ export default function ImagesPreview({ images, setImages }) {
           className="hidden"
           type="file"
           accept="image/*"
-          onChange={handleImage}
+          onChange={handleHouseImages}
           multiple
         />
       </label>
 
-      {images.length !== 0 ? (
+      {houseImages.length !== 0 ? (
         <div className="mt-4 w-full">
           <HostingRegisterItemTitle text={"사진 미리보기"} mb />
           <div className="flex flex-row gap-x-4 overflow-x-scroll scrollbar-hide">
-            {images.map((el, index) => (
+            {houseImages.map((el, index) => (
               <div key={index} className="relative flex-shrink-0 ">
                 <img src={el} className="w-[100px] aspect-square rounded-lg" />
 

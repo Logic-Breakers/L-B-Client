@@ -5,7 +5,7 @@ import Header from "@/components/Header/Header";
 import NavApp from "@/components/Header/Nav/NavApp";
 import Address from "@/components/Address";
 import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
-import ImagesPreview from "@/components/ImagesPreview";
+import HouseImages from "@/components/HouseImages";
 import RedBtn from "@/components/Buttons/RedBtn";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -31,7 +31,7 @@ export default function Register() {
   const [addr, setAddr] = useState("주소");
 
   // 사진
-  const [images, setImages] = useState([]);
+  const [houseImages, setHouseImages] = useState([]);
 
   // 게스트, 침실, 침대, 욕실 수
   const [guestNum, setGuestNum] = useState(1);
@@ -137,7 +137,7 @@ export default function Register() {
   //   console.log("침대 : ", bedsNum);
   //   console.log("욕실 : ", bathroomsNum);
   //   console.log("설명 : ", info);
-  //   console.log("사진 : ", images);
+  //   console.log("사진 : ", houseImages);
 
   //   // API 요청을 보내기 위한 데이터 준비
   //   const formData = new FormData();
@@ -162,7 +162,7 @@ export default function Register() {
   //       { type: "application/json" }
   //     )
   //   );
-  //   formData.append("image", new File([images], images));
+  //   formData.append("image", new File([houseImages], houseImages));
 
   //   try {
   //     // 서버 API 호출
@@ -211,8 +211,8 @@ export default function Register() {
     );
 
     // 이미지 파일을 FormData에 추가
-    for (let i = 0; i < images.length; i++) {
-      formData.append("image", images[i]);
+    for (let i = 0; i < houseImages.length; i++) {
+      formData.append("houseImages", houseImages[i]);
     }
 
     try {
@@ -568,7 +568,10 @@ export default function Register() {
               {/* 사진 등록 */}
               <section>
                 <HostingRegisterItemTitle text={"사진"} require mb />
-                <ImagesPreview setImages={setImages} images={images} />
+                <HouseImages
+                  setHouseImages={setHouseImages}
+                  houseImages={houseImages}
+                />
               </section>
             </section>
 

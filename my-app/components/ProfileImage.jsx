@@ -1,6 +1,6 @@
 import DeleteBtn from "./Buttons/DeleteBtn";
 
-export default function ProfileImageUpload({ image, setImage }) {
+export default function ProfileImage({ profileImg, setProfileImg }) {
   // 프로필 이미지 핸들러
   const handleProfileImage = async (event) => {
     // 하나의 이미지만 등록
@@ -11,7 +11,7 @@ export default function ProfileImageUpload({ image, setImage }) {
       return;
     } else {
       // 파일을 선택했다면 기존 값 초기화 시키기
-      setImage("");
+      setProfileImg("");
 
       // 이미지 화면에 보여주기
       const reader = new FileReader();
@@ -19,7 +19,7 @@ export default function ProfileImageUpload({ image, setImage }) {
         if (reader.readyState === 2) {
           // 파일 onload가 성공 2, 진행 중 1, 실패 0 을 반환
           const imgUrl = event.target.result;
-          setImage(imgUrl);
+          setProfileImg(imgUrl);
         }
       };
       reader.readAsDataURL(file);
@@ -29,13 +29,13 @@ export default function ProfileImageUpload({ image, setImage }) {
   // 프로필 이미지 삭제
   const deleteImage = () => {
     // 기본 이미지인 경우
-    if (image === "/profile_basic_img.png") {
+    if (profileImg === "/profile_basic_img.png") {
       return;
     }
     // 등록한 이미지가 있는 경우
     else {
       // 기본 이미지로 변경하기
-      setImage("/profile_basic_img.png");
+      setProfileImg("/profile_basic_img.png");
     }
   };
 
@@ -47,7 +47,7 @@ export default function ProfileImageUpload({ image, setImage }) {
         </div>
         <img
           className="w-[200px] aspect-square rounded-full border-[1px] cursor-pointer"
-          src={image}
+          src={profileImg}
           alt="프로필 이미지"
           onClick={() => {
             document.querySelector("#img").click();

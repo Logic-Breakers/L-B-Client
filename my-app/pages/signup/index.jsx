@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
 import Warning from "@/components/Warning";
 import RedBtn from "@/components/Buttons/RedBtn";
-import ProfileImageUpload from "@/components/profileImageUpload";
+import ProfileImage from "@/components/ProfileImage";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
@@ -21,7 +21,7 @@ export default function SignUp() {
   const router = useRouter();
 
   // 프로필 사진
-  const [image, setImage] = useState("/profile_basic_img.png");
+  const [profileImg, setProfileImg] = useState("/profile_basic_img.png");
 
   // 이름, 이메일, 비밀번호, 국가, 전화번호
   const [name, setName] = useState("");
@@ -127,7 +127,7 @@ export default function SignUp() {
       })
     );
 
-    formData.append("image", image);
+    formData.append("profileImg", profileImg);
 
     try {
       // 서버 API 호출
@@ -169,7 +169,10 @@ export default function SignUp() {
           <div className="flex bnb_sm_md:flex-col bnb_lg_xl:flex-row mt-8 mb-24">
             <section className="bnb_lg_xl:w-[300px] mb-4">
               <HostingRegisterItemTitle text={"프로필 사진"} mb />
-              <ProfileImageUpload image={image} setImage={setImage} />
+              <ProfileImage
+                profileImg={profileImg}
+                setProfileImg={setProfileImg}
+              />
             </section>
             <section className="bnb_lg_xl:w-[600px]">
               <div>
