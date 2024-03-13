@@ -25,11 +25,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
   };
 
   return (
-    // 모달 바깥 부분
-    <div
-      onClick={closeGlobalModal}
-      className="fixed top-0 left-0 w-full h-full z-[101] bg-[var(--modal-outside-bg)]"
-    >
+    <div>
       {/* 모달 내용 */}
       <div className="flex flex-col justify-start items-start fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] max-w-[1032px] w-[90%] h-[90%] bg-[var(--modal-inner-bg)] rounded-lg z-[1000] px-[24px]">
         <div className="mt-[20px] ml-[-8px]">
@@ -150,6 +146,13 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
           )}
         </div>
       </div>
+
+      {/* 모달 바깥 부분 */}
+      <div
+        onClick={closeGlobalModal}
+        className="fixed top-0 left-0 w-full h-full z-[101]
+        bg-[var(--modal-outside-bg)]"
+      ></div>
     </div>
   );
 }

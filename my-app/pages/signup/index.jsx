@@ -160,7 +160,12 @@ export default function SignUp() {
           onSubmit={(event) => event.preventDefault()}
           className="bnb_md_xl:pt-[80px] bnb_sm_md:px-[24px] bnb_sm_md:w-screen"
         >
-          <h1 className="text-[32px] font-[500]">회원가입</h1>
+          <div className="flex flex-row items-center">
+            <h1 className="text-[32px] font-[500]">회원가입</h1>
+            <span className="text-red-500 ml-4">
+              (* 는 필수 입력사항입니다.)
+            </span>
+          </div>
           <div className="flex bnb_sm_md:flex-col bnb_lg_xl:flex-row mt-8 mb-24">
             <section className="bnb_lg_xl:w-[300px] mb-4">
               <HostingRegisterItemTitle text={"프로필 사진"} mb />
