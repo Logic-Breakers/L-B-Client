@@ -78,32 +78,72 @@ export default function SignUp() {
   };
 
   // 서버로 회원가입 요청
-  const onClickSubmitBtn = async () => {
-    const request = {
-      username: name,
-      email,
-      password,
-      country,
-      phone,
-      birthDate,
-    };
+  // const onClickSubmitBtn = async () => {
+  //   const request = {
+  //     username: name,
+  //     email,
+  //     password,
+  //     country,
+  //     phone,
+  //     birthDate,
+  //   };
 
-    console.log(request);
+  //   console.log(request);
+  //   try {
+  //     // 서버 api 호출
+  //     const response = await axios.post(
+  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/user/signup`,
+  //       request,
+  //       {
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //           "ngrok-skip-browser-warning": "69420",
+  //         },
+  //       }
+  //     );
+  //     console.log(response);
+
+  //     // 회원가입 성공하면 메인페이지로 이동함
+  //     router.push("/");
+  //   } catch (error) {
+  //     console.log(error);
+  //     alert("회원가입에 실패했습니다.");
+  //   }
+  // };
+
+  const onClickSubmitBtn = async () => {
+    // API 요청을 보내기 위한 데이터 준비
+    const formData = new FormData();
+    formData.append(
+      // 서버측과 정한 FormData 객체에 데이터를 추가하는 데 사용되는 키(key) : stay
+      "stay",
+      JSON.stringify({
+        username: name,
+        email,
+        password,
+        country,
+        phone,
+        birthDate,
+      })
+    );
+
+    formData.append("image", image);
+
     try {
-      // 서버 api 호출
+      // 서버 API 호출
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/user/signup`,
-        request,
+        formData,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
             "ngrok-skip-browser-warning": "69420",
           },
         }
       );
       console.log(response);
 
-      // 회원가입 성공하면 메인페이지로 이동함
+      // 회원가입 성공 시 메인 페이지로 이동한다.
       router.push("/");
     } catch (error) {
       console.log(error);
@@ -123,15 +163,15 @@ export default function SignUp() {
           <h1 className="text-[32px] font-[500]">회원가입</h1>
           <div className="flex bnb_sm_md:flex-col bnb_lg_xl:flex-row mt-8 mb-24">
             <section className="bnb_lg_xl:w-[300px] mb-4">
-              <HostingRegisterItemTitle text={"프로필 사진"} require mb />
+              <HostingRegisterItemTitle text={"프로필 사진"} mb />
               <ProfileImageUpload image={image} setImage={setImage} />
             </section>
             <section className="bnb_lg_xl:w-[600px]">
               <div>
                 <section className="space-y-8">
-                  {/* 이름 */}
+                  {/* 성함 */}
                   <section>
-                    <HostingRegisterItemTitle text={"이름"} require mb />
+                    <HostingRegisterItemTitle text={"성함"} require mb />
                     <input
                       onBlur={onBlurName}
                       onChange={(event) => setName(event.target.value)}
