@@ -20,9 +20,8 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 export default function SignUp() {
   const router = useRouter();
 
-  // 사진
-  // 초기값에 기본 이미지 넣기
-  const [image, setImage] = useState("");
+  // 프로필 사진
+  const [image, setImage] = useState("/profile_basic_img.png");
 
   // 이름, 이메일, 비밀번호, 국가, 전화번호
   const [name, setName] = useState("");
@@ -78,10 +77,6 @@ export default function SignUp() {
     console.log("생년월일 : ", birthDate);
   };
 
-  const deleteImage = () => {
-    console.log("프로필 이미지 삭제 버튼 누름");
-  };
-
   // 서버로 회원가입 요청
   const onClickSubmitBtn = async () => {
     const request = {
@@ -108,9 +103,6 @@ export default function SignUp() {
       );
       console.log(response);
 
-      // 성공적으로 회원가입이 된다면,
-      // 메인페이지로 이동하기 전에 받아온 토큰 로컬스토리지에 저장하기!
-
       // 회원가입 성공하면 메인페이지로 이동함
       router.push("/");
     } catch (error) {
@@ -130,9 +122,9 @@ export default function SignUp() {
         >
           <h1 className="text-[32px] font-[500]">회원가입</h1>
           <div className="flex bnb_sm_md:flex-col bnb_lg_xl:flex-row mt-8 mb-24">
-            <section className="bnb_lg_xl:w-[300px]">
+            <section className="bnb_lg_xl:w-[300px] mb-4">
               <HostingRegisterItemTitle text={"프로필 사진"} require mb />
-              <ProfileImageUpload />
+              <ProfileImageUpload image={image} setImage={setImage} />
             </section>
             <section className="bnb_lg_xl:w-[600px]">
               <div>

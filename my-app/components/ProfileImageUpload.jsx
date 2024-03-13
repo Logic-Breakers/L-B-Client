@@ -1,19 +1,8 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCircleUser } from "@fortawesome/free-solid-svg-icons";
-
-import { useState } from "react";
 import DeleteBtn from "./Buttons/DeleteBtn";
 
-// 복붙만 해놓은 상태이므로 나중에 프로필 이미지 변경할 때 코드 변경할 것!!
-export default function ProfileImageUpload() {
-  // 초기값을 기본 이미지로 저장할 것
-  const [image, setImage] = useState("/profile_basic_img.png");
-
-  // 이미지 미리보기와 삭제 등을 하기 위해
-  // 이미지만을 따로 등록하는 기능을 만들어야한다.
-
+export default function ProfileImageUpload({ image, setImage }) {
   // 프로필 이미지 핸들러
-  const handleImage = async (event) => {
+  const handleProfileImage = async (event) => {
     // 하나의 이미지만 등록
     const file = event.target.files[0];
 
@@ -39,33 +28,40 @@ export default function ProfileImageUpload() {
 
   // 프로필 이미지 삭제
   const deleteImage = () => {
-    // 기본 이미지로 변경하기
-    setImage("");
+    // 기본 이미지인 경우
+    if (image === "/profile_basic_img.png") {
+      return;
+    }
+    // 등록한 이미지가 있는 경우
+    else {
+      // 기본 이미지로 변경하기
+      setImage("/profile_basic_img.png");
+    }
   };
 
-  // 이미지 길이가 0 이면 기본이미지, 아니면 등록된 이미지를 보여주기
   return (
     <div>
-      {/* <img src={"/public/profile_basic_img.png"} /> */}
-      {image ? (
+      <div className="relative">
+        <div className="absolute top-0 left-[180px]">
+          <DeleteBtn onClick={deleteImage} />
+        </div>
         <img
-          className="w-[200px] aspect-square rounded-full bg-gray-200"
+          className="w-[200px] aspect-square rounded-full border-[1px] cursor-pointer"
           src={image}
+          alt="프로필 이미지"
+          onClick={() => {
+            document.querySelector("#img").click();
+          }}
         ></img>
-      ) : (
-        <div>dd</div>
-      )}
-
-      {/* <div className="my-6 ml-4 w-[220px] aspect-square rounded-full bg-gray-200">
-        <DeleteBtn onClick={deleteImage} />
       </div>
+
       <input
         id="img"
         className="hidden"
         type="file"
         accept="image/*"
-        onChange={handleImage}
-      /> */}
+        onChange={handleProfileImage}
+      />
     </div>
   );
 }
