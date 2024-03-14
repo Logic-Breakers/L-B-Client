@@ -14,8 +14,7 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
-// 현재 상세주소 입력하는 칸이 없음!!!! 현주소랑 상세주소 합쳐서 보내주기!
-
+// 기본적인 기능이 다 구현되면 유효성 검사 설정하기!
 export default function Register() {
   const router = useRouter();
 
@@ -330,10 +329,10 @@ export default function Register() {
                   <input
                     onBlur={onBlurPrice}
                     // onChange={(event) => setPrice(event.target.value)}
-                    value={price}
+                    // value={price}
                     type="number"
-                    className="text-center border-solid border-[1px] border-[#cccccc] placeholder:text-center w-[210px] h-[55px] rounded-md text-md text-gray-600"
-                    placeholder="ex) 123456"
+                    className="text-right border-solid border-[1px] border-[#cccccc] pl-3 pr-10 placeholder:text-right w-[210px] h-[55px] rounded-md text-md text-gray-600"
+                    placeholder="10000"
                   ></input>
                   <div className="absolute left-40 text-gray-400 text-sm">
                     원/박
