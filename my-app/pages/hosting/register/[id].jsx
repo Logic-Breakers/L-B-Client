@@ -354,7 +354,7 @@ export default function Register() {
                   <HostingRegisterItemTitle text={"시작일"} require mb />
                   <input
                     onBlur={onBlurStartDate}
-                    // onChange={(event) => setBirthDate(event.target.value)}
+                    // onChange={(event) => setStartDate(event.target.value)}
                     type="date"
                     className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                   />
@@ -363,7 +363,7 @@ export default function Register() {
                   <HostingRegisterItemTitle text={"마감일"} require mb />
                   <input
                     onBlur={onBlurEndDate}
-                    // onChange={(event) => setBirthDate(event.target.value)}
+                    // onChange={(event) => setEndDate(event.target.value)}
                     type="date"
                     className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                   />
@@ -666,5 +666,3 @@ export default function Register() {
 
 // 추가하면 좋은 것
 // 숙소 편의시설 (와이파이, 소화기, 구급상자, ...)
-
-// 평점, 게스트 선호는 필요없는 듯?

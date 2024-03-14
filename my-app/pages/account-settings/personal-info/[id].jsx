@@ -1,10 +1,13 @@
+import axios from "axios";
 import Title from "@/components/Title";
 import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
-import AccountItemTitle from "@/components/Account/AccountItemTitle";
+
 import BlackBtn from "@/components/Buttons/BlackBtn";
+import AccountItemTitle from "@/components/Account/AccountItemTitle";
+import ProfileImage from "@/components/ProfileImage";
+
 import { useState, useEffect } from "react";
-import axios from "axios";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserShield, faUserPen } from "@fortawesome/free-solid-svg-icons";
@@ -12,19 +15,33 @@ import { faEye } from "@fortawesome/free-regular-svg-icons";
 
 // 계정 -> 개인정보
 export default function PersonalInfo() {
-  // 이름, 이메일, 비밀번호, 전화번호
+  // 프로필 사진, 이름, 이메일, 비밀번호, 전화번호
+  const [profileImgEdit, setProfileImgEdit] = useState(false);
   const [nameEdit, setNameEdit] = useState(false);
   const [emailEdit, setEmailEdit] = useState(false);
   const [passwordEdit, setPasswordEdit] = useState(false);
   const [phoneEdit, setPhoneEdit] = useState(false);
 
+  // 프로필 사진, 이름, 이메일, 비밀번호, 전화번호
+  // 데이터 가져온 값 넣어주기
+  const [profileImg, setProfileImg] = useState("");
   const [name, setName] = useState("○○○");
   const [email, setEmail] = useState("abcde@example.com");
   const [password, setPassword] = useState("12341234");
   const [phone, setPhone] = useState("01012345678");
 
+  // 프로필 사진
+  const handleProfileImgEdit = () => {
+    setProfileImgEdit(!profileImgEdit);
+    setNameEdit(false);
+    setEmailEdit(false);
+    setPasswordEdit(false);
+    setPhoneEdit(false);
+  };
+
   // 이름
   const handleNameEdit = () => {
+    setProfileImgEdit(false);
     setNameEdit(!nameEdit);
     setEmailEdit(false);
     setPasswordEdit(false);
@@ -33,6 +50,7 @@ export default function PersonalInfo() {
 
   // 이메일
   const handleEmailEdit = () => {
+    setProfileImgEdit(false);
     setNameEdit(false);
     setEmailEdit(!emailEdit);
     setPasswordEdit(false);
@@ -41,6 +59,7 @@ export default function PersonalInfo() {
 
   // 비밀번호
   const handlePasswordEdit = () => {
+    setProfileImgEdit(false);
     setNameEdit(false);
     setEmailEdit(false);
     setPasswordEdit(!passwordEdit);
@@ -49,6 +68,7 @@ export default function PersonalInfo() {
 
   // 전화번호
   const handlePhoneEdit = () => {
+    setProfileImgEdit(false);
     setNameEdit(false);
     setEmailEdit(false);
     setPasswordEdit(false);
@@ -86,23 +106,37 @@ export default function PersonalInfo() {
       const reToken = localStorage.getItem("reToken");
 
       if (acToken && reToken) {
-        // 서버로 보낼 데이터
-        const request = {
-          username: name,
-          email,
-          password,
-          phone,
-        };
+        // API 요청을 보내기 위한 데이터 준비
+        const formData = new FormData();
+        formData.append(
+          // 서버측과 정한 FormData 객체에 데이터를 추가하는 데 사용되는 키(key) : stay
+          "stay",
+          JSON.stringify({
+            username: name,
+            email,
+            password,
+            phone,
+          })
+        );
+
+        formData.append("profileImg", profileImg);
+
+        console.log("저장 버튼 누름");
+        console.log("profileImg : ", profileImg);
+        console.log("username : ", name);
+        console.log("email : ", email);
+        console.log("password : ", password);
+        console.log("phone : ", phone);
 
         try {
           // 서버 api 호출
           const response = await axios.patch(
             `${process.env.NEXT_PUBLIC_SERVER_URL}/user`,
-            request,
+            formData,
             {
               headers: {
                 Authorization: "Bearer " + localStorage.getItem("acToken"),
-                "Content-Type": "application/json",
+                "Content-Type": "multipart/form-data",
                 "ngrok-skip-browser-warning": "69420",
               },
             }
@@ -110,13 +144,14 @@ export default function PersonalInfo() {
 
           console.log("edit response", response);
 
+          // 열린 칸 다 닫기
+          setProfileImgEdit(false);
           setNameEdit(false);
           setEmailEdit(false);
           setPasswordEdit(false);
           setPhoneEdit(false);
 
           // 저장 한 후 다시 유저데이터 불러와야함!
-
           getUserData();
         } catch (error) {
           console.log(error);
@@ -147,11 +182,14 @@ export default function PersonalInfo() {
               },
             }
           );
-          console.log("userResponse", userResponse);
-          // '유저 이름, 이메일' 데이터가 필요함
-
           // 만약 authToken이 만료된 경우
           // refreshToken으로 갱신하고, 다시 api 호출한다.
+          // 401번으로 거절 되는 것 같다.
+
+          // 토큰이 만료되지 않고, 정상적으로 응답을 받아온 경우
+          // '프로필 사진, 성함, 이메일, 전화번호' 데이터를
+          // 각 useState의 초기값으로 입력한다.
+          console.log("userResponse", userResponse);
         } catch (err) {
           console.log(err);
           alert("유저 정보를 가져오는데 실패했습니다.");
@@ -179,6 +217,41 @@ export default function PersonalInfo() {
           <div className="flex flex-row justify-between">
             {/* 왼쪽 개인정보 변경 부분 */}
             <article className="bnb_xl:w-[596px] bnb_md_lg:w-[58%] bnb_sm:w-full">
+              {/* 프로필 사진 */}
+              <section className="py-[24px] border-b-[1px]">
+                <div className="flex flex-row justify-between items-start ">
+                  <div>
+                    <div className="mb-3">프로필 사진</div>
+                    {profileImgEdit ? (
+                      <ProfileImage
+                        profileImg={profileImg}
+                        setProfileImg={setProfileImg}
+                      />
+                    ) : (
+                      ""
+                    )}
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleProfileImgEdit}
+                    className="text-[14px] font-[500] underline"
+                  >
+                    {profileImgEdit ? "취소" : "수정"}
+                  </button>
+                </div>
+                {profileImgEdit && (
+                  <form onSubmit={(event) => event.preventDefault()}>
+                    <div className="mt-3">
+                      <BlackBtn
+                        type={"submit"}
+                        onClick={onClickEditSubmit}
+                        text={"저장"}
+                      />
+                    </div>
+                  </form>
+                )}
+              </section>
+
               {/* 이름 */}
               <section className="py-[24px] border-b-[1px]">
                 <div className="flex flex-row justify-between items-start ">
