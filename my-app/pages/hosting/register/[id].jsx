@@ -14,6 +14,8 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+// 현재 상세주소 입력하는 칸이 없음!!!! 현주소랑 상세주소 합쳐서 보내주기!
+
 export default function Register() {
   const router = useRouter();
 
@@ -26,9 +28,10 @@ export default function Register() {
   const [info, setInfo] = useState("");
   const [category, setCategory] = useState("");
 
-  // 주소, 우편번호 (Address.jsx 에서 가져옴)
-  const [addrNum, setAddrNum] = useState("우편번호");
-  const [addr, setAddr] = useState("주소");
+  // 우편번호, 주소, 상세주소 (Address.jsx 에서 가져옴)
+  const [addrNum, setAddrNum] = useState("");
+  const [addr, setAddr] = useState("");
+  const [detailAddr, setDetailAddr] = useState("");
 
   // 사진
   const [houseImages, setHouseImages] = useState([]);
@@ -191,6 +194,23 @@ export default function Register() {
   // };
 
   const onClickSubmitBtn = async () => {
+    console.log("숙소 등록하기 버튼 누름");
+    console.log("숙소 이름 : ", houseName);
+    console.log("국가 : ", country);
+    console.log("우편번호 : ", addrNum);
+    console.log("주소 : ", addr);
+    console.log("상세주소 : ", detailAddr);
+    console.log("요금 : ", price);
+    console.log("건물 유형 : ", propertyType);
+    console.log("숙소 유형 : ", placeType);
+    console.log("카테고리 : ", category);
+    console.log("게스트 : ", guestNum);
+    console.log("침실 : ", bedroomsNum);
+    console.log("침대 : ", bedsNum);
+    console.log("욕실 : ", bathroomsNum);
+    console.log("설명 : ", info);
+    console.log("숙소 사진들 : ", houseImages);
+
     // API 요청을 보내기 위한 데이터 준비
     const formData = new FormData();
     formData.append(
@@ -199,6 +219,7 @@ export default function Register() {
         houseName,
         country,
         address: addr,
+        detailAddress: detailAddr,
         price,
         propertyType,
         placeType,
@@ -255,7 +276,7 @@ export default function Register() {
                 <HostingRegisterItemTitle text={"숙소 이름"} require mb />
                 <input
                   onBlur={onBlurHouseName}
-                  onChange={(event) => setHouseName(event.target.value)}
+                  // onChange={(event) => setHouseName(event.target.value)}
                   type="text"
                   className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                   placeholder="숙소 이름을 적어주세요"
@@ -266,7 +287,7 @@ export default function Register() {
                 <HostingRegisterItemTitle text={"국가"} require mb />
                 <label
                   onBlur={onBlurCountry}
-                  onChange={(event) => setCountry(event.target.value)}
+                  // onChange={(event) => setCountry(event.target.value)}
                   htmlFor="country"
                   className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                 >
@@ -298,6 +319,8 @@ export default function Register() {
                   setAddrNum={setAddrNum}
                   addr={addr}
                   setAddr={setAddr}
+                  detailAddr={detailAddr}
+                  setDetailAddr={setDetailAddr}
                 />
               </section>
               {/* 요금 */}
@@ -306,7 +329,7 @@ export default function Register() {
                 <div className="relative flex flex-row items-center">
                   <input
                     onBlur={onBlurPrice}
-                    onChange={(event) => setPrice(event.target.value)}
+                    // onChange={(event) => setPrice(event.target.value)}
                     value={price}
                     type="number"
                     className="text-center border-solid border-[1px] border-[#cccccc] placeholder:text-center w-[210px] h-[55px] rounded-md text-md text-gray-600"
@@ -322,7 +345,7 @@ export default function Register() {
                 <HostingRegisterItemTitle text={"건물 유형"} require mb />
                 <label
                   onBlur={onBlurPropertyType}
-                  onChange={(event) => setPropertyType(event.target.value)}
+                  // onChange={(event) => setPropertyType(event.target.value)}
                   htmlFor="propertyType"
                   className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                 >
@@ -350,7 +373,7 @@ export default function Register() {
                 <HostingRegisterItemTitle text={"숙소 유형"} require mb />
                 <label
                   onBlur={onBlurPlaceType}
-                  onChange={(event) => setPlaceType(event.target.value)}
+                  // onChange={(event) => setPlaceType(event.target.value)}
                   htmlFor="placeType"
                   className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                 >
@@ -375,7 +398,7 @@ export default function Register() {
                 <HostingRegisterItemTitle text={"카테고리"} require mb />
                 <label
                   onBlur={onBlurCategory}
-                  onChange={(event) => setCategory(event.target.value)}
+                  // onChange={(event) => setCategory(event.target.value)}
                   htmlFor="category"
                   className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                 >
@@ -560,7 +583,7 @@ export default function Register() {
                 <HostingRegisterItemTitle text={"설명"} require mb />
                 <textarea
                   onBlur={onBlurInfo}
-                  onChange={(event) => setInfo(event.target.value)}
+                  // onChange={(event) => setInfo(event.target.value)}
                   className="w-full h-60 border-[#cccccc] border-solid border-[1px] rounded-md text-gray-600 text-lg p-4"
                   placeholder="숙소를 설명해주세요"
                 />

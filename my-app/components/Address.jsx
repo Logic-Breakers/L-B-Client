@@ -1,9 +1,17 @@
 import PostCode from "react-daum-postcode";
 import { useState } from "react";
 
-export default function Address({ addrNum, setAddrNum, addr, setAddr }) {
+export default function Address({
+  addrNum,
+  setAddrNum,
+  addr,
+  setAddr,
+  detailAddr,
+  setDetailAddr,
+}) {
   // const [addrNum, setAddrNum] = useState("우편번호");
   // const [addr, setAddr] = useState("주소");
+  // const [detailAddr, setDetailAddr] = useState("상세주소");
 
   const [showAddrModal, setShowAddrModal] = useState(false);
 
@@ -38,6 +46,11 @@ export default function Address({ addrNum, setAddrNum, addr, setAddr }) {
 
     setShowAddrModal(false);
   };
+
+  const handleDetailAddr = (event) => {
+    setDetailAddr(event.target.value);
+  };
+
   return (
     <div>
       <div className="flex flex-row gap-x-3 mb-3">
@@ -66,6 +79,12 @@ export default function Address({ addrNum, setAddrNum, addr, setAddr }) {
       <div className="flex flex-row items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] px-4 text-gray-600">
         {addr}
       </div>
+      <input
+        onBlur={handleDetailAddr}
+        type="text"
+        placeholder="상세주소를 입력해주세요."
+        className="flex flex-row items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] px-4 text-gray-600 mt-3"
+      />
     </div>
   );
 }
