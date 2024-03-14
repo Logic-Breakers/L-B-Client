@@ -18,7 +18,7 @@ import { useRouter } from "next/router";
 export default function Register() {
   const router = useRouter();
 
-  // 국가, 요금, 카테고리(category), 건물유형(propertyType), 숙소유형(placeType), 설명
+  // 국가, 요금, 카테고리(category), 건물유형(propertyType), 숙소유형(placeType), 설명(info)
   const [houseName, setHouseName] = useState("");
   const [country, setCountry] = useState("none");
   const [price, setPrice] = useState("");
@@ -27,12 +27,16 @@ export default function Register() {
   const [info, setInfo] = useState("");
   const [category, setCategory] = useState("");
 
-  // 우편번호, 주소, 상세주소 (Address.jsx 에서 가져옴)
+  // 시작일, 마감일
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  // 우편번호, 주소, 상세주소 (Address.jsx)
   const [addrNum, setAddrNum] = useState("");
   const [addr, setAddr] = useState("");
   const [detailAddr, setDetailAddr] = useState("");
 
-  // 사진
+  // 사진 (HouseImages.jsx)
   const [houseImages, setHouseImages] = useState([]);
 
   // 게스트, 침실, 침대, 욕실 수
@@ -51,6 +55,18 @@ export default function Register() {
   const onBlurCountry = (event) => {
     setCountry(event.target.value);
     console.log("국가 : ", country);
+  };
+
+  // 시작일
+  const onBlurStartDate = (event) => {
+    setStartDate(event.target.value + "T00:00:00");
+    console.log("시작일 : ", startDate);
+  };
+
+  // 마감일
+  const onBlurEndDate = (event) => {
+    setEndDate(event.target.value + "T00:00:00");
+    console.log("마감일 : ", endDate);
   };
 
   // 요금
@@ -199,6 +215,8 @@ export default function Register() {
     console.log("우편번호 : ", addrNum);
     console.log("주소 : ", addr);
     console.log("상세주소 : ", detailAddr);
+    console.log("시작일 : ", startDate);
+    console.log("마감일 : ", endDate);
     console.log("요금 : ", price);
     console.log("건물 유형 : ", propertyType);
     console.log("숙소 유형 : ", placeType);
@@ -219,6 +237,8 @@ export default function Register() {
         country,
         address: addr,
         detailAddress: detailAddr,
+        startDate,
+        endDate,
         price,
         propertyType,
         placeType,
@@ -266,7 +286,12 @@ export default function Register() {
       <Header fixed />
       <main className="flex flex-row justify-center w-full min-h-screen mt-[40px]">
         <div className="w-[600px] bnb_md_xl:pt-[80px] bnb_sm:px-[24px]">
-          <h1 className="text-[32px] font-[500]">호스팅 시작하기</h1>
+          <div className="flex flex-row items-center">
+            <h1 className="text-[32px] font-[500]">호스팅 시작하기</h1>
+            <span className="text-red-500 ml-4">
+              (* 는 필수 입력사항입니다.)
+            </span>
+          </div>
           <form onSubmit={(event) => event.preventDefault()}>
             <h2 className="text-xl text-gray-500">기본정보를 알려주세요</h2>
             <section className="my-8 space-y-10">
@@ -322,6 +347,29 @@ export default function Register() {
                   setDetailAddr={setDetailAddr}
                 />
               </section>
+
+              {/* 시작일 & 마감일 */}
+              <section className="flex flex-row gap-x-8">
+                <section className="w-1/2">
+                  <HostingRegisterItemTitle text={"시작일"} require mb />
+                  <input
+                    onBlur={onBlurStartDate}
+                    // onChange={(event) => setBirthDate(event.target.value)}
+                    type="date"
+                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                  />
+                </section>
+                <section className="w-1/2">
+                  <HostingRegisterItemTitle text={"마감일"} require mb />
+                  <input
+                    onBlur={onBlurEndDate}
+                    // onChange={(event) => setBirthDate(event.target.value)}
+                    type="date"
+                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                  />
+                </section>
+              </section>
+
               {/* 요금 */}
               <section>
                 <HostingRegisterItemTitle text={"요금"} require mb />
@@ -331,10 +379,10 @@ export default function Register() {
                     // onChange={(event) => setPrice(event.target.value)}
                     // value={price}
                     type="number"
-                    className="text-right border-solid border-[1px] border-[#cccccc] pl-3 pr-10 placeholder:text-right w-[210px] h-[55px] rounded-md text-md text-gray-600"
+                    className="text-center border-solid border-[1px] border-[#cccccc] px-6 placeholder:text-center w-[150px] h-[55px] rounded-md text-md text-gray-600"
                     placeholder="10000"
                   ></input>
-                  <div className="absolute left-40 text-gray-400 text-sm">
+                  <div className="absolute left-28 text-gray-400 text-sm">
                     원/박
                   </div>
                 </div>

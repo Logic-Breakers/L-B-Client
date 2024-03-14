@@ -37,31 +37,26 @@ export default function SignUp() {
   // 유저 이름
   const onBlurName = (event) => {
     setName(event.target.value);
-    console.log("유저 이름 : ", name);
   };
 
   // 이메일
   const onBlurEmail = (event) => {
     setEmail(event.target.value);
-    console.log("이메일 : ", email);
   };
 
   // 비밀번호
   const onBlurPassword = (event) => {
     setPassword(event.target.value);
-    console.log("비밀번호 : ", password);
   };
 
   // 국가
   const onBlurCountry = (event) => {
     setCountry(event.target.value);
-    console.log("국가 : ", country);
   };
 
   // 전화번호
   const onBlurPhone = (event) => {
     setPhone(event.target.value);
-    console.log("전화번호 : ", phone);
 
     // 전화번호 유효성 검사 (ex: 01012345678)
     const regex = /^010([1-9]{1}[0-9]{2}|[0-9]{1}[1-9]{1}[0-9]{1})[0-9]{4}$/;
@@ -74,7 +69,6 @@ export default function SignUp() {
   const onBlurBirthDate = (event) => {
     // 형식 맞추기 위해 뒤에 "T00:00:00" 추가함
     setBirthDate(event.target.value + "T00:00:00");
-    console.log("생년월일 : ", birthDate);
   };
 
   // 서버로 회원가입 요청
@@ -129,6 +123,13 @@ export default function SignUp() {
 
     formData.append("profileImg", profileImg);
 
+    console.log("회원가입 버튼 누름");
+    console.log("username : ", name);
+    console.log("email : ", email);
+    console.log("password : ", password);
+    console.log("country : ", country);
+    console.log("phone : ", phone);
+    console.log("birthDate : ", birthDate);
     try {
       // 서버 API 호출
       const response = await axios.post(
@@ -182,7 +183,7 @@ export default function SignUp() {
                     <HostingRegisterItemTitle text={"성함"} require mb />
                     <input
                       onBlur={onBlurName}
-                      onChange={(event) => setName(event.target.value)}
+                      // onChange={(event) => setName(event.target.value)}
                       type="text"
                       className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                       placeholder="성함을 적어주세요"
@@ -194,7 +195,7 @@ export default function SignUp() {
                     <HostingRegisterItemTitle text={"이메일"} require mb />
                     <input
                       onBlur={onBlurEmail}
-                      onChange={(event) => setEmail(event.target.value)}
+                      // onChange={(event) => setEmail(event.target.value)}
                       type="email"
                       className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                       placeholder="abcde@example.com"
@@ -206,7 +207,7 @@ export default function SignUp() {
                     <HostingRegisterItemTitle text={"비밀번호"} require mb />
                     <input
                       onBlur={onBlurPassword}
-                      onChange={(event) => setPassword(event.target.value)}
+                      // onChange={(event) => setPassword(event.target.value)}
                       type="password"
                       className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                       placeholder="∙∙∙∙∙∙∙∙"
@@ -218,7 +219,7 @@ export default function SignUp() {
                     <HostingRegisterItemTitle text={"국가"} require mb />
                     <label
                       onBlur={onBlurCountry}
-                      onChange={(event) => setCountry(event.target.value)}
+                      // onChange={(event) => setCountry(event.target.value)}
                       htmlFor="country"
                       className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                     >
@@ -249,8 +250,8 @@ export default function SignUp() {
                       required
                       type="tel"
                       onBlur={onBlurPhone}
-                      onChange={(event) => setPhone(event.target.value)}
-                      placeholder="ex) 01012345678"
+                      // onChange={(event) => setPhone(event.target.value)}
+                      placeholder="01012345678"
                       className="border-[1px] border-solid border-[#cccccc] w-full rounded-md h-[55px] px-4 appearance-none"
                     ></input>
                   </section>
@@ -260,7 +261,7 @@ export default function SignUp() {
                     <HostingRegisterItemTitle text={"생년월일"} require mb />
                     <input
                       onBlur={onBlurBirthDate}
-                      onChange={(event) => setBirthDate(event.target.value)}
+                      // onChange={(event) => setBirthDate(event.target.value)}
                       type="date"
                       className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                     ></input>

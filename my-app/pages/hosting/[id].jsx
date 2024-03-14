@@ -3,7 +3,9 @@ import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import NavApp from "@/components/Header/Nav/NavApp";
+
 import WhiteBtn from "@/components/Buttons/WhiteBtn";
+import DeleteBtn from "@/components/Buttons/DeleteBtn";
 import HostingPresentHostingItem from "@/components/Hosting/indexPage/HostingPresentHostingItem";
 import HostingReservationItem from "@/components/Hosting/indexPage/HostingReservationItem";
 import HostingReviewItem from "@/components/Hosting/indexPage/HostingReviewItem";
@@ -38,7 +40,7 @@ export default function Hosting() {
         `${process.env.REACT_APP_SERVER_URL}/example/api`,
         {
           headers: {
-            // Authorization : "Bearer " + localStorage.getItem("acToken"),
+            Authorization: "Bearer " + localStorage.getItem("acToken"),
             "Content-Type": "application/json",
             "ngrok-skip-browser-warning": "69420",
           },
@@ -48,6 +50,13 @@ export default function Hosting() {
     } catch (err) {
       console.log(err);
     }
+  };
+
+  // 특정 유저가 등록한 숙소 데이터를 가져오면 삭제버튼의 기능도 구현하기
+  // 화면에서 보여주는 것과, 삭제된 데이터를 제외하고
+  const deleteHouse = (index) => {
+    console.log("숙소 삭제 버튼 누름");
+    console.log(index);
   };
 
   useEffect(() => {
@@ -76,8 +85,11 @@ export default function Hosting() {
               {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => (
                 <div
                   key={index}
-                  className="flex-shrink-0 aspect-square w-[250px]"
+                  className="relative flex-shrink-0 aspect-square w-[250px]"
                 >
+                  <div className="absolute top-2 left-2">
+                    <DeleteBtn onClick={() => deleteHouse(index)} />
+                  </div>
                   <div className="bg-gray-300 aspect-square rounded-md mb-2" />
                   <div className="font-semibold">숙소 이름1</div>
                   <div className="text-gray-600">
