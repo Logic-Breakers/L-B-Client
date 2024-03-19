@@ -26,6 +26,7 @@ export default function Home() {
       );
       setAllHouseData(response.data);
       console.log(response.data);
+      alert("전체 숙소 데이터를 가져왔습니다.");
     } catch (error) {
       console.log(error);
       alert("전체 숙소 조회 데이터를 불러오는데 실패했습니다.");

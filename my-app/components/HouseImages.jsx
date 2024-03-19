@@ -46,7 +46,6 @@ export default function HouseImages({ houseImages, setHouseImages }) {
     const newHouseImages = [...houseImages];
     newHouseImages.splice(index, 1);
     setHouseImages(newHouseImages);
-    console.log("삭제된 후 houseImages", houseImages);
   };
 
   return (

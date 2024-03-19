@@ -208,6 +208,19 @@ export default function Register() {
   //   }
   // };
 
+  // Base64 데이터 URL을 Blob으로 변환
+  const convertDataURLToFile = async (dataURL, fileName) => {
+    const response = await axios.get(dataURL, {
+      responseType: "blob",
+    });
+    const blob = response.data;
+
+    // Blob을 File 객체로 변환
+    const houseImgFile = new File([blob], fileName, { type: blob.type });
+
+    return houseImgFile;
+  };
+
   const onClickSubmitBtn = async () => {
     console.log("숙소 등록하기 버튼 누름");
     console.log("숙소 이름 : ", houseName);
@@ -232,27 +245,46 @@ export default function Register() {
     const formData = new FormData();
     formData.append(
       "stay",
-      JSON.stringify({
-        houseName,
-        country,
-        address: addr,
-        detailAddress: detailAddr,
-        startDate,
-        endDate,
-        price,
-        propertyType,
-        placeType,
-        guest: guestNum,
-        bedrooms: bedroomsNum,
-        beds: bedsNum,
-        bathrooms: bathroomsNum,
-        info,
-      })
+      new Blob(
+        [
+          JSON.stringify({
+            houseName,
+            country,
+            address: addr,
+            detailAddress: detailAddr,
+            startDate,
+            endDate,
+            price,
+            propertyType,
+            placeType,
+            guest: guestNum,
+            bedrooms: bedroomsNum,
+            beds: bedsNum,
+            bathrooms: bathroomsNum,
+            info,
+          }),
+        ],
+        { type: "application/json" }
+      )
     );
 
     // 이미지 파일을 FormData에 추가
-    for (let i = 0; i < houseImages.length; i++) {
-      formData.append("houseImages", houseImages[i]);
+    // 여기 때문에 에러 발생하는 듯!! ㅠ.. 400에러 발생 중
+    // --> 현재는 houseImages의 배열의 각 요소가 Base64 데이터 URL로 구성되어 있다.
+    // --> 그래서 FormData에 이미지 파일을 바로 추가할 수 없기에 에러가 발생하는 것 같다.
+    // --> 해결방법 : Bases64 데이터 URL을 File 객체로 변환하고, FormData에 파일을 추가한다.
+    // (--> 모든 파일을 한 번에 변환할 수 없으므로, for문을 통해 배열 요소를 하나씩 변환해준다.)
+
+    if (houseImages.length >= 1) {
+      console.log("파일 객체로 변환 전 이미지", houseImages);
+      for (let i = 0; i < houseImages.length; i++) {
+        const houseImgFile = await convertDataURLToFile(
+          houseImages[i],
+          `image_${i}`
+        );
+        formData.append("image", houseImgFile);
+        console.log("파일 객체로 변환 후 이미지", houseImgFile);
+      }
     }
 
     try {
@@ -262,7 +294,10 @@ export default function Register() {
         formData,
         {
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("acToken"),
+            // Authorization: "Bearer " + localStorage.getItem("acToken"),
+            Authorization:
+              "Bearer " +
+              "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwidXNlcm5hbWUiOiJhZG1pbkBnbWFpbC5jb20iLCJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTA2NjU2MjYsImV4cCI6MTcxMDY2NTc0Nn0.r-R3XgYipekgQjtBGUjryJNc5XyAh51u8fbo0jXqZW8",
             "Content-Type": "multipart/form-data",
             "ngrok-skip-browser-warning": "69420",
           },
@@ -273,7 +308,7 @@ export default function Register() {
 
       // 숙소 등록 한 뒤, hosting 페이지로 이동한다.
       // 나중에 id값으로 변경하기!
-      router.push("/hosting/1");
+      // router.push("/hosting/1");
     } catch (error) {
       alert("숙소 등록을 실패했습니다.");
       console.log("에러", error);

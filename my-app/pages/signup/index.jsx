@@ -105,23 +105,49 @@ export default function SignUp() {
   //   }
   // };
 
+  // Base64 데이터 URL을 Blob으로 변환
+  const convertDataURLToFile = async (dataURL, fileName) => {
+    const response = await axios.get(dataURL, {
+      responseType: "blob",
+    });
+    const blob = response.data;
+
+    // Blob을 File 객체로 변환
+    const profileImgFile = new File([blob], fileName, { type: blob.type });
+
+    return profileImgFile;
+  };
+
   const onClickSubmitBtn = async () => {
     // API 요청을 보내기 위한 데이터 준비
     const formData = new FormData();
     formData.append(
       // 서버측과 정한 FormData 객체에 데이터를 추가하는 데 사용되는 키(key) : stay
       "stay",
-      JSON.stringify({
-        username: name,
-        email,
-        password,
-        country,
-        phone,
-        birthDate,
-      })
+      new Blob(
+        [
+          JSON.stringify({
+            username: name,
+            email,
+            password,
+            country,
+            phone,
+            birthDate,
+          }),
+        ],
+        { type: "application/json" }
+      )
     );
 
-    formData.append("profileImg", profileImg);
+    if (profileImg) {
+      console.log("파일 객체로 변환 전 이미지", profileImg);
+      const profileImgFile = await convertDataURLToFile(
+        profileImg,
+        `profileImg`
+      );
+      formData.append("image", profileImgFile);
+      console.log("파일 객체로 변환 후 이미지", profileImgFile);
+    }
 
     console.log("회원가입 버튼 누름");
     console.log("username : ", name);
@@ -130,6 +156,7 @@ export default function SignUp() {
     console.log("country : ", country);
     console.log("phone : ", phone);
     console.log("birthDate : ", birthDate);
+
     try {
       // 서버 API 호출
       const response = await axios.post(
@@ -170,10 +197,12 @@ export default function SignUp() {
           <div className="flex bnb_sm_md:flex-col bnb_lg_xl:flex-row mt-8 mb-24">
             <section className="bnb_lg_xl:w-[300px] mb-4">
               <HostingRegisterItemTitle text={"프로필 사진"} mb />
-              <ProfileImage
-                profileImg={profileImg}
-                setProfileImg={setProfileImg}
-              />
+              <div className="mt-4">
+                <ProfileImage
+                  profileImg={profileImg}
+                  setProfileImg={setProfileImg}
+                />
+              </div>
             </section>
             <section className="bnb_lg_xl:w-[600px]">
               <div>
