@@ -222,14 +222,6 @@ export default function PersonalInfo() {
                 <div className="flex flex-row justify-between items-start ">
                   <div>
                     <div className="mb-3">프로필 사진</div>
-                    {profileImgEdit ? (
-                      <ProfileImage
-                        profileImg={profileImg}
-                        setProfileImg={setProfileImg}
-                      />
-                    ) : (
-                      ""
-                    )}
                   </div>
                   <button
                     type="button"
@@ -239,8 +231,13 @@ export default function PersonalInfo() {
                     {profileImgEdit ? "취소" : "수정"}
                   </button>
                 </div>
+
                 {profileImgEdit && (
                   <form onSubmit={(event) => event.preventDefault()}>
+                    <ProfileImage
+                      profileImg={profileImg}
+                      setProfileImg={setProfileImg}
+                    />
                     <div className="mt-3">
                       <BlackBtn
                         type={"submit"}
@@ -255,14 +252,7 @@ export default function PersonalInfo() {
               {/* 이름 */}
               <section className="py-[24px] border-b-[1px]">
                 <div className="flex flex-row justify-between items-start ">
-                  <div>
-                    <div>이름</div>
-                    <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
-                      {nameEdit
-                        ? "허가증이나 여권 등 여행 서류에 기재되어 있는 이름을 말합니다."
-                        : name}
-                    </div>
-                  </div>
+                  <div>이름</div>
                   <button
                     type="button"
                     onClick={handleNameEdit}
@@ -271,6 +261,12 @@ export default function PersonalInfo() {
                     {nameEdit ? "취소" : "수정"}
                   </button>
                 </div>
+                <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                  {nameEdit
+                    ? "허가증이나 여권 등 여행 서류에 기재되어 있는 이름을 말합니다."
+                    : name}
+                </div>
+
                 {nameEdit && (
                   <form onSubmit={(event) => event.preventDefault()}>
                     <div className="flex flex-row justify-between gap-[20px] my-[20px]">
@@ -295,14 +291,8 @@ export default function PersonalInfo() {
               {/* 이메일 */}
               <section className="py-[24px] border-b-[1px]">
                 <div className="flex flex-row justify-between items-start ">
-                  <div>
-                    <div>이메일</div>
-                    <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
-                      {emailEdit
-                        ? "언제든지 확인하실 수 있는 주소를 사용하세요"
-                        : email}
-                    </div>
-                  </div>
+                  <div>이메일</div>
+
                   <button
                     type="button"
                     onClick={handleEmailEdit}
@@ -310,6 +300,11 @@ export default function PersonalInfo() {
                   >
                     {emailEdit ? "취소" : "수정"}
                   </button>
+                </div>
+                <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                  {emailEdit
+                    ? "언제든지 확인하실 수 있는 주소를 사용하세요"
+                    : email}
                 </div>
 
                 {emailEdit && (
@@ -336,14 +331,7 @@ export default function PersonalInfo() {
               {/* 비밀번호 */}
               <section className="py-[24px] border-b-[1px]">
                 <div className="flex flex-row justify-between items-start ">
-                  <div>
-                    <div>비밀번호</div>
-                    <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
-                      {passwordEdit
-                        ? "변경하실 비밀번호를 입력해주세요"
-                        : "∙".repeat(password.length)}
-                    </div>
-                  </div>
+                  <div>비밀번호</div>
                   <button
                     type="button"
                     onClick={handlePasswordEdit}
@@ -351,6 +339,11 @@ export default function PersonalInfo() {
                   >
                     {passwordEdit ? "취소" : "수정"}
                   </button>
+                </div>
+                <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                  {passwordEdit
+                    ? "변경하실 비밀번호를 입력해주세요"
+                    : "∙".repeat(password.length)}
                 </div>
 
                 {passwordEdit && (
@@ -377,16 +370,7 @@ export default function PersonalInfo() {
               {/* 전화번호 */}
               <section className="py-[24px] border-b-[1px]">
                 <div className="flex flex-row justify-between items-start ">
-                  <div>
-                    <div>전화번호</div>
-                    <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
-                      {phoneEdit
-                        ? "자주 사용하시는 전화번호를 입력해주세요"
-                        : phone.length === 11
-                        ? phone.slice(0, 3) + "∙∙∙∙" + phone.slice(7)
-                        : phone.slice(0, 3) + "∙∙∙" + phone.slice(6)}
-                    </div>
-                  </div>
+                  <div>전화번호</div>
                   <button
                     type="button"
                     onClick={handlePhoneEdit}
@@ -394,6 +378,13 @@ export default function PersonalInfo() {
                   >
                     {phoneEdit ? "취소" : "수정"}
                   </button>
+                </div>
+                <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                  {phoneEdit
+                    ? "자주 사용하시는 전화번호를 입력해주세요"
+                    : phone.length === 11
+                    ? phone.slice(0, 3) + "∙∙∙∙" + phone.slice(7)
+                    : phone.slice(0, 3) + "∙∙∙" + phone.slice(6)}
                 </div>
 
                 {phoneEdit && (

@@ -15,6 +15,8 @@ import ProfileImage from "@/components/ProfileImage";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
+// 이미지 업로드 잘되면 personal-info에도 적용시키기!
+
 // 회원가입이 잘 되면
 // 각 부분 유효성 검사하기
 export default function SignUp() {

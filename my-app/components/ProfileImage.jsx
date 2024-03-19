@@ -40,19 +40,19 @@ export default function ProfileImage({ profileImg, setProfileImg }) {
   };
 
   return (
-    <div>
+    <div className="w-full flex justify-center">
       <div className="relative">
-        <div className="absolute top-0 left-[180px]">
-          <DeleteBtn onClick={deleteImage} />
-        </div>
         <img
-          className="w-[200px] aspect-square rounded-full border-[1px] cursor-pointer"
+          className="relative w-[200px] aspect-square rounded-full border-[1px] cursor-pointer"
           src={profileImg}
           alt="프로필 이미지"
           onClick={() => {
             document.querySelector("#img").click();
           }}
-        ></img>
+        />
+        <div className="absolute top-0 right-0">
+          <DeleteBtn onClick={deleteImage} />
+        </div>
       </div>
 
       <input
