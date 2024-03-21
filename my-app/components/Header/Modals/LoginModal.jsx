@@ -67,6 +67,16 @@ export default function LoginModal({ closeLoginModal }) {
     }
   };
 
+  // 기존에는 Link 테그로 했었으나,
+  // signup 페이지에서 회원가입 버튼을 누른 경우, 아무런 반응이 없기에 조건에 따라 추가해주었다.
+  const onClickSignUpPage = () => {
+    if (router.pathname === "/signup") {
+      router.reload();
+    } else {
+      router.push("/signup");
+    }
+  };
+
   return (
     // 상위 컴포넌트로 이벤트 전파 방지 (버블링 방지)
     <div onClick={(event) => event.stopPropagation()}>
@@ -75,14 +85,13 @@ export default function LoginModal({ closeLoginModal }) {
         <header className="flex flex-row justify-between items-center h-[63px] px-[24px] border-b-[1px] border-solid border-[#DDDDDD]">
           <CloseModalBtn onClick={closeLoginModal} />
           <h3 className="pl-[58px] text-[16px] font-[600]">로그인</h3>
-          <Link href={"/signup"}>
-            <RedBtn
-              type={"button"}
-              text={"회원가입"}
-              width={"fit"}
-              textSize={"md"}
-            />
-          </Link>
+          <RedBtn
+            onClick={onClickSignUpPage}
+            type={"button"}
+            text={"회원가입"}
+            width={"fit"}
+            textSize={"md"}
+          />
         </header>
         <section className="mt-[30px] px-[24px]">
           <h3 className="text-[22px] font-[500] mb-[20px]">
