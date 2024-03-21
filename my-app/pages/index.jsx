@@ -7,9 +7,13 @@ import LikedBtn from "@/components/Buttons/LikedBtn";
 import NavApp from "@/components/Header/Nav/NavApp";
 
 import { useState, useEffect } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { categoryNameState, houseDataState } from "@/recoil/state";
 
+// 카테고리별 데이터 가져오는 것 해야함!!
 export default function Home() {
-  const [allHouseData, setAllHouseData] = useState([]);
+  const [categoryName, setCategoryName] = useRecoilState(categoryNameState);
+  const [houseData, setHouseData] = useRecoilState(houseDataState);
 
   // 전체 숙소 조회
   const getAllHouseData = async () => {
@@ -24,7 +28,7 @@ export default function Home() {
           },
         }
       );
-      setAllHouseData(response.data);
+      setHouseData(response.data);
       console.log(response.data);
       alert("전체 숙소 데이터를 가져왔습니다.");
     } catch (error) {
@@ -33,9 +37,14 @@ export default function Home() {
     }
   };
 
+  // 페이지가 로딩되거나, category값이 변경될 경우, 데이터 함수를 호출한다.
   useEffect(() => {
-    getAllHouseData();
-  }, []);
+    if (categoryName === "all") {
+      getAllHouseData();
+    } else {
+      // 카테고리 누른 상태에서 새로고침 한 경우, 카테고리별 데이터 불러오기
+    }
+  }, [categoryName]);
 
   return (
     <>
@@ -43,7 +52,7 @@ export default function Home() {
       <Header fixed />
       <MainPageHeaderApp />
       <main className="bnb_md_xl:mt-[270px] bnb_sm:mt-[100px] mb-[20px] bnb_sm:mb-[80px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] grid bnb_sm_md:grid-cols-2 bnb_lg:grid-cols-3 bnb_xl_2xl:grid-cols-4 bnb_3xl:grid-cols-5 gap-x-10 gap-y-6">
-        {allHouseData?.map((el) => (
+        {houseData?.map((el) => (
           <div key={el.id} className="min-w-[240px] cursor-pointer relative">
             <Link href={`/rooms/${el.id}`}>
               <div className="bg-gray-200 aspect-square rounded-xl" />

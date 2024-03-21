@@ -17,7 +17,7 @@ import { faEye } from "@fortawesome/free-regular-svg-icons";
 export default function PersonalInfo() {
   // 프로필 사진, 이름, 이메일, 비밀번호, 전화번호
   const [profileImgEdit, setProfileImgEdit] = useState(false);
-  const [nameEdit, setNameEdit] = useState(false);
+  const [userNameEdit, setUserNameEdit] = useState(false);
   const [emailEdit, setEmailEdit] = useState(false);
   const [passwordEdit, setPasswordEdit] = useState(false);
   const [phoneEdit, setPhoneEdit] = useState(false);
@@ -25,7 +25,7 @@ export default function PersonalInfo() {
   // 프로필 사진, 이름, 이메일, 비밀번호, 전화번호
   // 데이터 가져온 값 넣어주기
   const [profileImg, setProfileImg] = useState("");
-  const [name, setName] = useState("○○○");
+  const [userName, setUserName] = useState("홍길동");
   const [email, setEmail] = useState("abcde@example.com");
   const [password, setPassword] = useState("12341234");
   const [phone, setPhone] = useState("01012345678");
@@ -33,16 +33,16 @@ export default function PersonalInfo() {
   // 프로필 사진
   const handleProfileImgEdit = () => {
     setProfileImgEdit(!profileImgEdit);
-    setNameEdit(false);
+    setUserNameEdit(false);
     setEmailEdit(false);
     setPasswordEdit(false);
     setPhoneEdit(false);
   };
 
   // 이름
-  const handleNameEdit = () => {
+  const handleUserNameEdit = () => {
     setProfileImgEdit(false);
-    setNameEdit(!nameEdit);
+    setUserNameEdit(!userNameEdit);
     setEmailEdit(false);
     setPasswordEdit(false);
     setPhoneEdit(false);
@@ -51,7 +51,7 @@ export default function PersonalInfo() {
   // 이메일
   const handleEmailEdit = () => {
     setProfileImgEdit(false);
-    setNameEdit(false);
+    setUserNameEdit(false);
     setEmailEdit(!emailEdit);
     setPasswordEdit(false);
     setPhoneEdit(false);
@@ -60,7 +60,7 @@ export default function PersonalInfo() {
   // 비밀번호
   const handlePasswordEdit = () => {
     setProfileImgEdit(false);
-    setNameEdit(false);
+    setUserNameEdit(false);
     setEmailEdit(false);
     setPasswordEdit(!passwordEdit);
     setPhoneEdit(false);
@@ -69,15 +69,15 @@ export default function PersonalInfo() {
   // 전화번호
   const handlePhoneEdit = () => {
     setProfileImgEdit(false);
-    setNameEdit(false);
+    setUserNameEdit(false);
     setEmailEdit(false);
     setPasswordEdit(false);
     setPhoneEdit(!phoneEdit);
   };
 
-  const onBlurName = () => {
-    setName(name);
-    console.log("name : ", name);
+  const onBlurUserName = () => {
+    setUserName(userName);
+    console.log("userName : ", userName);
   };
 
   const onBlurEmail = () => {
@@ -95,9 +95,22 @@ export default function PersonalInfo() {
     console.log("phone : ", phone);
   };
 
+  // Base64 데이터 URL을 Blob으로 변환
+  const convertDataURLToFile = async (dataURL, fileName) => {
+    const response = await axios.get(dataURL, {
+      responseType: "blob",
+    });
+    const blob = response.data;
+
+    // Blob을 File 객체로 변환
+    const profileImgFile = new File([blob], fileName, { type: blob.type });
+
+    return profileImgFile;
+  };
+
   // 저장 버튼을 눌렸을 때
   const onClickEditSubmit = async () => {
-    console.log("edit submit");
+    console.log("개인정보 수정 버튼 누름");
 
     // 페이지가 클라이언트에 마운트 될 때까지 기다림
     // window 객체가 참조되지 않을 경우, undefined를 반환함
@@ -105,61 +118,75 @@ export default function PersonalInfo() {
       const acToken = localStorage.getItem("acToken");
       const reToken = localStorage.getItem("reToken");
 
-      if (acToken && reToken) {
-        // API 요청을 보내기 위한 데이터 준비
-        const formData = new FormData();
-        formData.append(
-          // 서버측과 정한 FormData 객체에 데이터를 추가하는 데 사용되는 키(key) : stay
-          "stay",
-          JSON.stringify({
-            username: name,
-            email,
-            password,
-            phone,
-          })
+      // if (acToken && reToken) {
+      // API 요청을 보내기 위한 데이터 준비
+      const formData = new FormData();
+      formData.append(
+        // 서버측과 정한 FormData 객체에 데이터를 추가하는 데 사용되는 키(key) : stay
+        "stay",
+        new Blob(
+          [
+            JSON.stringify({
+              userName,
+              email,
+              password,
+              phone,
+            }),
+          ],
+          { type: "application/json" }
+        )
+      );
+
+      if (profileImg) {
+        console.log("파일 객체로 변환 전 이미지", profileImg);
+        const profileImgFile = await convertDataURLToFile(
+          profileImg,
+          `profileImg`
+        );
+        formData.append("image", profileImgFile);
+        console.log("파일 객체로 변환 후 이미지", profileImgFile);
+      }
+
+      console.log("저장 버튼 누름");
+      console.log("profileImg : ", profileImg);
+      console.log("userName : ", userName);
+      console.log("email : ", email);
+      console.log("password : ", password);
+      console.log("phone : ", phone);
+
+      try {
+        // 서버 api 호출
+        const response = await axios.patch(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/user`,
+          formData,
+          {
+            headers: {
+              Authorization: "Bearer " + localStorage.getItem("acToken"),
+              "Content-Type": "multipart/form-data",
+              "ngrok-skip-browser-warning": "69420",
+            },
+          }
         );
 
-        formData.append("profileImg", profileImg);
+        console.log("edit response", response);
 
-        console.log("저장 버튼 누름");
-        console.log("profileImg : ", profileImg);
-        console.log("username : ", name);
-        console.log("email : ", email);
-        console.log("password : ", password);
-        console.log("phone : ", phone);
+        // 열린 칸 전부 닫기
+        setProfileImgEdit(false);
+        setUserNameEdit(false);
+        setEmailEdit(false);
+        setPasswordEdit(false);
+        setPhoneEdit(false);
 
-        try {
-          // 서버 api 호출
-          const response = await axios.patch(
-            `${process.env.NEXT_PUBLIC_SERVER_URL}/user`,
-            formData,
-            {
-              headers: {
-                Authorization: "Bearer " + localStorage.getItem("acToken"),
-                "Content-Type": "multipart/form-data",
-                "ngrok-skip-browser-warning": "69420",
-              },
-            }
-          );
-
-          console.log("edit response", response);
-
-          // 열린 칸 다 닫기
-          setProfileImgEdit(false);
-          setNameEdit(false);
-          setEmailEdit(false);
-          setPasswordEdit(false);
-          setPhoneEdit(false);
-
-          // 저장 한 후 다시 유저데이터 불러와야함!
-          getUserData();
-        } catch (error) {
-          console.log(error);
-          alert("회원정보 변경을 실패하였습니다.");
-        }
-      } else {
-        alert("로그인 상태가 아닙니다.");
+        // 저장 한 후 다시 유저데이터 불러와야함!
+        getUserData();
+      } catch (error) {
+        console.log(error);
+        alert("회원정보 변경을 실패하였습니다.");
       }
+      // }
+      // else {
+      //   alert("로그인 상태가 아닙니다.");
+      // }
     }
   };
 
@@ -255,26 +282,26 @@ export default function PersonalInfo() {
                   <div>이름</div>
                   <button
                     type="button"
-                    onClick={handleNameEdit}
+                    onClick={handleUserNameEdit}
                     className="text-[14px] font-[500] underline"
                   >
-                    {nameEdit ? "취소" : "수정"}
+                    {userNameEdit ? "취소" : "수정"}
                   </button>
                 </div>
                 <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
-                  {nameEdit
+                  {userNameEdit
                     ? "허가증이나 여권 등 여행 서류에 기재되어 있는 이름을 말합니다."
-                    : name}
+                    : userName.slice(0, 1) + "﹡" + userName.slice(2)}
                 </div>
 
-                {nameEdit && (
+                {userNameEdit && (
                   <form onSubmit={(event) => event.preventDefault()}>
                     <div className="flex flex-row justify-between gap-[20px] my-[20px]">
                       <input
                         required
                         type="text"
-                        onBlur={onBlurName}
-                        onChange={(event) => setName(event.target.value)}
+                        onBlur={onBlurUserName}
+                        onChange={(event) => setUserName(event.target.value)}
                         placeholder="Name"
                         className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
                       ></input>
@@ -343,7 +370,7 @@ export default function PersonalInfo() {
                 <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
                   {passwordEdit
                     ? "변경하실 비밀번호를 입력해주세요"
-                    : "∙".repeat(password.length)}
+                    : "﹡".repeat(password.length)}
                 </div>
 
                 {passwordEdit && (
@@ -383,8 +410,8 @@ export default function PersonalInfo() {
                   {phoneEdit
                     ? "자주 사용하시는 전화번호를 입력해주세요"
                     : phone.length === 11
-                    ? phone.slice(0, 3) + "∙∙∙∙" + phone.slice(7)
-                    : phone.slice(0, 3) + "∙∙∙" + phone.slice(6)}
+                    ? phone.slice(0, 3) + "﹡".repeat(4) + phone.slice(7)
+                    : phone.slice(0, 3) + "﹡".repeat(3) + phone.slice(6)}
                 </div>
 
                 {phoneEdit && (
@@ -394,7 +421,7 @@ export default function PersonalInfo() {
                         required
                         type="tel"
                         onBlur={onBlurPhone}
-                        onChange={(event) => setPhone(event.target.value)}
+                        // onChange={(event) => setPhone(event.target.value)}
                         placeholder="01012345678"
                         className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
                       ></input>

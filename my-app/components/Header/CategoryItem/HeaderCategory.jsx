@@ -5,6 +5,7 @@ import FilterBtn from "@/components/Header/Nav/FilterBtn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import {
+  faAirbnb, // 에어비앤비(전체)
   faFortAwesome, // 캐슬
   faBuromobelexperte, // 속세를 벗어난 숙소
 } from "@fortawesome/free-brands-svg-icons";
@@ -77,9 +78,13 @@ export default function HeaderCategory() {
       {/* 카테고리 아이템들 */}
       <section className="overflow-x-scroll scrollbar-hide flex flex-row space-x-6">
         <HeaderCategoryItem
+          icon={<FontAwesomeIcon icon={faAirbnb} />}
+          text={"전체보기"}
+        />
+        {/* <HeaderCategoryItem
           icon={<FontAwesomeIcon icon={faFire} />}
           text={"인기 급상승"}
-        />
+        /> */}
         <HeaderCategoryItem
           icon={<FontAwesomeIcon icon={faMountainSun} />}
           text={"국립공원"}

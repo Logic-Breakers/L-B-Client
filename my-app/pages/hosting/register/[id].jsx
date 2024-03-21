@@ -139,76 +139,7 @@ export default function Register() {
     console.log("설명 : ", info);
   };
 
-  // // 등록하기 버튼 눌렸을 때
-  // const onClickSubmitBtn = async () => {
-  //   console.log("숙소 등록함");
-  //   console.log("숙소 이름 : ", houseName);
-  //   console.log("국가 : ", country);
-  //   console.log("우편번호 : ", addrNum);
-  //   console.log("주소 : ", addr);
-  //   console.log("요금 : ", price);
-  //   console.log("건물 유형 : ", propertyType);
-  //   console.log("숙소 유형 : ", placeType);
-  //   console.log("카테고리 : ", category);
-  //   console.log("게스트 : ", guestNum);
-  //   console.log("침실 : ", bedroomsNum);
-  //   console.log("침대 : ", bedsNum);
-  //   console.log("욕실 : ", bathroomsNum);
-  //   console.log("설명 : ", info);
-  //   console.log("사진 : ", houseImages);
-
-  //   // API 요청을 보내기 위한 데이터 준비
-  //   const formData = new FormData();
-  //   formData.append(
-  //     "stay",
-  //     new Blob(
-  //       [
-  //         JSON.stringify({
-  //           houseName,
-  //           country,
-  //           address: addr,
-  //           price,
-  //           propertyType,
-  //           placeType,
-  //           guest: guestNum,
-  //           bedrooms: bedroomsNum,
-  //           beds: bedsNum,
-  //           bathrooms: bathroomsNum,
-  //           info,
-  //         }),
-  //       ],
-  //       { type: "application/json" }
-  //     )
-  //   );
-  //   formData.append("image", new File([houseImages], houseImages));
-
-  //   try {
-  //     // 서버 API 호출
-  //     // 사진도 같이 보내야하기에 multipart/form-data로 보낸다.
-  //     const response = await axios.post(
-  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?categoryName=${category}`,
-  //       formData,
-  //       {
-  //         headers: {
-  //           Authorization: "Bearer " + localStorage.getItem("acToken"),
-  //           "Content-Type": "multipart/form-data",
-  //           "ngrok-skip-browser-warning": "69420",
-  //         },
-  //       }
-  //     );
-  //     console.log(response);
-  //     alert(response.data);
-
-  //     // 숙소 등록 한 뒤, hosting 페이지로 이동한다.
-  //     // 나중에 id값으로 변경하기!
-  //     router.push("/hosting/1");
-  //   } catch (error) {
-  //     alert("숙소 등록을 실패했습니다.");
-  //     console.log("에러", error);
-  //   }
-  // };
-
-  // Base64 데이터 URL을 Blob으로 변환
+  // Base64 데이터 URL(imageUrl)을 Blob으로 변환
   const convertDataURLToFile = async (dataURL, fileName) => {
     const response = await axios.get(dataURL, {
       responseType: "blob",
@@ -269,7 +200,6 @@ export default function Register() {
     );
 
     // 이미지 파일을 FormData에 추가
-    // 여기 때문에 에러 발생하는 듯!! ㅠ.. 400에러 발생 중
     // --> 현재는 houseImages의 배열의 각 요소가 Base64 데이터 URL로 구성되어 있다.
     // --> 그래서 FormData에 이미지 파일을 바로 추가할 수 없기에 에러가 발생하는 것 같다.
     // --> 해결방법 : Bases64 데이터 URL을 File 객체로 변환하고, FormData에 파일을 추가한다.
@@ -280,7 +210,7 @@ export default function Register() {
       for (let i = 0; i < houseImages.length; i++) {
         const houseImgFile = await convertDataURLToFile(
           houseImages[i],
-          `image_${i}`
+          `house_images_${i}`
         );
         formData.append("image", houseImgFile);
         console.log("파일 객체로 변환 후 이미지", houseImgFile);
@@ -308,7 +238,7 @@ export default function Register() {
 
       // 숙소 등록 한 뒤, hosting 페이지로 이동한다.
       // 나중에 id값으로 변경하기!
-      // router.push("/hosting/1");
+      router.push("/hosting/1");
     } catch (error) {
       alert("숙소 등록을 실패했습니다.");
       console.log("에러", error);

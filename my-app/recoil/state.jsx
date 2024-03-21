@@ -1,9 +1,11 @@
 import { atom } from "recoil";
 
-// 예시
-const nameState = atom({
-  key: "nameState",
-  default: "",
+export const categoryNameState = atom({
+  key: "categoryNameState",
+  default: "all",
 });
 
-export { nameState };
+export const houseDataState = atom({
+  key: "houseDataState",
+  default: [],
+});

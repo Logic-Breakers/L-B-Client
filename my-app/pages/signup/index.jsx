@@ -16,9 +16,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
 // 이미지 업로드 잘되면 personal-info에도 적용시키기!
-
-// 회원가입이 잘 되면
-// 각 부분 유효성 검사하기
+// 회원가입이 잘 되면 각 부분 유효성 검사하기
 export default function SignUp() {
   const router = useRouter();
 
@@ -26,7 +24,7 @@ export default function SignUp() {
   const [profileImg, setProfileImg] = useState("/profile_basic_img.png");
 
   // 이름, 이메일, 비밀번호, 국가, 전화번호
-  const [name, setName] = useState("");
+  const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [country, setCountry] = useState("none");
@@ -37,8 +35,8 @@ export default function SignUp() {
   const [isValid, setIsValid] = useState(false);
 
   // 유저 이름
-  const onBlurName = (event) => {
-    setName(event.target.value);
+  const onBlurUserName = (event) => {
+    setUserName(event.target.value);
   };
 
   // 이메일
@@ -73,40 +71,6 @@ export default function SignUp() {
     setBirthDate(event.target.value + "T00:00:00");
   };
 
-  // 서버로 회원가입 요청
-  // const onClickSubmitBtn = async () => {
-  //   const request = {
-  //     username: name,
-  //     email,
-  //     password,
-  //     country,
-  //     phone,
-  //     birthDate,
-  //   };
-
-  //   console.log(request);
-  //   try {
-  //     // 서버 api 호출
-  //     const response = await axios.post(
-  //       `${process.env.NEXT_PUBLIC_SERVER_URL}/user/signup`,
-  //       request,
-  //       {
-  //         headers: {
-  //           "Content-Type": "application/json",
-  //           "ngrok-skip-browser-warning": "69420",
-  //         },
-  //       }
-  //     );
-  //     console.log(response);
-
-  //     // 회원가입 성공하면 메인페이지로 이동함
-  //     router.push("/");
-  //   } catch (error) {
-  //     console.log(error);
-  //     alert("회원가입에 실패했습니다.");
-  //   }
-  // };
-
   // Base64 데이터 URL을 Blob으로 변환
   const convertDataURLToFile = async (dataURL, fileName) => {
     const response = await axios.get(dataURL, {
@@ -129,7 +93,7 @@ export default function SignUp() {
       new Blob(
         [
           JSON.stringify({
-            username: name,
+            userName,
             email,
             password,
             country,
@@ -152,7 +116,7 @@ export default function SignUp() {
     }
 
     console.log("회원가입 버튼 누름");
-    console.log("username : ", name);
+    console.log("userName : ", userName);
     console.log("email : ", email);
     console.log("password : ", password);
     console.log("country : ", country);
@@ -188,7 +152,7 @@ export default function SignUp() {
       <main className="flex flex-row justify-center w-full min-h-screen mt-[40px]">
         <form
           onSubmit={(event) => event.preventDefault()}
-          className="bnb_md_xl:pt-[80px] bnb_sm_md:px-[24px] bnb_sm_md:w-screen"
+          className="bnb_md_xl:pt-[80px] px-[24px] bnb_sm_md:w-screen"
         >
           <div className="flex flex-row items-center">
             <h1 className="text-[32px] font-[500]">회원가입</h1>
@@ -196,7 +160,7 @@ export default function SignUp() {
               (* 는 필수 입력사항입니다.)
             </span>
           </div>
-          <div className="flex bnb_sm_md:flex-col bnb_lg_xl:flex-row mt-8 mb-24">
+          <div className="flex bnb_sm_md:flex-col bnb_lg_xl:flex-row bnb_lg_xl:gap-x-10 mt-8 mb-24">
             <section className="bnb_lg_xl:w-[300px] mb-4">
               <HostingRegisterItemTitle text={"프로필 사진"} mb />
               <div className="mt-4">
@@ -206,14 +170,14 @@ export default function SignUp() {
                 />
               </div>
             </section>
-            <section className="bnb_lg_xl:w-[600px]">
+            <section className="bnb_lg_xl:w-[560px]">
               <div>
                 <section className="space-y-8">
                   {/* 성함 */}
                   <section>
                     <HostingRegisterItemTitle text={"성함"} require mb />
                     <input
-                      onBlur={onBlurName}
+                      onBlur={onBlurUserName}
                       // onChange={(event) => setName(event.target.value)}
                       type="text"
                       className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
