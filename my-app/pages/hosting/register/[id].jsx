@@ -264,6 +264,7 @@ export default function Register() {
               <section>
                 <HostingRegisterItemTitle text={"숙소 이름"} require mb />
                 <input
+                  required
                   onBlur={onBlurHouseName}
                   // onChange={(event) => setHouseName(event.target.value)}
                   type="text"
@@ -275,6 +276,7 @@ export default function Register() {
               <section>
                 <HostingRegisterItemTitle text={"국가"} require mb />
                 <label
+                  required
                   onBlur={onBlurCountry}
                   // onChange={(event) => setCountry(event.target.value)}
                   htmlFor="country"
@@ -318,6 +320,7 @@ export default function Register() {
                 <section className="w-1/2">
                   <HostingRegisterItemTitle text={"시작일"} require mb />
                   <input
+                    required
                     onBlur={onBlurStartDate}
                     // onChange={(event) => setStartDate(event.target.value)}
                     type="date"
@@ -327,6 +330,7 @@ export default function Register() {
                 <section className="w-1/2">
                   <HostingRegisterItemTitle text={"마감일"} require mb />
                   <input
+                    required
                     onBlur={onBlurEndDate}
                     // onChange={(event) => setEndDate(event.target.value)}
                     type="date"
@@ -340,6 +344,7 @@ export default function Register() {
                 <HostingRegisterItemTitle text={"요금"} require mb />
                 <div className="relative flex flex-row items-center">
                   <input
+                    required
                     onBlur={onBlurPrice}
                     // onChange={(event) => setPrice(event.target.value)}
                     // value={price}
@@ -352,10 +357,12 @@ export default function Register() {
                   </div>
                 </div>
               </section>
+
               {/* 건물 유형 */}
               <section>
                 <HostingRegisterItemTitle text={"건물 유형"} require mb />
                 <label
+                  required
                   onBlur={onBlurPropertyType}
                   // onChange={(event) => setPropertyType(event.target.value)}
                   htmlFor="propertyType"
@@ -380,10 +387,12 @@ export default function Register() {
                   />
                 </label>
               </section>
+
               {/* 숙소 유형 */}
               <section>
                 <HostingRegisterItemTitle text={"숙소 유형"} require mb />
                 <label
+                  required
                   onBlur={onBlurPlaceType}
                   // onChange={(event) => setPlaceType(event.target.value)}
                   htmlFor="placeType"
@@ -405,10 +414,12 @@ export default function Register() {
                   />
                 </label>
               </section>
+
               {/* 카테고리 */}
               <section>
                 <HostingRegisterItemTitle text={"카테고리"} require mb />
                 <label
+                  required
                   onBlur={onBlurCategory}
                   // onChange={(event) => setCategory(event.target.value)}
                   htmlFor="category"
@@ -421,7 +432,6 @@ export default function Register() {
                   >
                     <option value="">카테고리를 선택해주세요</option>
                     <option value="캠핑장">캠핑장</option>
-                    <option value="인기_급상승">인기 급상승</option>
                     <option value="국립공원">국립공원</option>
                     <option value="골프장">골프장</option>
                     <option value="복토_주택">복토 주택</option>
@@ -490,6 +500,7 @@ export default function Register() {
                   />
                 </label>
               </section>
+
               {/* 게스트 */}
               <section className="flex flex-row justify-between items-center">
                 <HostingRegisterItemTitle text={"게스트"} require />
@@ -515,6 +526,7 @@ export default function Register() {
                   </button>
                 </div>
               </section>
+
               {/* 침실 */}
               <section className="flex flex-row justify-between items-center">
                 <HostingRegisterItemTitle text={"침실"} require />
@@ -540,6 +552,7 @@ export default function Register() {
                   </button>
                 </div>
               </section>
+
               {/* 침대 */}
               <section className="flex flex-row justify-between items-center">
                 <HostingRegisterItemTitle text={"침대"} require />
@@ -565,6 +578,7 @@ export default function Register() {
                   </button>
                 </div>
               </section>
+
               {/* 욕실 */}
               <section className="flex flex-row justify-between items-center">
                 <HostingRegisterItemTitle text={"욕실"} require />
@@ -590,17 +604,20 @@ export default function Register() {
                   </button>
                 </div>
               </section>
+
               {/* 설명 */}
               <section>
                 <HostingRegisterItemTitle text={"설명"} require mb />
                 <textarea
+                  required
                   onBlur={onBlurInfo}
                   // onChange={(event) => setInfo(event.target.value)}
                   className="w-full h-60 border-[#cccccc] border-solid border-[1px] rounded-md text-gray-600 text-lg p-4"
                   placeholder="숙소를 설명해주세요"
                 />
               </section>
-              {/* 사진 등록 */}
+
+              {/* 사진 */}
               <section>
                 <HostingRegisterItemTitle text={"사진"} require mb />
                 <HouseImages

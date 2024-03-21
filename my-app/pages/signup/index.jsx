@@ -177,6 +177,7 @@ export default function SignUp() {
                   <section>
                     <HostingRegisterItemTitle text={"성함"} require mb />
                     <input
+                      required
                       onBlur={onBlurUserName}
                       // onChange={(event) => setName(event.target.value)}
                       type="text"
@@ -189,6 +190,7 @@ export default function SignUp() {
                   <section>
                     <HostingRegisterItemTitle text={"이메일"} require mb />
                     <input
+                      required
                       onBlur={onBlurEmail}
                       // onChange={(event) => setEmail(event.target.value)}
                       type="email"
@@ -201,6 +203,7 @@ export default function SignUp() {
                   <section>
                     <HostingRegisterItemTitle text={"비밀번호"} require mb />
                     <input
+                      required
                       onBlur={onBlurPassword}
                       // onChange={(event) => setPassword(event.target.value)}
                       type="password"
@@ -213,6 +216,7 @@ export default function SignUp() {
                   <section>
                     <HostingRegisterItemTitle text={"국가"} require mb />
                     <label
+                      required
                       onBlur={onBlurCountry}
                       // onChange={(event) => setCountry(event.target.value)}
                       htmlFor="country"
@@ -255,6 +259,7 @@ export default function SignUp() {
                   <section>
                     <HostingRegisterItemTitle text={"생년월일"} require mb />
                     <input
+                      required
                       onBlur={onBlurBirthDate}
                       // onChange={(event) => setBirthDate(event.target.value)}
                       type="date"

@@ -69,6 +69,7 @@ export default function HouseImages({ houseImages, setHouseImages }) {
           />
         </svg>
         <input
+          required
           id="img"
           className="hidden"
           type="file"
