@@ -8,6 +8,11 @@ import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingR
 import HouseImages from "@/components/HouseImages";
 import RedBtn from "@/components/Buttons/RedBtn";
 
+import CountryData from "@/components/Datas/CountryData";
+import PropertyTypeData from "@/components/Datas/PropertyTypeData";
+import PlaceTypeData from "@/components/Datas/PlaceTypeData";
+import CategoryItemData from "@/components/Datas/CategoryItemData";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -288,11 +293,11 @@ export default function Register() {
                     defaultValue={""}
                   >
                     <option value="">국가를 선택해주세요</option>
-                    <option value="미국">미국 (United States)</option>
-                    <option value="영국">영국 (United Kingdom)</option>
-                    <option value="일본">일본 (Japan)</option>
-                    <option value="대한민국">한국 (Korea)</option>
-                    <option value="중국">중국 (China)</option>
+                    {CountryData.map((el, index) => (
+                      <option key={index} value={el.value}>
+                        {el.text}
+                      </option>
+                    ))}
                   </select>
 
                   <FontAwesomeIcon
@@ -374,12 +379,11 @@ export default function Register() {
                     defaultValue={""}
                   >
                     <option value="">건물 유형을 선택해주세요</option>
-                    <option value="단독_또는_다세대_주택">
-                      단독 또는 다세대 주택
-                    </option>
-                    <option value="아파트">아파트</option>
-                    <option value="게스트용_별채">게스트용 별채</option>
-                    <option value="호텔">호텔</option>
+                    {PropertyTypeData.map((el, index) => (
+                      <option key={index} value={el.value}>
+                        {el.text}
+                      </option>
+                    ))}
                   </select>
                   <FontAwesomeIcon
                     icon={faChevronDown}
@@ -404,9 +408,11 @@ export default function Register() {
                     defaultValue={""}
                   >
                     <option value="">숙소 유형을 선택해주세요</option>
-                    <option value="공간_전체">공간 전체</option>
-                    <option value="방">방</option>
-                    <option value="다인실">다인실</option>
+                    {PlaceTypeData.map((el, index) => (
+                      <option key={index} value={el.value}>
+                        {el.text}
+                      </option>
+                    ))}
                   </select>
                   <FontAwesomeIcon
                     icon={faChevronDown}
@@ -431,68 +437,11 @@ export default function Register() {
                     defaultValue={""}
                   >
                     <option value="">카테고리를 선택해주세요</option>
-                    <option value="캠핑장">캠핑장</option>
-                    <option value="국립공원">국립공원</option>
-                    <option value="골프장">골프장</option>
-                    <option value="복토_주택">복토 주택</option>
-                    <option value="방">방</option>
-                    <option value="한적한_시골">한적한 시골</option>
-                    <option value="해변_근처">해변 근처</option>
-                    <option value="멋진_수영장">멋진 수영장</option>
-                    <option value="최고의_전망">최고의 전망</option>
-                    <option value="한옥">한옥</option>
-                    <option value="캐슬">캐슬</option>
-                    <option value="농장">농장</option>
-                    <option value="스키">스키</option>
-                    <option value="창작_공간">창작 공간</option>
-                    <option value="해변_바로_앞">해변 바로 앞</option>
-                    <option value="초소형_주택">초소형 주택</option>
-                    <option value="디자인">디자인</option>
-                    <option value="속세를_벗어난_숙소">
-                      속세를 벗어난 숙소
-                    </option>
-                    <option value="기상천외한_숙소">기상천외한 숙소</option>
-                    <option value="열대_지역">열대 지역</option>
-                    <option value="호수_근처">호수 근처</option>
-                    <option value="동굴">동굴</option>
-                    <option value="료칸">료칸</option>
-                    <option value="통나무집">통나무집</option>
-                    <option value="Luxe">Luxe</option>
-                    <option value="트리하우스">트리하우스</option>
-                    <option value="풍차">풍차</option>
-                    <option value="B&B">B&B</option>
-                    <option value="와인_농장">와인 농장</option>
-                    <option value="신규">신규</option>
-                    <option value="돔하우스">돔하우스</option>
-                    <option value="보트">보트</option>
-                    <option value="키즈">키즈</option>
-                    <option value="호숫가">호숫가</option>
-                    <option value="키클라데스_주택">키클라데스 주택</option>
-                    <option value="세상의_꼭대기">세상의 꼭대기</option>
-                    <option value="상징적_도시">상징적 도시</option>
-                    <option value="유서_깊은_주택">유서 깊은 주택</option>
-                    <option value="저택">저택</option>
-                    <option value="A자형_주택">A자형 주택</option>
-                    <option value="북극">북극</option>
-                    <option value="섬">섬</option>
-                    <option value="서핑">서핑</option>
-                    <option value="캠핑카">캠핑카</option>
-                    <option value="전문가급_주방">전문가급 주방</option>
-                    <option value="유르트">유르트</option>
-                    <option value="민수">민수</option>
-                    <option value="마차">마차</option>
-                    <option value="스키_타고_출입">스키 타고 출입</option>
-                    <option value="카사_파르티쿨라르">카사 파르티쿨라르</option>
-                    <option value="컨테이너하우스">컨테이너하우스</option>
-                    <option value="그랜드_피아노">그랜드 피아노</option>
-                    <option value="헛간">헛간</option>
-                    <option value="타워">타워</option>
-                    <option value="사막">사막</option>
-                    <option value="하우스보트">하우스보트</option>
-                    <option value="무장애">무장애</option>
-                    <option value="리아드">리아드</option>
-                    <option value="담무소">담무소</option>
-                    <option value="트룰로">트룰로</option>
+                    {CategoryItemData.map((el, index) => (
+                      <option key={index} value={el.value}>
+                        {el.text}
+                      </option>
+                    ))}
                   </select>
                   <FontAwesomeIcon
                     icon={faChevronDown}

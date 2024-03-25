@@ -12,6 +12,8 @@ import Warning from "@/components/Warning";
 import RedBtn from "@/components/Buttons/RedBtn";
 import ProfileImage from "@/components/ProfileImage";
 
+import CountryData from "@/components/Datas/CountryData";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
@@ -228,11 +230,11 @@ export default function SignUp() {
                         defaultValue={"none"}
                       >
                         <option value="none">국가를 선택해주세요</option>
-                        <option value="미국">미국 (United States)</option>
-                        <option value="영국">영국 (United Kingdom)</option>
-                        <option value="일본">일본 (Japan)</option>
-                        <option value="대한민국">한국 (Korea)</option>
-                        <option value="중국">중국 (China)</option>
+                        {CountryData.map((el, index) => (
+                          <option key={index} value={el.value}>
+                            {el.text}
+                          </option>
+                        ))}
                       </select>
 
                       <FontAwesomeIcon

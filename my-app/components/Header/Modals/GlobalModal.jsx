@@ -2,7 +2,7 @@ import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLanguage, faCheck } from "@fortawesome/free-solid-svg-icons";
 
-import HeaderGlobalModalData from "../../Datas/Header/HeaderGlobalModalData";
+import GlobalModalData from "../../Datas/GlobalModalData";
 import CloseModalBtn from "@/components/Buttons/CloseModalBtn";
 
 // 지구본 버튼을 누르면 나타나는 모달
@@ -103,7 +103,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
                   언어와 지역을 선택하세요
                 </h3>
                 <ul className="grid gap-[10px] bnb_xl:grid-cols-5 bnb_lg:grid-cols-4 bnb_md:grid-cols-3">
-                  {HeaderGlobalModalData.map((el) => (
+                  {GlobalModalData.map((el) => (
                     <li
                       key={el.id}
                       className="flex flex-col flex-grow justify-center hover:bg-[#F7F7F7] rounded-lg cursor-pointer h-[56px] px-[13px] py-[10px]"
@@ -126,7 +126,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
                 통화를 선택하세요.
               </h3>
               <ul className="grid gap-[10px] bnb_xl:grid-cols-5 bnb_lg:grid-cols-4 bnb_md:grid-cols-3">
-                {HeaderGlobalModalData.map((el) => (
+                {GlobalModalData.map((el) => (
                   <li
                     key={el.id}
                     className="flex flex-col flex-grow justify-center hover:bg-[#F7F7F7] rounded-lg cursor-pointer h-[56px] px-[13px] py-[10px]"
