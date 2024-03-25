@@ -10,41 +10,10 @@ import { useState, useEffect } from "react";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { categoryNameState, houseDataState } from "@/recoil/state";
 
-// 카테고리별 데이터 가져오는 것 해야함!!
+// HeaderCategoryItem.jsx 에서 전체보기와 카테고리별 숙소 데이터 가져온다.
 export default function Home() {
   const [categoryName, setCategoryName] = useRecoilState(categoryNameState);
-  const [houseData, setHouseData] = useRecoilState(houseDataState);
-
-  // 전체 숙소 조회
-  const getAllHouseData = async () => {
-    try {
-      // 서버 api 호출
-      const response = await axios.get(
-        `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?page=1&size=20`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "ngrok-skip-browser-warning": "69420",
-          },
-        }
-      );
-      setHouseData(response.data);
-      console.log(response.data);
-      alert("전체 숙소 데이터를 가져왔습니다.");
-    } catch (error) {
-      console.log(error);
-      alert("전체 숙소 조회 데이터를 불러오는데 실패했습니다.");
-    }
-  };
-
-  // 페이지가 로딩되거나, category값이 변경될 경우, 데이터 함수를 호출한다.
-  useEffect(() => {
-    if (categoryName === "all") {
-      getAllHouseData();
-    } else {
-      // 카테고리 누른 상태에서 새로고침 한 경우, 카테고리별 데이터 불러오기
-    }
-  }, [categoryName]);
+  const houseData = useRecoilValue(houseDataState);
 
   return (
     <>

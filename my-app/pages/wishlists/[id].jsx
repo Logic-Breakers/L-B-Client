@@ -5,7 +5,7 @@ import Header from "@/components/Header/Header";
 import Footer from "@/components/Footer/Footer";
 import NavApp from "@/components/Header/Nav/NavApp";
 
-import wishlistsDummy from "./wishlistsDummy";
+import wishlistsDummy from "@/components/Datas/DummyData/wishlistsDummy";
 
 // api 만들어지면 삭제기능 구현해볼 예정
 export default function Wishlists() {

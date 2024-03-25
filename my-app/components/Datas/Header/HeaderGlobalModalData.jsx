@@ -1,5 +1,5 @@
 // 언어, 국가, 통화, 단위, 기호
-const globalDummy = [
+const HeaderGlobalModalData = [
   {
     id: 1,
     country: "대한민국",
@@ -56,4 +56,4 @@ const globalDummy = [
   },
 ];
 
-export default globalDummy;
+export default HeaderGlobalModalData;
