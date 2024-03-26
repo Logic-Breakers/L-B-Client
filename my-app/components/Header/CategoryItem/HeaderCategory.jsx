@@ -8,7 +8,6 @@ import CategoryItemData from "@/components/Datas/CategoryItemData";
 export default function HeaderCategory({ getCategoryData, category }) {
   const onClickScrollBtn = (direction) => {
     // js 사용 말고 useRef를 사용해서도 구현가능하다.
-    console.log(direction);
     const scrollTarget = document.querySelector("#scrollTarget");
     // console.dir(scrollTarget.scrollLeft);
     const scrollAmount =

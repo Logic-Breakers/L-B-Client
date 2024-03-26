@@ -9,6 +9,8 @@ import DeleteBtn from "@/components/Buttons/DeleteBtn";
 import HostingPresentHostingItem from "@/components/Hosting/indexPage/HostingPresentHostingItem";
 import HostingReservationItem from "@/components/Hosting/indexPage/HostingReservationItem";
 import HostingReviewItem from "@/components/Hosting/indexPage/HostingReviewItem";
+import ScrollArrowBtn from "@/components/Buttons/ScrollArrowBtn";
+
 import { useState, useEffect } from "react";
 
 export default function Hosting() {
@@ -30,6 +32,21 @@ export default function Hosting() {
     setReservation(false);
     setHosting(false);
     setReview(true);
+  };
+
+  // 스크롤 버튼
+  const onClickScrollBtn = (direction) => {
+    // js 사용 말고 useRef를 사용해서도 구현가능하다.
+    const scrollTarget = document.querySelector("#scrollTarget");
+    // console.dir(scrollTarget.scrollLeft);
+    const scrollAmount =
+      direction === "Left"
+        ? -scrollTarget.offsetWidth
+        : +scrollTarget.offsetWidth;
+    scrollTarget.scrollBy({
+      behavior: "smooth",
+      left: scrollAmount,
+    });
   };
 
   // 호스트가 등록한 숙소 전체 조회
@@ -79,25 +96,42 @@ export default function Hosting() {
           </section>
           <section className="pt-10">
             <h2 className="text-2xl font-medium">숙소</h2>
-            {/* 등록된 숙소를 누르면 해당 숙소 세부정보 사이트로 이동하도록 구현하기 */}
-            {/* 서버로부터 등록한 전체 숙소 데이터 가져오기 */}
-            <div className="mt-2 mb-6 py-6 overflow-x-scroll scrollbar-hide flex flex-row justify-between space-x-6 ">
-              {[1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => (
-                <div
-                  key={index}
-                  className="relative flex-shrink-0 aspect-square w-[250px]"
-                >
-                  <div className="absolute top-2 left-2">
-                    <DeleteBtn onClick={() => deleteHouse(index)} />
+            <div className="flex flex-row items-center mt-2 mb-6 py-6">
+              {/* 등록된 숙소를 누르면 해당 숙소 세부정보 사이트로 이동하도록 구현하기 */}
+              {/* 서버로부터 등록한 전체 숙소 데이터 가져오기 */}
+              <div className="mr-4">
+                <ScrollArrowBtn
+                  onClickScrollBtn={onClickScrollBtn}
+                  dir={"Left"}
+                />
+              </div>
+              <div
+                id="scrollTarget"
+                className="overflow-x-scroll scrollbar-hide flex flex-row space-x-6 w-full "
+              >
+                {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => (
+                  <div
+                    key={index}
+                    className="relative flex-shrink-0 aspect-square w-[250px]"
+                  >
+                    <div className="absolute top-2 left-2">
+                      <DeleteBtn onClick={() => deleteHouse(index)} />
+                    </div>
+                    <div className="bg-gray-300 aspect-square rounded-md mb-2" />
+                    <div className="font-semibold">숙소 이름1</div>
+                    <div className="text-gray-600">
+                      <span>등록일 : </span>
+                      <span>2024년 1월 1일</span>
+                    </div>
                   </div>
-                  <div className="bg-gray-300 aspect-square rounded-md mb-2" />
-                  <div className="font-semibold">숙소 이름1</div>
-                  <div className="text-gray-600">
-                    <span>등록일 : </span>
-                    <span>2024년 1월 1일</span>
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
+              <div className="ml-4">
+                <ScrollArrowBtn
+                  onClickScrollBtn={onClickScrollBtn}
+                  dir={"Right"}
+                />
+              </div>
             </div>
           </section>
 
