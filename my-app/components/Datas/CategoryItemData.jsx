@@ -68,11 +68,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 
 const CategoryItemData = [
-  // {
-  //   text: "전체보기",
-  //   value: "전체보기",
-  //   icon: <FontAwesomeIcon icon={faAirbnb} />,
-  // },
+  {
+    text: "전체보기",
+    value: "전체보기",
+    icon: <FontAwesomeIcon icon={faAirbnb} />,
+  },
   // {
   //   text: "인기 급상승",
   //   value: "인기_급상승",

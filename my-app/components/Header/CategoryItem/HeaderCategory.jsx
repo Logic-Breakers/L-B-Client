@@ -4,26 +4,22 @@ import FilterBtn from "@/components/Header/Nav/FilterBtn";
 
 import CategoryItemData from "@/components/Datas/CategoryItemData";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import {
-  faAirbnb, // 에어비앤비(전체)
-} from "@fortawesome/free-brands-svg-icons";
-
 // 메인페이지 헤더 하단에 있는 여러 카테고리들과 필터버튼
-export default function HeaderCategory() {
+export default function HeaderCategory({ getCategoryData, category }) {
   return (
     <section className="bnb_xl:px-[80px] px-[40px] border-t-[1px] border-solid border-[#eeeeee] pt-3 flex flex-row justify-between items-center space-x-4">
       {/* 카테고리 아이템들 */}
       <section className="overflow-x-scroll scrollbar-hide flex flex-row space-x-8">
-        <HeaderCategoryItem
-          icon={<FontAwesomeIcon icon={faAirbnb} />}
-          text={"전체보기"}
-        />
         {CategoryItemData.map((el, index) => (
-          <HeaderCategoryItem key={index} icon={el.icon} text={el.text} />
+          <HeaderCategoryItem
+            key={index}
+            icon={el.icon}
+            text={el.text}
+            value={el.value}
+            getCategoryData={getCategoryData}
+            category={category}
+          />
         ))}
-        {console.log(CategoryItemData)}
       </section>
 
       <div className="flex flex-row justify-between items-center gap-x-8">

@@ -227,9 +227,9 @@ export default function SignUp() {
                       <select
                         id="country"
                         className="appearance-none w-full h-full pl-4 rounded-md text-md text-gray-600"
-                        defaultValue={"none"}
+                        defaultValue={""}
                       >
-                        <option value="none">국가를 선택해주세요</option>
+                        <option value="">국가를 선택해주세요</option>
                         {CountryData.map((el, index) => (
                           <option key={index} value={el.value}>
                             {el.text}

@@ -7,19 +7,104 @@ import LikedBtn from "@/components/Buttons/LikedBtn";
 import NavApp from "@/components/Header/Nav/NavApp";
 
 import { useState, useEffect } from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { categoryNameState, houseDataState } from "@/recoil/state";
 
-// HeaderCategoryItem.jsx 에서 전체보기와 카테고리별 숙소 데이터 가져온다.
 export default function Home() {
-  const [categoryName, setCategoryName] = useRecoilState(categoryNameState);
-  const houseData = useRecoilValue(houseDataState);
+  const [category, setCategory] = useState("전체보기");
+  const [houseData, setHouseData] = useState([]);
+
+  // 전체 숙소 조회
+  const getAllHouseData = async () => {
+    try {
+      // 서버 api 호출
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?page=1&size=20`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+            "ngrok-skip-browser-warning": "69420",
+          },
+        }
+      );
+      console.log(response);
+      // setHouseData(response.data);
+      alert("전체 숙소 데이터를 가져왔습니다.");
+    } catch (error) {
+      console.log(error);
+      console.log("전체 숙소 조회 데이터를 불러오는데 실패했습니다.");
+    }
+  };
+
+  // 카테고리별 숙소 조회
+  const getCategoryData = async (event) => {
+    let categoryNoUnderlineName = "";
+    let categoryUnderlineName = "";
+
+    // 완전 처음 페이지 들어온 경우
+    // 카테고리 초기값으로 '전체보기'를 가진다.
+    if (!event && !localStorage.getItem("category")) {
+      categoryNoUnderlineName = "전체보기";
+      categoryUnderlineName = categoryNoUnderlineName.replaceAll(" ", "_");
+    }
+
+    // 버튼을 누르지 않고, 페이지 새로고침 한 경우
+    // 기존에 로컬스토리지에 저장한 카테고리를 가져온다.
+    else if (!event) {
+      categoryNoUnderlineName = localStorage.getItem("category");
+      categoryUnderlineName = categoryNoUnderlineName.replaceAll(" ", "_");
+    }
+
+    // 카테고리 버튼 눌렸을 때
+    else {
+      categoryNoUnderlineName = event.target.innerText;
+      categoryUnderlineName = categoryNoUnderlineName.replaceAll(" ", "_");
+    }
+
+    localStorage.setItem("category", categoryUnderlineName);
+    const categoryStorage = localStorage.getItem("category");
+    setCategory(categoryStorage);
+    console.log("category : ", category);
+    console.log("categoryStorage : ", categoryStorage);
+
+    // '전체보기'를 제외한 나머지 카테고리인 경우
+    if (categoryStorage !== "전체보기" && categoryStorage !== null) {
+      try {
+        // 서버 api 호출
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_SERVER_URL}
+            /stays/category?page=1&size=20&categoryName=${categoryStorage}`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              "ngrok-skip-browser-warning": "69420",
+            },
+          }
+        );
+        // 받은 데이터를 recoil로 보내고 메인페이지에서 펼쳐서 보여주기!
+        console.log(response);
+      } catch (error) {
+        console.log(error);
+        console.log(`${categoryStorage} 데이터를 불러오는데 실패했습니다.`);
+      }
+    }
+
+    // 카테고리가 '전체보기' 인 경우
+    else if (categoryStorage == "전체보기" && categoryStorage !== null) {
+      getAllHouseData();
+    }
+  };
+
+  useEffect(() => {
+    getCategoryData();
+  }, []);
 
   return (
     <>
       <Title text={"에어비앤비 | 휴가지 숙소, 통나무집, 해변가 주택 등"} />
-      <Header fixed />
-      <MainPageHeaderApp />
+      <Header fixed getCategoryData={getCategoryData} category={category} />
+      <MainPageHeaderApp
+        getCategoryData={getCategoryData}
+        category={category}
+      />
       <main className="bnb_md_xl:mt-[270px] bnb_sm:mt-[100px] mb-[20px] bnb_sm:mb-[80px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] grid bnb_sm_md:grid-cols-2 bnb_lg:grid-cols-3 bnb_xl_2xl:grid-cols-4 bnb_3xl:grid-cols-5 gap-x-10 gap-y-6">
         {houseData?.map((el) => (
           <div key={el.id} className="min-w-[240px] cursor-pointer relative">
