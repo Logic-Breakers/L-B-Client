@@ -19,7 +19,7 @@ export default function MenuLogout() {
   };
 
   return (
-    <>
+    <div>
       <div className="block absolute top-[120%] right-0 shadow-xx rounded-[15px] bg-[#fff] hover:cursor-default">
         <ul
           className={`flex flex-col justify-between text-left my-[8px] w-[250px] h-[235px]`}
@@ -51,6 +51,6 @@ export default function MenuLogout() {
         </ul>
       </div>
       {showLoginModal && <LoginModal closeLoginModal={closeLoginModal} />}
-    </>
+    </div>
   );
 }

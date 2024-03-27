@@ -3,29 +3,46 @@ import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import NavApp from "@/components/Header/Nav/NavApp";
+import Address from "@/components/Address";
+import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
+import HouseImages from "@/components/HouseImages";
+import RedBtn from "@/components/Buttons/RedBtn";
+
+import CountryData from "@/components/Datas/CountryData";
+import PropertyTypeData from "@/components/Datas/PropertyTypeData";
+import PlaceTypeData from "@/components/Datas/PlaceTypeData";
+import CategoryItemData from "@/components/Datas/CategoryItemData";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 
-import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
-import PictureUpload from "@/components/PictureUpload";
-import RedBtn from "@/components/Buttons/RedBtn";
-
 import { useState } from "react";
 import { useRouter } from "next/router";
 
+// 기본적인 기능이 다 구현되면 유효성 검사 설정하기!
 export default function Register() {
   const router = useRouter();
 
-  // 국가, 요금, 카테고리(category), 건물유형(propertyType), 숙소유형(placeType), 설명
+  // 국가, 요금, 카테고리(category), 건물유형(propertyType), 숙소유형(placeType), 설명(info)
   const [houseName, setHouseName] = useState("");
   const [country, setCountry] = useState("none");
   const [price, setPrice] = useState("");
   const [propertyType, setPropertyType] = useState("none");
   const [placeType, setPlaceType] = useState("none");
   const [info, setInfo] = useState("");
-  const [picture, setPicture] = useState("");
   const [category, setCategory] = useState("");
+
+  // 시작일, 마감일
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  // 우편번호, 주소, 상세주소 (Address.jsx)
+  const [addrNum, setAddrNum] = useState("");
+  const [addr, setAddr] = useState("");
+  const [detailAddr, setDetailAddr] = useState("");
+
+  // 사진 (HouseImages.jsx)
+  const [houseImages, setHouseImages] = useState([]);
 
   // 게스트, 침실, 침대, 욕실 수
   const [guestNum, setGuestNum] = useState(1);
@@ -43,6 +60,18 @@ export default function Register() {
   const onBlurCountry = (event) => {
     setCountry(event.target.value);
     console.log("국가 : ", country);
+  };
+
+  // 시작일
+  const onBlurStartDate = (event) => {
+    setStartDate(event.target.value + "T00:00:00");
+    console.log("시작일 : ", startDate);
+  };
+
+  // 마감일
+  const onBlurEndDate = (event) => {
+    setEndDate(event.target.value + "T00:00:00");
+    console.log("마감일 : ", endDate);
   };
 
   // 요금
@@ -115,37 +144,28 @@ export default function Register() {
     console.log("설명 : ", info);
   };
 
-  // 사진
-  const onChangePicture = (event) => {
-    setPicture(event.target.value);
-    console.log("사진 : ", picture);
+  // Base64 데이터 URL(imageUrl)을 Blob으로 변환
+  const convertDataURLToFile = async (dataURL, fileName) => {
+    const response = await axios.get(dataURL, {
+      responseType: "blob",
+    });
+    const blob = response.data;
+
+    // Blob을 File 객체로 변환
+    const houseImgFile = new File([blob], fileName, { type: blob.type });
+
+    return houseImgFile;
   };
 
-  // 도로명 주소 찾기 팝업
-  // 행정안전부 도로명 주소 api 사용법을 잘 모르겠음... (현재 에러 발생 중)
-  const searchAddress = async (keyword) => {
-    const request = {
-      confmKey: process.env.ADDRESS_SEARCH_KEY,
-      returnUrl: "http://localhost:3000/hosting/register",
-      keyword: keyword,
-      resultType: "json",
-    };
-
-    try {
-      const addressResponse = await axios.get(process.env.ADDRESS_SEARCH_KEY, {
-        request,
-      });
-      return addressResponse;
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  // 등록하기 버튼 눌렸을 때
   const onClickSubmitBtn = async () => {
-    console.log("숙소 등록함");
+    console.log("숙소 등록하기 버튼 누름");
     console.log("숙소 이름 : ", houseName);
     console.log("국가 : ", country);
+    console.log("우편번호 : ", addrNum);
+    console.log("주소 : ", addr);
+    console.log("상세주소 : ", detailAddr);
+    console.log("시작일 : ", startDate);
+    console.log("마감일 : ", endDate);
     console.log("요금 : ", price);
     console.log("건물 유형 : ", propertyType);
     console.log("숙소 유형 : ", placeType);
@@ -155,18 +175,21 @@ export default function Register() {
     console.log("침대 : ", bedsNum);
     console.log("욕실 : ", bathroomsNum);
     console.log("설명 : ", info);
-    console.log("사진 : ", picture);
+    console.log("숙소 사진들 : ", houseImages);
 
     // API 요청을 보내기 위한 데이터 준비
-    const requestData = new FormData();
-    requestData.append(
+    const formData = new FormData();
+    formData.append(
       "stay",
       new Blob(
         [
           JSON.stringify({
             houseName,
             country,
-            address: "제주특별자치도 제주시 중앙로 3062",
+            address: addr,
+            detailAddress: detailAddr,
+            startDate,
+            endDate,
             price,
             propertyType,
             placeType,
@@ -180,16 +203,36 @@ export default function Register() {
         { type: "application/json" }
       )
     );
-    requestData.append("image", new File([picture], picture));
+
+    // 이미지 파일을 FormData에 추가
+    // --> 현재는 houseImages의 배열의 각 요소가 Base64 데이터 URL로 구성되어 있다.
+    // --> 그래서 FormData에 이미지 파일을 바로 추가할 수 없기에 에러가 발생하는 것 같다.
+    // --> 해결방법 : Bases64 데이터 URL을 File 객체로 변환하고, FormData에 파일을 추가한다.
+    // (--> 모든 파일을 한 번에 변환할 수 없으므로, for문을 통해 배열 요소를 하나씩 변환해준다.)
+
+    if (houseImages.length >= 1) {
+      console.log("파일 객체로 변환 전 이미지", houseImages);
+      for (let i = 0; i < houseImages.length; i++) {
+        const houseImgFile = await convertDataURLToFile(
+          houseImages[i],
+          `house_images_${i}`
+        );
+        formData.append("image", houseImgFile);
+        console.log("파일 객체로 변환 후 이미지", houseImgFile);
+      }
+    }
 
     try {
       // 서버 API 호출
-      // 사진도 같이 보내야하기에 multipart/form-data로 보낸다.
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_SERVER_URL}/stays?categoryName=${category}`,
-        requestData,
+        formData,
         {
           headers: {
+            // Authorization: "Bearer " + localStorage.getItem("acToken"),
+            Authorization:
+              "Bearer " +
+              "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwidXNlcm5hbWUiOiJhZG1pbkBnbWFpbC5jb20iLCJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTA2NjU2MjYsImV4cCI6MTcxMDY2NTc0Nn0.r-R3XgYipekgQjtBGUjryJNc5XyAh51u8fbo0jXqZW8",
             "Content-Type": "multipart/form-data",
             "ngrok-skip-browser-warning": "69420",
           },
@@ -213,7 +256,12 @@ export default function Register() {
       <Header fixed />
       <main className="flex flex-row justify-center w-full min-h-screen mt-[40px]">
         <div className="w-[600px] bnb_md_xl:pt-[80px] bnb_sm:px-[24px]">
-          <h1 className="text-[32px] font-[500]">호스팅 시작하기</h1>
+          <div className="flex flex-row items-center">
+            <h1 className="text-[32px] font-[500]">호스팅 시작하기</h1>
+            <span className="text-red-500 ml-4">
+              (* 는 필수 입력사항입니다.)
+            </span>
+          </div>
           <form onSubmit={(event) => event.preventDefault()}>
             <h2 className="text-xl text-gray-500">기본정보를 알려주세요</h2>
             <section className="my-8 space-y-10">
@@ -221,20 +269,21 @@ export default function Register() {
               <section>
                 <HostingRegisterItemTitle text={"숙소 이름"} require mb />
                 <input
+                  required
                   onBlur={onBlurHouseName}
-                  onChange={(event) => setHouseName(event.target.value)}
+                  // onChange={(event) => setHouseName(event.target.value)}
                   type="text"
                   className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
                   placeholder="숙소 이름을 적어주세요"
                 ></input>
               </section>
-
               {/* 국가 */}
               <section>
                 <HostingRegisterItemTitle text={"국가"} require mb />
                 <label
+                  required
                   onBlur={onBlurCountry}
-                  onChange={(event) => setCountry(event.target.value)}
+                  // onChange={(event) => setCountry(event.target.value)}
                   htmlFor="country"
                   className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                 >
@@ -244,11 +293,11 @@ export default function Register() {
                     defaultValue={""}
                   >
                     <option value="">국가를 선택해주세요</option>
-                    <option value="미국">미국 (United States)</option>
-                    <option value="영국">영국 (United Kingdom)</option>
-                    <option value="일본">일본 (Japan)</option>
-                    <option value="대한민국">한국 (Korea)</option>
-                    <option value="중국">중국 (China)</option>
+                    {CountryData.map((el, index) => (
+                      <option key={index} value={el.value}>
+                        {el.text}
+                      </option>
+                    ))}
                   </select>
 
                   <FontAwesomeIcon
@@ -259,29 +308,40 @@ export default function Register() {
               </section>
 
               {/* 주소 */}
-              {/* 주소찾기로 가져온 값 각각의 칸에 넣어주기! */}
               <section>
                 <HostingRegisterItemTitle text={"주소"} require mb />
-                <div className="space-y-2">
-                  <div className="flex flex-row space-x-4">
-                    <div className="flex flex-row justify-center items-center border-[1px] border-solid border-[#cccccc] rounded-md w-[100px] h-[55px] text-gray-600 pointer-events-none">
-                      11111
-                    </div>
-                    <button
-                      onClick={searchAddress}
-                      type="button"
-                      className="bg-gray-300 rounded-md w-[100px] h-[55px] px-4 py-2 hover:bg-gray-400 active:bg-gray-300"
-                    >
-                      주소 찾기
-                    </button>
-                  </div>
-                  <div className="flex flex-row items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] px-4 text-gray-600">
-                    서울 ㅁㅁㅁ ㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁㅁ
-                  </div>
-                  <div className="flex flex-row items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] px-4 text-gray-600">
-                    (상세주소) ㄹㅇㄴㅁㄹㄴㅁㄹㄴㅁ
-                  </div>
-                </div>
+                <Address
+                  addrNum={addrNum}
+                  setAddrNum={setAddrNum}
+                  addr={addr}
+                  setAddr={setAddr}
+                  detailAddr={detailAddr}
+                  setDetailAddr={setDetailAddr}
+                />
+              </section>
+
+              {/* 시작일 & 마감일 */}
+              <section className="flex flex-row gap-x-8">
+                <section className="w-1/2">
+                  <HostingRegisterItemTitle text={"시작일"} require mb />
+                  <input
+                    required
+                    onBlur={onBlurStartDate}
+                    // onChange={(event) => setStartDate(event.target.value)}
+                    type="date"
+                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                  />
+                </section>
+                <section className="w-1/2">
+                  <HostingRegisterItemTitle text={"마감일"} require mb />
+                  <input
+                    required
+                    onBlur={onBlurEndDate}
+                    // onChange={(event) => setEndDate(event.target.value)}
+                    type="date"
+                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                  />
+                </section>
               </section>
 
               {/* 요금 */}
@@ -289,14 +349,15 @@ export default function Register() {
                 <HostingRegisterItemTitle text={"요금"} require mb />
                 <div className="relative flex flex-row items-center">
                   <input
+                    required
                     onBlur={onBlurPrice}
-                    onChange={(event) => setPrice(event.target.value)}
-                    value={price}
+                    // onChange={(event) => setPrice(event.target.value)}
+                    // value={price}
                     type="number"
-                    className="text-center border-solid border-[1px] border-[#cccccc] placeholder:text-center w-[210px] h-[55px] rounded-md text-md text-gray-600"
-                    placeholder="ex) 123456"
+                    className="text-center border-solid border-[1px] border-[#cccccc] px-6 placeholder:text-center w-[150px] h-[55px] rounded-md text-md text-gray-600"
+                    placeholder="10000"
                   ></input>
-                  <div className="absolute left-40 text-gray-400 text-sm">
+                  <div className="absolute left-28 text-gray-400 text-sm">
                     원/박
                   </div>
                 </div>
@@ -306,8 +367,9 @@ export default function Register() {
               <section>
                 <HostingRegisterItemTitle text={"건물 유형"} require mb />
                 <label
+                  required
                   onBlur={onBlurPropertyType}
-                  onChange={(event) => setPropertyType(event.target.value)}
+                  // onChange={(event) => setPropertyType(event.target.value)}
                   htmlFor="propertyType"
                   className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                 >
@@ -317,12 +379,11 @@ export default function Register() {
                     defaultValue={""}
                   >
                     <option value="">건물 유형을 선택해주세요</option>
-                    <option value="단독_또는_다세대_주택">
-                      단독 또는 다세대 주택
-                    </option>
-                    <option value="아파트">아파트</option>
-                    <option value="게스트용_별채">게스트용 별채</option>
-                    <option value="호텔">호텔</option>
+                    {PropertyTypeData.map((el, index) => (
+                      <option key={index} value={el.value}>
+                        {el.text}
+                      </option>
+                    ))}
                   </select>
                   <FontAwesomeIcon
                     icon={faChevronDown}
@@ -335,8 +396,9 @@ export default function Register() {
               <section>
                 <HostingRegisterItemTitle text={"숙소 유형"} require mb />
                 <label
+                  required
                   onBlur={onBlurPlaceType}
-                  onChange={(event) => setPlaceType(event.target.value)}
+                  // onChange={(event) => setPlaceType(event.target.value)}
                   htmlFor="placeType"
                   className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                 >
@@ -346,9 +408,11 @@ export default function Register() {
                     defaultValue={""}
                   >
                     <option value="">숙소 유형을 선택해주세요</option>
-                    <option value="공간_전체">공간 전체</option>
-                    <option value="방">방</option>
-                    <option value="다인실">다인실</option>
+                    {PlaceTypeData.map((el, index) => (
+                      <option key={index} value={el.value}>
+                        {el.text}
+                      </option>
+                    ))}
                   </select>
                   <FontAwesomeIcon
                     icon={faChevronDown}
@@ -361,8 +425,9 @@ export default function Register() {
               <section>
                 <HostingRegisterItemTitle text={"카테고리"} require mb />
                 <label
+                  required
                   onBlur={onBlurCategory}
-                  onChange={(event) => setCategory(event.target.value)}
+                  // onChange={(event) => setCategory(event.target.value)}
                   htmlFor="category"
                   className="flex flex-row justify-between items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] relative"
                 >
@@ -372,69 +437,11 @@ export default function Register() {
                     defaultValue={""}
                   >
                     <option value="">카테고리를 선택해주세요</option>
-                    <option value="캠핑장">캠핑장</option>
-                    <option value="인기_급상승">인기 급상승</option>
-                    <option value="국립공원">국립공원</option>
-                    <option value="골프장">골프장</option>
-                    <option value="복토_주택">복토 주택</option>
-                    <option value="방">방</option>
-                    <option value="한적한_시골">한적한 시골</option>
-                    <option value="해변_근처">해변 근처</option>
-                    <option value="멋진_수영장">멋진 수영장</option>
-                    <option value="최고의_전망">최고의 전망</option>
-                    <option value="한옥">한옥</option>
-                    <option value="캐슬">캐슬</option>
-                    <option value="농장">농장</option>
-                    <option value="스키">스키</option>
-                    <option value="창작_공간">창작 공간</option>
-                    <option value="해변_바로_앞">해변 바로 앞</option>
-                    <option value="초소형_주택">초소형 주택</option>
-                    <option value="디자인">디자인</option>
-                    <option value="속세를_벗어난_숙소">
-                      속세를 벗어난 숙소
-                    </option>
-                    <option value="기상천외한_숙소">기상천외한 숙소</option>
-                    <option value="열대_지역">열대 지역</option>
-                    <option value="호수_근처">호수 근처</option>
-                    <option value="동굴">동굴</option>
-                    <option value="료칸">료칸</option>
-                    <option value="통나무집">통나무집</option>
-                    <option value="Luxe">Luxe</option>
-                    <option value="트리하우스">트리하우스</option>
-                    <option value="풍차">풍차</option>
-                    <option value="B&B">B&B</option>
-                    <option value="와인_농장">와인 농장</option>
-                    <option value="신규">신규</option>
-                    <option value="돔하우스">돔하우스</option>
-                    <option value="보트">보트</option>
-                    <option value="키즈">키즈</option>
-                    <option value="호숫가">호숫가</option>
-                    <option value="키클라데스_주택">키클라데스 주택</option>
-                    <option value="세상의_꼭대기">세상의 꼭대기</option>
-                    <option value="상징적_도시">상징적 도시</option>
-                    <option value="유서_깊은_주택">유서 깊은 주택</option>
-                    <option value="저택">저택</option>
-                    <option value="A자형_주택">A자형 주택</option>
-                    <option value="북극">북극</option>
-                    <option value="섬">섬</option>
-                    <option value="서핑">서핑</option>
-                    <option value="캠핑카">캠핑카</option>
-                    <option value="전문가급_주방">전문가급 주방</option>
-                    <option value="유르트">유르트</option>
-                    <option value="민수">민수</option>
-                    <option value="마차">마차</option>
-                    <option value="스키_타고_출입">스키 타고 출입</option>
-                    <option value="카사_파르티쿨라르">카사 파르티쿨라르</option>
-                    <option value="컨테이너하우스">컨테이너하우스</option>
-                    <option value="그랜드_피아노">그랜드 피아노</option>
-                    <option value="헛간">헛간</option>
-                    <option value="타워">타워</option>
-                    <option value="사막">사막</option>
-                    <option value="하우스보트">하우스보트</option>
-                    <option value="무장애">무장애</option>
-                    <option value="리아드">리아드</option>
-                    <option value="담무소">담무소</option>
-                    <option value="트룰로">트룰로</option>
+                    {CategoryItemData.map((el, index) => (
+                      <option key={index} value={el.value}>
+                        {el.text}
+                      </option>
+                    ))}
                   </select>
                   <FontAwesomeIcon
                     icon={faChevronDown}
@@ -442,6 +449,7 @@ export default function Register() {
                   />
                 </label>
               </section>
+
               {/* 게스트 */}
               <section className="flex flex-row justify-between items-center">
                 <HostingRegisterItemTitle text={"게스트"} require />
@@ -550,19 +558,20 @@ export default function Register() {
               <section>
                 <HostingRegisterItemTitle text={"설명"} require mb />
                 <textarea
+                  required
                   onBlur={onBlurInfo}
-                  onChange={(event) => setInfo(event.target.value)}
+                  // onChange={(event) => setInfo(event.target.value)}
                   className="w-full h-60 border-[#cccccc] border-solid border-[1px] rounded-md text-gray-600 text-lg p-4"
                   placeholder="숙소를 설명해주세요"
                 />
               </section>
 
-              {/* 사진 등록 */}
+              {/* 사진 */}
               <section>
                 <HostingRegisterItemTitle text={"사진"} require mb />
-                <PictureUpload
-                  picture={picture}
-                  onChangePicture={onChangePicture}
+                <HouseImages
+                  setHouseImages={setHouseImages}
+                  houseImages={houseImages}
                 />
               </section>
             </section>
@@ -588,5 +597,3 @@ export default function Register() {
 
 // 추가하면 좋은 것
 // 숙소 편의시설 (와이파이, 소화기, 구급상자, ...)
-
-// 평점, 게스트 선호는 필요없는 듯?

@@ -5,13 +5,13 @@ import { useRouter } from "next/router";
 
 import Logo from "./Logo/Logo";
 import HeaderCenterTopBtn from "./CenterItem/Btn/HeaderCenterTopBtn";
-import HeaderFilter from "./FilterItem/HeaderFilter";
+import HeaderCategory from "./CategoryItem/HeaderCategory";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 // (Web) 모든 페이지에 사용되는 헤더
-export default function Header({ fixed }) {
+export default function Header({ fixed, getCategoryData, category }) {
   const router = useRouter();
 
   // 숙소, 체험
@@ -309,7 +309,9 @@ export default function Header({ fixed }) {
       </section>
 
       {/* 메인페이지 헤더 밑의 필터 */}
-      {router.pathname === "/" ? <HeaderFilter /> : null}
+      {router.pathname === "/" ? (
+        <HeaderCategory getCategoryData={getCategoryData} category={category} />
+      ) : null}
     </header>
   );
 }

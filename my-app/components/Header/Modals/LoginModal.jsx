@@ -35,7 +35,7 @@ export default function LoginModal({ closeLoginModal }) {
   const onClickLoginBtn = async () => {
     // 서버로 보낼 데이터
     const request = {
-      username: email,
+      email,
       password,
     };
     console.log(request);
@@ -53,11 +53,27 @@ export default function LoginModal({ closeLoginModal }) {
       );
       console.log(response);
 
+      const acToken = response.data.accessToken;
+      const reToken = response.data.refreshToken;
+
+      localStorage.setItem("acToken", acToken);
+      localStorage.setItem("reToken", reToken);
+
       // 로그인 성공하면 페이지 reload 함
-      // router.reload();
+      router.reload();
     } catch (error) {
       console.log(error);
       alert("로그인에 실패했습니다.");
+    }
+  };
+
+  // 기존에는 Link 테그로 했었으나,
+  // signup 페이지에서 회원가입 버튼을 누른 경우, 아무런 반응이 없기에 조건에 따라 추가해주었다.
+  const onClickSignUpPage = () => {
+    if (router.pathname === "/signup") {
+      router.reload();
+    } else {
+      router.push("/signup");
     }
   };
 
@@ -69,14 +85,13 @@ export default function LoginModal({ closeLoginModal }) {
         <header className="flex flex-row justify-between items-center h-[63px] px-[24px] border-b-[1px] border-solid border-[#DDDDDD]">
           <CloseModalBtn onClick={closeLoginModal} />
           <h3 className="pl-[58px] text-[16px] font-[600]">로그인</h3>
-          <Link href={"/signup"}>
-            <RedBtn
-              type={"button"}
-              text={"회원가입"}
-              width={"fit"}
-              textSize={"md"}
-            />
-          </Link>
+          <RedBtn
+            onClick={onClickSignUpPage}
+            type={"button"}
+            text={"회원가입"}
+            width={"fit"}
+            textSize={"md"}
+          />
         </header>
         <section className="mt-[30px] px-[24px]">
           <h3 className="text-[22px] font-[500] mb-[20px]">
@@ -125,7 +140,7 @@ export default function LoginModal({ closeLoginModal }) {
         </section>
       </section>
 
-      {/* 모달 밖 (어두운 배경) */}
+      {/* 모달 바깥 부분 */}
       <div
         onClick={closeLoginModal}
         className="fixed top-0 left-0 w-full h-full z-[101] bg-[var(--modal-outside-bg)] cursor-default"

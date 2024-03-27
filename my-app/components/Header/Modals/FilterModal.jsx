@@ -212,7 +212,7 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
         </footer>
       </form>
 
-      {/* 모달 밖 (어두운 배경) */}
+      {/* 모달 바깥 부분 */}
       <div
         onClick={closeFilterModal}
         className="fixed top-0 left-0 w-full h-full z-[101] bg-[var(--modal-outside-bg)]"

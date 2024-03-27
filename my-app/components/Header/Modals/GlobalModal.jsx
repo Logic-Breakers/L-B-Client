@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLanguage, faCheck } from "@fortawesome/free-solid-svg-icons";
-import globalDummy from "./GlobalDummy";
+
+import GlobalModalData from "../../Datas/GlobalModalData";
 import CloseModalBtn from "@/components/Buttons/CloseModalBtn";
 
 // 지구본 버튼을 누르면 나타나는 모달
@@ -57,7 +58,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
 
           {/* 글로벌 모달 ON + 언어와 지역 버튼 ON 인 경우 */}
           {showGlobalModal && showLanguageAndLocal && (
-            <div className="">
+            <div>
               <section className="relative flex flex-col justify-center text-[16px] bg-[#F7F7F7] rounded-lg w-[326px] h-[80px] mt-[50px] p-[16px]">
                 <div className="mb-[8px] flex flex-row items-center gap-[8px]">
                   <span>번역</span>
@@ -102,7 +103,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
                   언어와 지역을 선택하세요
                 </h3>
                 <ul className="grid gap-[10px] bnb_xl:grid-cols-5 bnb_lg:grid-cols-4 bnb_md:grid-cols-3">
-                  {globalDummy.map((el) => (
+                  {GlobalModalData.map((el) => (
                     <li
                       key={el.id}
                       className="flex flex-col flex-grow justify-center hover:bg-[#F7F7F7] rounded-lg cursor-pointer h-[56px] px-[13px] py-[10px]"
@@ -125,7 +126,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
                 통화를 선택하세요.
               </h3>
               <ul className="grid gap-[10px] bnb_xl:grid-cols-5 bnb_lg:grid-cols-4 bnb_md:grid-cols-3">
-                {globalDummy.map((el) => (
+                {GlobalModalData.map((el) => (
                   <li
                     key={el.id}
                     className="flex flex-col flex-grow justify-center hover:bg-[#F7F7F7] rounded-lg cursor-pointer h-[56px] px-[13px] py-[10px]"
@@ -147,10 +148,11 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
         </div>
       </div>
 
-      {/* 모달 밖 (어두운 배경) */}
+      {/* 모달 바깥 부분 */}
       <div
         onClick={closeGlobalModal}
-        className="fixed top-0 left-0 w-full h-full z-[101] bg-[var(--modal-outside-bg)]"
+        className="fixed top-0 left-0 w-full h-full z-[101]
+        bg-[var(--modal-outside-bg)]"
       ></div>
     </div>
   );
