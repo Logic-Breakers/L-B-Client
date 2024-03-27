@@ -75,7 +75,7 @@ export default function UserDelete() {
       <main className="flex flex-row justify-center items-center w-full min-h-screen">
         <div className="w-[500px] bnb_sm:px-[24px]">
           <div className="mb-10 space-y-2">
-            <h1 className="text-[32px] font-[500]">회원 탈퇴</h1>
+            <h1 className="text-[32px] font-semibold">회원 탈퇴</h1>
             <h2 className="text-xl text-gray-500 ">
               정말로 회원 탈퇴하시겠습니까?
             </h2>

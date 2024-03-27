@@ -157,7 +157,7 @@ export default function SignUp() {
           className="bnb_md_xl:pt-[80px] px-[24px] bnb_sm_md:w-screen"
         >
           <div className="flex flex-row items-center">
-            <h1 className="text-[32px] font-[500]">회원가입</h1>
+            <h1 className="text-[32px] font-semibold">회원가입</h1>
             <span className="text-red-500 ml-4">
               (* 는 필수 입력사항입니다.)
             </span>

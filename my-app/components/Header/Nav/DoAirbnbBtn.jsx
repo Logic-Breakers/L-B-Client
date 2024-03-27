@@ -21,14 +21,14 @@ export default function DoAirbnbBtn() {
   return isAuth ? (
     <Link
       href="/hosting/1"
-      className="px-[12px] py-[8px] hover:bg-gray-100 hover:rounded-[30px] font-medium cursor-pointer"
+      className="px-[12px] py-[8px] hover:bg-gray-100 hover:rounded-[30px] font-semibold cursor-pointer"
     >
       <div>호스트 모드로 전환</div>
     </Link>
   ) : (
     <Link
       href="/host/homes"
-      className="px-[12px] py-[8px] hover:bg-gray-100 hover:rounded-[30px] font-medium cursor-pointer"
+      className="px-[12px] py-[8px] hover:bg-gray-100 hover:rounded-[30px] font-semibold cursor-pointer"
     >
       <div>당신의 공간을 에어비앤비하세요</div>
     </Link>

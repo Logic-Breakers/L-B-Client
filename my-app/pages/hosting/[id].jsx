@@ -4,6 +4,7 @@ import Footer from "@/components/Footer/Footer";
 import Header from "@/components/Header/Header";
 import NavApp from "@/components/Header/Nav/NavApp";
 
+import AppBackPageBtn from "@/components/Buttons/AppBackPageBtn";
 import WhiteBtn from "@/components/Buttons/WhiteBtn";
 import DeleteBtn from "@/components/Buttons/DeleteBtn";
 import HostingPresentHostingItem from "@/components/Hosting/indexPage/HostingPresentHostingItem";
@@ -83,12 +84,13 @@ export default function Hosting() {
   return (
     <>
       <Title text={"호스트 알림판 - Airbnb"} />
+      <AppBackPageBtn />
       <Header fixed />
-      <main className="flex flex-row justify-center w-full mt-[40px]">
+      <main className="flex flex-row justify-center w-full mt-[40px] bnb_sm:mt-[80px]">
         <div className="w-full bnb_md_xl:pt-[80px] bnb_lg_xl:px-[80px] bnb_md:px-[40px] bnb_sm:px-[24px]">
           <section className="flex flex-row justify-between items-center">
             {/* 나중에 서버로부터 유저 이름 가져오기 */}
-            <h1 className="text-[32px] font-[500]">○○ 님, 반갑습니다!</h1>
+            <h1 className="text-[32px] font-semibold">○○ 님, 반갑습니다!</h1>
             {/* 나중에 유저 id 입력하기 */}
             <Link href="/hosting/register/1">
               <WhiteBtn text={"숙소 등록하기"} px={"4"} />

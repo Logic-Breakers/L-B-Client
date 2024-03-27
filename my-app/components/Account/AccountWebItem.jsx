@@ -9,8 +9,8 @@ export default function AccountWebItem({ link, icon, itemName, itemDetail }) {
           <li className="flex flex-col justify-between py-[8px] px-[16px] h-[100%] ">
             <div className="text-[30px]">{icon}</div>
             <div className="">
-              <div className="font-[500] mb-[4px]">{itemName}</div>
-              <div className="text-[#939393] text-[14px] leading-[140%] mb-[8px]">
+              <div className="font-bold mb-[4px]">{itemName}</div>
+              <div className="text-gray-600 text-[14px] leading-[140%] mb-[8px]">
                 {itemDetail}
               </div>
             </div>

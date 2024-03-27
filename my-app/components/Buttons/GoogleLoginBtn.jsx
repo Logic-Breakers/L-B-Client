@@ -29,7 +29,7 @@ export default function GoogleLoginBtn() {
           fill="#1976D2"
         />
       </svg>
-      <div className="text-[14px] font-[500]">구글로 로그인하기</div>
+      <div className="text-[14px] font-semibold">구글로 로그인하기</div>
     </button>
   );
 }

@@ -126,14 +126,15 @@ export default function AccountSettings() {
       <main className="bnb_sm:hidden flex flex-row justify-center items-center w-full bnb_md_lg:px-[24px]">
         <div className="bnb_lx:w-[1048px] bnb_md_lg:[696px] px-[8px] mt-[135px]">
           <div className="mb-[65px]">
-            <h1 className="font-[500] text-[32px]">계정</h1>
+            <h1 className="font-bold text-[32px]">계정</h1>
             <div className="text-[18px]">
-              <span className="font-[400] mr-[4px]">userName,</span>
-              <span className="font-[300]">example@gmail.com∙</span>
+              <span className="font-semibold">userName</span>
+              <span className="mr-1">,</span>
+              <span>example@gmail.com∙</span>
 
               {/* 나중에 유저 id로 바꾸기 */}
               <Link href={"/users/show/1"}>
-                <span className="font-[400] underline decoration-solid decoration-[1.5px]">
+                <span className="font-semibold underline decoration-solid decoration-[1.5px]">
                   프로필로 이동
                 </span>
               </Link>
@@ -220,7 +221,7 @@ export default function AccountSettings() {
           <div className="my-[50px] text-center">
             <div className="text-[14px]">계정을 탈퇴하셔야 하나요?</div>
             <Link href={"/account-delete/1"}>
-              <div className="text-[12px] font-[500] mt-[8px] underline decoration-solid ">
+              <div className="text-[12px] font-bold mt-[8px] underline decoration-solid ">
                 지금 처리하기
               </div>
             </Link>
@@ -230,7 +231,7 @@ export default function AccountSettings() {
 
       {/* sm 사이즈 일 때 */}
       <main className="bnb_sm:block bnb_md_xl:hidden mx-[24px] mb-[64px]">
-        <h2 className="text-[30px] font-[500] mt-[48px] mb-[32px]">프로필</h2>
+        <h2 className="text-[30px] font-bold mt-[48px] mb-[32px]">프로필</h2>
 
         {/* 나중에 유저 id로 변경하기 */}
         <Link href={"/users/show/1"}>
@@ -238,8 +239,8 @@ export default function AccountSettings() {
             <FontAwesomeIcon icon={faCircleUser} className="text-[56px]" />
             <div className="flex flex-row justify-between items-center w-full">
               <div>
-                <div className="font-[400]">이름</div>
-                <div className="text-[14px] text-[#888888]">프로필 보기</div>
+                <div className="font-normal">이름</div>
+                <div className="text-[14px] text-gray-600">프로필 보기</div>
               </div>
               <FontAwesomeIcon icon={faChevronRight} />
             </div>
@@ -249,10 +250,10 @@ export default function AccountSettings() {
           <Link href={"/host/homes"}>
             <section className="my-[24px] p-[24px] border-[1px] border-solid border-[#DDDDDD] shadow-cc rounded-lg h-[138px] w-full flex flex-row justify-between items-center">
               <div className="flex flex-col gap-[6px]">
-                <div className="text-[18px] font-[500]">
+                <div className="text-[18px] font-bold">
                   당신의 공간을 에어비앤비하세요
                 </div>
-                <div className="text-[14px] text-[#888888]">
+                <div className="text-[14px] text-gray-600">
                   간단히 숙소를 등록하고 수입을 올릴 수 있어요.
                 </div>
               </div>
@@ -275,7 +276,9 @@ export default function AccountSettings() {
           />
         </section>
         <section className="border-b-[1px] pb-[16px]">
-          <h3 className="text-[22px] mt-[40px] pb-[24px]">호스팅</h3>
+          <div className="font-bold text-[22px] mt-[40px] pb-[24px]">
+            호스팅
+          </div>
           <AccountAppItem
             link={"/hosting/1"}
             icon={<FontAwesomeIcon icon={faToggleOn} />}
@@ -283,11 +286,18 @@ export default function AccountSettings() {
           />
         </section>
         <section className="border-b-[1px] pb-[16px]">
-          <h3 className="text-[22px] mt-[40px] pb-[24px]">지원 서비스</h3>
+          <div className="font-bold text-[22px] mt-[40px] pb-[24px]">
+            지원 서비스
+          </div>
+          <AccountAppItem
+            link={"/"}
+            icon={<FontAwesomeIcon icon={faAirbnb} />}
+            itemName={"에어비앤비 이용 방법"}
+          />
           <AccountAppItem
             link={"/help/1"}
             icon={<FontAwesomeIcon icon={faCircleQuestion} />}
-            itemName={"도움말 센터 방문하기"}
+            itemName={"도움말 센터"}
           />
           <AccountAppItem
             link={"/guest/inbox/1"}
@@ -299,16 +309,11 @@ export default function AccountSettings() {
             icon={<FontAwesomeIcon icon={faHeadphones} />}
             itemName={"이웃 민원 신고"}
           />
-          <AccountAppItem
-            link={"/"}
-            icon={<FontAwesomeIcon icon={faAirbnb} />}
-            itemName={"에어비앤비 이용 방법"}
-          />
         </section>
 
         <section className="mt-[40px]">
           <WhiteBtn onClick={onClickLogOut} text={"로그아웃"} />
-          <div className="flex flex-row justify-center text-[12px] text-[#888888] mt-[20px] pb-[40px]">
+          <div className="flex flex-row justify-center text-[12px] text-gray-500 mt-[20px] pb-[40px]">
             2024 Airbnb Clone Coding
           </div>
         </section>

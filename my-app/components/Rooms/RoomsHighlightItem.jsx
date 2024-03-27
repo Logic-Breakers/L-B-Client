@@ -7,7 +7,7 @@ export default function RoomsHighlightItem({ icon, title, detail }) {
       </div>
       <div>
         <div className="font-semibold">{title}</div>
-        <div className="text-gray-400">{detail}</div>
+        <div className="text-[#5e5e5e]">{detail}</div>
       </div>
     </div>
   );
