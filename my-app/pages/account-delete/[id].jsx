@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAirbnb } from "@fortawesome/free-brands-svg-icons";
 import { faPersonCircleMinus } from "@fortawesome/free-solid-svg-icons";
 
-export default function userDelete() {
+export default function UserDelete() {
   const router = useRouter();
 
   const onClickDeleteUser = async () => {
