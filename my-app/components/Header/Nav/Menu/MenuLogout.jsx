@@ -21,21 +21,19 @@ export default function MenuLogout() {
   return (
     <div>
       <div className="block absolute top-[120%] right-0 shadow-xx rounded-[15px] bg-[#fff] hover:cursor-default">
-        <ul
-          className={`flex flex-col justify-between text-left my-[8px] w-[250px] h-[235px]`}
-        >
+        <ul className="flex flex-col justify-between text-left my-[8px] w-[265px] h-[235px]">
           <NewsItem />
 
           <li
             onClick={openLoginModal}
             className="px-[20px] py-[12px] hover:cursor-pointer hover:bg-gray-100"
           >
-            <span className={`font-[500]`}>로그인</span>
+            <span className="font-semibold">로그인</span>
           </li>
 
           <Link href={"/signup"}>
             <li className="px-[20px] py-[12px] text-[var(--menu-gray-color)] hover:cursor-pointer hover:bg-gray-100">
-              <span className={`font-[500]`}>회원 가입</span>
+              <span className="font-semibold">회원 가입</span>
             </li>
           </Link>
 

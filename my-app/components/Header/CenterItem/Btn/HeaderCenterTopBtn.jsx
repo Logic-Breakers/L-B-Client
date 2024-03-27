@@ -6,7 +6,7 @@ export default function HeaderCenterTopBtn({ onClick, state, text }) {
       type="button"
       className={`px-4 py-2 rounded-full text-md ${
         state
-          ? "text-black font-medium"
+          ? "text-black font-semibold"
           : "text-gray-500 hover:bg-gray-100 hover:text-gray-700"
       }`}
     >

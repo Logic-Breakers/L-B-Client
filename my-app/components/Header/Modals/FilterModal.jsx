@@ -60,7 +60,7 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
         <main className="w-full mt-14 mb-20 px-6 divide-y-[1px] overflow-y-scroll">
           {/* 숙소유형 */}
           <section className="py-6">
-            <h1 className="font-medium text-[22px] pb-2">숙소 유형</h1>
+            <h1 className="font-bold text-[22px] pb-2">숙소 유형</h1>
             <div>
               <div className="text-sm text-gray-600">
                 방, 집 전체 등 원하는 숙소 유형을 검색해보세요.
@@ -70,19 +70,19 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
                   type="button"
                   onClick={handleTypePlace}
                   value={typePlace}
-                  className={`w-1/3 h-16 border-solid border-[1px] border-[#DDDDDD] rounded-l-xl font-medium hover:border-black`}
+                  className="w-1/3 h-16 border-solid border-[1px] border-[#DDDDDD] rounded-l-xl font-bold hover:border-black"
                 >
                   공간 전체
                 </button>
                 <button
                   type="button"
-                  className="w-1/3 h-16 border-solid border-[1px] border-[#DDDDDD] hover:border-black"
+                  className="w-1/3 h-16 border-solid border-[1px] border-[#DDDDDD] hover:border-black font-bold"
                 >
                   방
                 </button>
                 <button
                   type="button"
-                  className="w-1/3 h-16 border-solid border-[1px] border-[#DDDDDD] rounded-r-xl hover:border-black"
+                  className="w-1/3 h-16 border-solid border-[1px] border-[#DDDDDD] rounded-r-xl hover:border-black font-bold"
                 >
                   집 전체
                 </button>
@@ -92,7 +92,7 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
 
           {/* 가격 범위 */}
           <section className="py-8">
-            <h1 className="font-medium text-[22px] pb-2">가격 범위</h1>
+            <h1 className="font-bold text-[22px] pb-2">가격 범위</h1>
             <div>
               <div className="text-sm text-gray-600 mb-4">
                 1박 요금(수수료 및 세금 포함)
@@ -131,7 +131,7 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
 
           {/* 침실과 침대 */}
           <section className="py-8">
-            <h1 className="font-medium text-[22px] pb-2">침실과 침대</h1>
+            <h1 className="font-bold text-[22px] pb-2">침실과 침대</h1>
             <div>
               <div className="text-gray-600 pt-7 pb-5">침실</div>
               <div className="flex flex-row space-x-2">
@@ -178,7 +178,7 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
 
           {/* 건물 유형 */}
           <section className="py-8">
-            <h1 className="font-medium text-[22px] pb-6">건물 유형</h1>
+            <h1 className="font-bold text-[22px] pb-6">건물 유형</h1>
             <div className="grid grid-cols-4 gap-x-2">
               <FilterModalPropertyTypeBtn
                 icon={<FontAwesomeIcon icon={faHouse} />}
@@ -203,7 +203,7 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
         <footer className="fixed bottom-0 w-full h-[80px] px-6 flex flex-row justify-between items-center bg-[#fff] rounded-b-lg border-t-[1px] border-solid border-[#DDDDDD] ">
           <button
             onClick={onClickAllOff}
-            className="hover:bg-gray-100 rounded-lg ml-[-12px] px-4 py-2 active:scale-95 duration-[0.1s] "
+            className="hover:bg-gray-100 rounded-lg ml-[-12px] px-4 py-2 active:scale-95 duration-[0.1s] font-bold "
           >
             전체 해제
           </button>

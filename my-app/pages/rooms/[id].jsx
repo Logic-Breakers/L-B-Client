@@ -55,7 +55,7 @@ export default function Rooms() {
         <section>
           {/* 숙소 제목, 좋아요 버튼 */}
           <div className="flex flex-row justify-between items-center">
-            <h1 className="text-3xl font-semibold py-4">숙소 이름</h1>
+            <h1 className="text-[28px] font-semibold py-4">숙소 이름</h1>
             <LikedBtn />
           </div>
 
@@ -82,39 +82,25 @@ export default function Rooms() {
           <section className="bnb_sm:w-full w-[58.34%] divide-y-[1px]">
             {/* 위치, 국가, 건물유형, 숙소유형, 인원, 침실, 침대, 욕실, 별점, 후기 */}
             <section className="pb-6">
-              <h2 className="text-2xl font-semibold">
+              <h2 className="text-[22px] font-semibold">
                 위치, 국가 + 건물유형 + 숙소유형 (ex 수영구, 한국의 게스트용
                 별채 전체)
               </h2>
-              <div className="space-x-1 text-lg mb-2">
-                <span>
-                  <span className="mr-1">최대 인원</span>
-                  <span>6명</span>
-                </span>
+              <div className="space-x-1 mb-2">
+                <span>최대 인원 6명</span>
                 <span>∙</span>
-                <span>
-                  <span className="mr-1">침실</span>
-                  <span>2개</span>
-                </span>
+                <span className="mr-1">침실 2개</span>
                 <span>∙</span>
-                <span>
-                  <span className="mr-1">침대</span>
-                  <span>2개</span>
-                </span>
+                <span className="mr-1">침대 2개</span>
                 <span>∙</span>
-                <span>
-                  <span className="mr-1">욕실</span>
-                  <span>2개</span>
-                </span>
+                <span className="mr-1">욕실 2개</span>
               </div>
 
-              <div className="space-x-1 text-lg font-medium">
-                <span>★</span>
-                <span>4.0</span>
-                <span>∙</span>
+              <div className="text-lg font-semibold">
+                <span>★ 4.0</span>
+                <span className="mx-1">∙</span>
                 <button type="button" className="cursor-pointer underline">
-                  <span>후기 </span>
-                  <span>19개</span>
+                  후기 19개
                 </button>
               </div>
             </section>
@@ -129,12 +115,8 @@ export default function Rooms() {
                     <span>○○</span>
                     <span> 님</span>
                   </div>
-                  <div className="text-gray-400">
-                    <span>슈퍼호스트</span>
-                    <span>∙</span>
-                    <span>호스팅 경력 </span>
-                    <span>2</span>
-                    <span>년</span>
+                  <div className="text-gray-500">
+                    <span>호스팅 경력 2년</span>
                   </div>
                 </div>
               </div>
@@ -166,7 +148,7 @@ export default function Rooms() {
             {/* 100자? 까지만 보여주고 나머지는 ... 으로 보여주기 */}
             {/* 더 보기를 눌리면 모달창이 나타나도록 하기 */}
             <section className="py-10 text-lg">
-              <div>
+              <div className="">
                 1. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라
                 만세 무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세 2.
                 남산 위에 저 소나무 철갑을 두른 듯 바람 서리 불변함은 우리
@@ -174,7 +156,7 @@ export default function Rooms() {
                 가슴 일편단심일세 4. 이 기상과 이 맘으로 충성을 다하여 괴로우나
                 즐거우나 나라 사랑하세 ...
               </div>
-              <SeeMoreBtn text={"더 보기"} mt={"5"} />
+              <SeeMoreBtn text={"더 보기"} mt={"4"} />
             </section>
 
             {/* 숙박 장소 */}
@@ -192,6 +174,7 @@ export default function Rooms() {
               </div>
             </section>
 
+            {/* 숙소 편의시설 */}
             <section
               ref={(el) => (scrollRef.current[1] = el)}
               className="py-12"
@@ -267,7 +250,7 @@ export default function Rooms() {
                   width={"full"}
                   textSize={"lg"}
                 />
-                <div className="text-gray-500 mt-2 text-center">
+                <div className="text-gray-500 mt-2 text-center text-sm">
                   예약 확정 전에는 요금이 청구되지 않습니다.
                 </div>
               </section>
@@ -304,7 +287,7 @@ export default function Rooms() {
               </div>
               <div>
                 <h3 className="text-lg font-semibold">흔치 않은 기회</h3>
-                <div className="text-gray-500">
+                <div className="text-gray-500 text-sm">
                   ○○ 님의 숙소는 보통 예약이 가득 차 있습니다.
                 </div>
               </div>
@@ -346,12 +329,12 @@ export default function Rooms() {
           </div>
         </section>
 
-        {/* 호스팅 지역 */}
+        {/* 숙소 위치 */}
         <section
           ref={(el) => (scrollRef.current[3] = el)}
           className="py-12 border-b-[1px]"
         >
-          <h2 className="text-2xl font-semibold pb-6">호스팅 지역</h2>
+          <h2 className="text-2xl font-semibold pb-6">숙소 위치</h2>
           {/* <div className="bg-gray-400 w-full h-[480px]" /> AIzaSyD-WNZvPB9vxkcapA7K8LlEhfjX9bvPQWY */}
           {/* 구글맵 함수에 인자로 해당 주소지를 받음. */}
           {GoogleMap(

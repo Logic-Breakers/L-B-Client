@@ -80,7 +80,7 @@ export default function HouseImages({ houseImages, setHouseImages }) {
       </label>
 
       {houseImages.length !== 0 ? (
-        <div className="mt-4 w-full">
+        <div className="mt-8 w-full">
           <HostingRegisterItemTitle text={"사진 미리보기"} mb />
           <div className="flex flex-row gap-x-4 overflow-x-scroll scrollbar-hide">
             {houseImages.map((el, index) => (

@@ -48,7 +48,7 @@ export default function LoginAndSecurity() {
                 type="button"
                 className={`py-4 text-sm font-medium ${
                   login
-                    ? "text-[#008489] underline underline-offset-[20px] decoration-[2px]"
+                    ? "text-[#008489] underline underline-offset-[20px] decoration-[2px] font-bold"
                     : ""
                 }`}
               >
@@ -59,7 +59,7 @@ export default function LoginAndSecurity() {
                 type="button"
                 className={`py-4 text-sm font-medium ${
                   loginRequest
-                    ? "text-[#008489] underline underline-offset-[20px] decoration-[2px]"
+                    ? "text-[#008489] underline underline-offset-[20px] decoration-[2px] font-bold"
                     : ""
                 }`}
               >
@@ -70,7 +70,7 @@ export default function LoginAndSecurity() {
                 type="button"
                 className={`py-4 text-sm font-medium ${
                   access
-                    ? "text-[#008489] underline underline-offset-[20px] decoration-[2px]"
+                    ? "text-[#008489] underline underline-offset-[20px] decoration-[2px] font-bold"
                     : ""
                 }`}
               >
@@ -91,15 +91,13 @@ export default function LoginAndSecurity() {
                     <div className="flex flex-row justify-between items-start">
                       <div>
                         <div>비밀번호</div>
-                        <div className="mt-[8px] text-gray-500 space-x-1">
-                          <span>최종 수정일:</span>
-                          <span>한 달 전</span>
+                        <div className="mt-[8px] text-gray-600 space-x-1">
+                          최종 수정일: 3달 전
                         </div>
                       </div>
                       <button
                         type="button"
-                        disabled
-                        className="text-gray-200 font-medium"
+                        className="text-[#008489] font-bold hover:underline"
                       >
                         업데이트
                       </button>
@@ -113,13 +111,13 @@ export default function LoginAndSecurity() {
                     <div className="flex flex-row justify-between items-start py-[24px] border-b">
                       <div>
                         <div>페이스북</div>
-                        <div className="mt-[8px] text-gray-500">
-                          <span>연결되지 않음</span>
+                        <div className="mt-[8px] text-gray-600">
+                          연결되지 않음
                         </div>
                       </div>
                       <button
                         type="button"
-                        className="text-[#008489] font-medium hover:underline"
+                        className="text-[#008489] font-bold hover:underline"
                       >
                         연결
                       </button>
@@ -127,13 +125,11 @@ export default function LoginAndSecurity() {
                     <div className="flex flex-row justify-between items-start py-[24px] border-b">
                       <div>
                         <div>구글</div>
-                        <div className="mt-[8px] text-gray-500">
-                          <span>연결됨</span>
-                        </div>
+                        <div className="mt-[8px] text-gray-600">연결됨</div>
                       </div>
                       <button
                         type="button"
-                        className="text-[#008489] font-medium hover:underline"
+                        className="text-[#008489] font-bold hover:underline"
                       >
                         연결 해제
                       </button>
@@ -155,14 +151,14 @@ export default function LoginAndSecurity() {
                           <div className="bg-gray-100 flex flex-row justify-center items-center text-[10px] font-medium w-fit px-2 py-1 rounded-md">
                             현재 세션
                           </div>
-                          <div className="mt-[8px] text-gray-500 space-x-1">
+                          <div className="mt-[8px] text-gray-600 space-x-1">
                             <span>{new Date().toLocaleString()}</span>
                           </div>
                         </div>
                       </div>
                       <button
                         type="button"
-                        className="text-[#008489] font-medium hover:underline"
+                        className="text-[#008489] font-bold hover:underline"
                       >
                         기기에서 로그아웃하기
                       </button>
@@ -174,12 +170,12 @@ export default function LoginAndSecurity() {
                       계정
                     </h3>
                     <div className="flex flex-row justify-between items-start pt-[24px]">
-                      <div className="text-gray-500 space-x-1">
+                      <div className="text-gray-600 space-x-1">
                         계정 비활성화
                       </div>
                       <button
                         type="button"
-                        className="text-orange-600 hover:underline hover:text-[#008489]"
+                        className="text-orange-600 hover:underline hover:text-[#008489] font-bold"
                       >
                         비활성화
                       </button>

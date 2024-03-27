@@ -127,7 +127,7 @@ export default function Home() {
               <div>
                 <span>₩</span>
                 <span className="mr-1 font-medium">497,553</span>
-                <span className="font-[400]">/박</span>
+                <span className="font-normal">/박</span>
               </div>
             </Link>
             <div className="absolute top-3 right-4">

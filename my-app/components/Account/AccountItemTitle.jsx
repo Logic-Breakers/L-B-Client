@@ -14,7 +14,7 @@ export default function AccountItemTitle({ title_route, title_h2 }) {
           <span>{title_route}</span>
         </div>
         <AppBackPageBtn />
-        <h2 className="text-[30px] font-[700] bnb_sm:text-[20px] bnb_sm:hidden ">
+        <h2 className="text-[30px] font-bold bnb_sm:text-[20px] bnb_sm:hidden ">
           {title_h2}
         </h2>
       </section>
