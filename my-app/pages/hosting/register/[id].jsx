@@ -260,7 +260,7 @@ export default function Register() {
         <div className="w-[600px] bnb_md_xl:pt-[80px] bnb_sm:px-[24px]">
           <div className="flex flex-row items-center">
             <h1 className="text-[32px] font-semibold">호스팅 시작하기</h1>
-            <span className="text-red-500 ml-4">
+            <span className="text-red-500 font-semibold ml-4">
               (* 는 필수 입력사항입니다.)
             </span>
           </div>
@@ -331,7 +331,7 @@ export default function Register() {
                     onBlur={onBlurStartDate}
                     // onChange={(event) => setStartDate(event.target.value)}
                     type="date"
-                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
                   />
                 </section>
                 <section className="w-1/2">
@@ -341,7 +341,7 @@ export default function Register() {
                     onBlur={onBlurEndDate}
                     // onChange={(event) => setEndDate(event.target.value)}
                     type="date"
-                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
                   />
                 </section>
               </section>
