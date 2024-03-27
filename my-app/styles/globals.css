@@ -2,3 +2,23 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --brand-color: #ff385c;
+  --brand-color-hover: #d32d4c;
+  --menu-gray-color: #5e5e5e;
+
+  --modal-inner-bg: #fff;
+  --modal-outside-bg: rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #ffffff;
+}
+
+li {
+  list-style: none;
+}
