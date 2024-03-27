@@ -97,7 +97,7 @@ export default function Hosting() {
             </Link>
           </section>
           <section className="pt-10">
-            <h2 className="text-2xl font-medium">숙소</h2>
+            <h2 className="text-2xl font-bold">숙소</h2>
             <div className="flex flex-row items-center mt-2 mb-6 py-6">
               {/* 등록된 숙소를 누르면 해당 숙소 세부정보 사이트로 이동하도록 구현하기 */}
               {/* 서버로부터 등록한 전체 숙소 데이터 가져오기 */}
@@ -121,10 +121,7 @@ export default function Hosting() {
                     </div>
                     <div className="bg-gray-300 aspect-square rounded-md mb-2" />
                     <div className="font-semibold">숙소 이름1</div>
-                    <div className="text-gray-600">
-                      <span>등록일 : </span>
-                      <span>2024년 1월 1일</span>
-                    </div>
+                    <div className="text-gray-600">등록일 : 2024년 1월 1일</div>
                   </div>
                 ))}
               </div>
@@ -138,14 +135,14 @@ export default function Hosting() {
           </section>
 
           <section className="pt-10 pb-16 bnb_sm:pb-24">
-            <h2 className="text-2xl font-medium">예약</h2>
+            <h2 className="text-2xl font-bold">예약</h2>
             <div className="mt-8 mb-6 flex flex-row items-center space-x-3">
               <button
                 type="button"
                 onClick={handleReservationBtn}
                 className={`border-solid px-3 py-1 text-sm rounded-full ${
                   reservation
-                    ? "bg-[#F7F7F7] border-2 border-black"
+                    ? "bg-[#F7F7F7] border-2 border-black font-bold"
                     : "border-[1px] border-gray-300 hover:border-black transition-colors"
                 }`}
               >
@@ -156,7 +153,7 @@ export default function Hosting() {
                 onClick={handleHostingBtn}
                 className={`border-solid px-3 py-1 text-sm rounded-full ${
                   hosting
-                    ? "bg-[#F7F7F7] border-2 border-black"
+                    ? "bg-[#F7F7F7] border-2 border-black font-bold"
                     : "border-[1px] border-gray-300 hover:border-black transition-colors"
                 }`}
               >
@@ -167,7 +164,7 @@ export default function Hosting() {
                 onClick={handleReviewBtn}
                 className={`border-solid px-3 py-1 text-sm rounded-full ${
                   review
-                    ? "bg-[#F7F7F7] border-2 border-black"
+                    ? "bg-[#F7F7F7] border-2 border-black font-bold"
                     : "border-[1px] border-gray-300 hover:border-black transition-colors"
                 }`}
               >

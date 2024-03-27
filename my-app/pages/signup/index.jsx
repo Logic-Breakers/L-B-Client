@@ -183,8 +183,8 @@ export default function SignUp() {
                       onBlur={onBlurUserName}
                       // onChange={(event) => setName(event.target.value)}
                       type="text"
-                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
-                      placeholder="성함을 적어주세요"
+                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
+                      placeholder="성함을 입력해주세요"
                     ></input>
                   </section>
 
@@ -196,7 +196,7 @@ export default function SignUp() {
                       onBlur={onBlurEmail}
                       // onChange={(event) => setEmail(event.target.value)}
                       type="email"
-                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
                       placeholder="abcde@example.com"
                     ></input>
                   </section>
@@ -209,7 +209,7 @@ export default function SignUp() {
                       onBlur={onBlurPassword}
                       // onChange={(event) => setPassword(event.target.value)}
                       type="password"
-                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
                       placeholder="∙∙∙∙∙∙∙∙"
                     ></input>
                   </section>
@@ -253,7 +253,7 @@ export default function SignUp() {
                       onBlur={onBlurPhone}
                       // onChange={(event) => setPhone(event.target.value)}
                       placeholder="01012345678"
-                      className="border-[1px] border-solid border-[#cccccc] w-full rounded-md h-[55px] px-4 appearance-none"
+                      className="border-[1px] border-solid border-[#cccccc] w-full rounded-md h-[55px] px-4 appearance-none placeholder:text-gray-600"
                     ></input>
                   </section>
 
@@ -265,7 +265,7 @@ export default function SignUp() {
                       onBlur={onBlurBirthDate}
                       // onChange={(event) => setBirthDate(event.target.value)}
                       type="date"
-                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
                     ></input>
                   </section>
 
