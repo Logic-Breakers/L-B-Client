@@ -1,3 +1,4 @@
+import Header from "@/components/Header/Header";
 import Title from "@/components/Title";
 import Footer from "@/components/Footer/Footer";
 import NavApp from "@/components/Header/Nav/NavApp";
