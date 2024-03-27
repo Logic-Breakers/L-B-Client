@@ -57,9 +57,7 @@ export default function MenuLogin() {
 
   return (
     <div className="block absolute top-[120%] right-0 shadow-xx rounded-[15px] bg-[#fff] hover:cursor-default">
-      <ul
-        className={`my-[8px] w-[250px] scroll flex flex-col justify-between text-left`}
-      >
+      <ul className="my-[8px] w-[265px] scroll flex flex-col justify-between text-left">
         <NewsItem />
 
         {/* 뒤에 유저의 id값 넣기 */}
@@ -104,9 +102,7 @@ export default function MenuLogin() {
           onClick={onClickLogOut}
           className="px-[20px] py-[12px] hover:cursor-pointer hover:bg-gray-100"
         >
-          <span className={`font-[400] text-[var(--menu-gray-color)]`}>
-            로그아웃
-          </span>
+          <span className="text-[var(--menu-gray-color)]">로그아웃</span>
         </li>
       </ul>
     </div>

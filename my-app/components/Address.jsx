@@ -83,7 +83,7 @@ export default function Address({
         onBlur={handleDetailAddr}
         type="text"
         placeholder="상세주소를 입력해주세요."
-        className="flex flex-row items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] px-4 text-gray-600 mt-3"
+        className="flex flex-row items-center border-[1px] border-solid border-[#cccccc] rounded-md w-full h-[55px] px-4 text-gray-600 mt-3 placeholder:text-gray-600"
       />
     </div>
   );

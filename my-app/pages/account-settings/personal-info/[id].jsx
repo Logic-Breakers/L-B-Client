@@ -253,7 +253,7 @@ export default function PersonalInfo() {
                   <button
                     type="button"
                     onClick={handleProfileImgEdit}
-                    className="text-[14px] font-[500] underline"
+                    className="text-[14px] font-semibold underline"
                   >
                     {profileImgEdit ? "취소" : "수정"}
                   </button>
@@ -283,12 +283,12 @@ export default function PersonalInfo() {
                   <button
                     type="button"
                     onClick={handleUserNameEdit}
-                    className="text-[14px] font-[500] underline"
+                    className="text-[14px] font-semibold underline"
                   >
                     {userNameEdit ? "취소" : "수정"}
                   </button>
                 </div>
-                <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                <div className="text-gray-600 text-[14px] mt-[4px]">
                   {userNameEdit
                     ? "허가증이나 여권 등 여행 서류에 기재되어 있는 이름을 말합니다."
                     : userName.slice(0, 1) + "﹡" + userName.slice(2)}
@@ -303,7 +303,7 @@ export default function PersonalInfo() {
                         onBlur={onBlurUserName}
                         onChange={(event) => setUserName(event.target.value)}
                         placeholder="Name"
-                        className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
+                        className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3 placeholder:text-gray-600"
                       ></input>
                     </div>
                     <BlackBtn
@@ -323,12 +323,12 @@ export default function PersonalInfo() {
                   <button
                     type="button"
                     onClick={handleEmailEdit}
-                    className="text-[14px] font-[500] underline"
+                    className="text-[14px] font-semibold underline"
                   >
                     {emailEdit ? "취소" : "수정"}
                   </button>
                 </div>
-                <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                <div className="text-gray-600 text-[14px] mt-[4px]">
                   {emailEdit
                     ? "언제든지 확인하실 수 있는 주소를 사용하세요"
                     : email}
@@ -343,7 +343,7 @@ export default function PersonalInfo() {
                         onBlur={onBlurEmail}
                         onChange={(event) => setEmail(event.target.value)}
                         placeholder="Email"
-                        className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
+                        className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3 placeholder:text-gray-600"
                       ></input>
                     </div>
                     <BlackBtn
@@ -362,12 +362,12 @@ export default function PersonalInfo() {
                   <button
                     type="button"
                     onClick={handlePasswordEdit}
-                    className="text-[14px] font-[500] underline"
+                    className="text-[14px] font-semibold underline"
                   >
                     {passwordEdit ? "취소" : "수정"}
                   </button>
                 </div>
-                <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                <div className="text-gray-600 text-[14px] mt-[4px]">
                   {passwordEdit
                     ? "변경하실 비밀번호를 입력해주세요"
                     : "﹡".repeat(password.length)}
@@ -382,7 +382,7 @@ export default function PersonalInfo() {
                         onBlur={onBlurPassword}
                         onChange={(event) => setPassword(event.target.value)}
                         placeholder="∙∙∙∙∙∙∙∙"
-                        className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
+                        className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3 placeholder:text-gray-600"
                       ></input>
                     </div>
                     <BlackBtn
@@ -401,12 +401,12 @@ export default function PersonalInfo() {
                   <button
                     type="button"
                     onClick={handlePhoneEdit}
-                    className="text-[14px] font-[500] underline"
+                    className="text-[14px] font-semibold underline"
                   >
                     {phoneEdit ? "취소" : "수정"}
                   </button>
                 </div>
-                <div className="text-[#9a9a9a] text-[14px] mt-[4px]">
+                <div className="text-gray-600 text-[14px] mt-[4px]">
                   {phoneEdit
                     ? "자주 사용하시는 전화번호를 입력해주세요"
                     : phone.length === 11
@@ -423,7 +423,7 @@ export default function PersonalInfo() {
                         onBlur={onBlurPhone}
                         // onChange={(event) => setPhone(event.target.value)}
                         placeholder="01012345678"
-                        className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3"
+                        className="border-[1px] border-solid border-[#cccccc] w-full rounded-md px-4 py-3 placeholder:text-gray-600"
                       ></input>
                     </div>
                     <BlackBtn
@@ -443,7 +443,7 @@ export default function PersonalInfo() {
                   icon={faUserShield}
                   className="text-[36px] text-[#E21C5E]"
                 />
-                <div className="my-[16px] text-[20px] font-[700]">
+                <div className="my-[16px] text-[20px] font-bold">
                   여기에 내 개인정보가 표시되지 않는 이유가 무엇인가요?
                 </div>
                 <div className="text-[#9a9a9a]">
@@ -456,7 +456,7 @@ export default function PersonalInfo() {
                   icon={faUserPen}
                   className="text-[36px] text-[#E21C5E]"
                 />
-                <div className="my-[16px] text-[20px] font-[700]">
+                <div className="my-[16px] text-[20px] font-bold">
                   수정할 수 있는 세부 정보는 무엇인가요?
                 </div>
                 <div className="text-[#9a9a9a]">
@@ -471,7 +471,7 @@ export default function PersonalInfo() {
                   icon={faEye}
                   className="text-[36px] text-[#E21C5E]"
                 />
-                <div className="my-[16px] text-[20px] font-[700]">
+                <div className="my-[16px] text-[20px] font-bold">
                   다른 사람에게 어떤 정보가 공개되나요?
                 </div>
                 <div className="text-[#9a9a9a]">

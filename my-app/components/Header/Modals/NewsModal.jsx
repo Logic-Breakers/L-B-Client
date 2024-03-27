@@ -13,15 +13,15 @@ export default function NewsModal({ closeNewsModal }) {
       >
         <CloseModalBtn onClick={closeNewsModal} />
 
-        <div className="flex flex-row justify-center items-center text-[30px] my-[20px] bg-[#e52448] text-white px-[6px] py-[1px] rounded-lg w-[100px]">
+        <div className="flex flex-row justify-center items-center text-[30px] my-[20px] bg-[#e52448] text-white px-[10px] py-[1px] rounded-lg w-fit">
           새소식
         </div>
 
-        <h3 className="text-[24px] mb-[20px] font-[500]">
+        <h3 className="text-[24px] mb-[20px] font-semibold">
           Open Airbnb Clone 2024
         </h3>
 
-        <div className="text-[18px]">
+        <div className="text-[18px] font-medium">
           안녕하세요. <br />
           에어비앤비 클론코딩 2024에 오신 것을 격하게 환영합니다. 🙇‍♂️
         </div>

@@ -7,6 +7,7 @@ import Address from "@/components/Address";
 import HostingRegisterItemTitle from "@/components/Hosting/registerPage/HostingRegisterItemTitle";
 import HouseImages from "@/components/HouseImages";
 import RedBtn from "@/components/Buttons/RedBtn";
+import AppBackPageBtn from "@/components/Buttons/AppBackPageBtn";
 
 import CountryData from "@/components/Datas/CountryData";
 import PropertyTypeData from "@/components/Datas/PropertyTypeData";
@@ -254,16 +255,17 @@ export default function Register() {
     <>
       <Title text={"호스팅 시작하기 - Airbnb"} />
       <Header fixed />
-      <main className="flex flex-row justify-center w-full min-h-screen mt-[40px]">
+      <AppBackPageBtn />
+      <main className="flex flex-row justify-center w-full min-h-screen mt-[40px] bnb_sm:mt-[80px]">
         <div className="w-[600px] bnb_md_xl:pt-[80px] bnb_sm:px-[24px]">
           <div className="flex flex-row items-center">
-            <h1 className="text-[32px] font-[500]">호스팅 시작하기</h1>
+            <h1 className="text-[32px] font-semibold">호스팅 시작하기</h1>
             <span className="text-red-500 ml-4">
               (* 는 필수 입력사항입니다.)
             </span>
           </div>
           <form onSubmit={(event) => event.preventDefault()}>
-            <h2 className="text-xl text-gray-500">기본정보를 알려주세요</h2>
+            <h2 className="text-xl text-gray-600">기본정보를 알려주세요</h2>
             <section className="my-8 space-y-10">
               {/* 숙소 이름 */}
               <section>
@@ -273,7 +275,7 @@ export default function Register() {
                   onBlur={onBlurHouseName}
                   // onChange={(event) => setHouseName(event.target.value)}
                   type="text"
-                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4"
+                  className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
                   placeholder="숙소 이름을 적어주세요"
                 ></input>
               </section>
@@ -354,10 +356,10 @@ export default function Register() {
                     // onChange={(event) => setPrice(event.target.value)}
                     // value={price}
                     type="number"
-                    className="text-center border-solid border-[1px] border-[#cccccc] px-6 placeholder:text-center w-[150px] h-[55px] rounded-md text-md text-gray-600"
+                    className="text-center border-solid border-[1px] border-[#cccccc] px-6 placeholder:text-center w-[150px] h-[55px] rounded-md text-md text-gray-600 placeholder:text-gray-600"
                     placeholder="10000"
                   ></input>
-                  <div className="absolute left-28 text-gray-400 text-sm">
+                  <div className="absolute left-28 text-gray-600 text-sm">
                     원/박
                   </div>
                 </div>
@@ -561,7 +563,7 @@ export default function Register() {
                   required
                   onBlur={onBlurInfo}
                   // onChange={(event) => setInfo(event.target.value)}
-                  className="w-full h-60 border-[#cccccc] border-solid border-[1px] rounded-md text-gray-600 text-lg p-4"
+                  className="w-full h-60 border-[#cccccc] border-solid border-[1px] rounded-md text-gray-600 text-lg p-4 placeholder:text-gray-600"
                   placeholder="숙소를 설명해주세요"
                 />
               </section>

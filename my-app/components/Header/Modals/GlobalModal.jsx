@@ -38,7 +38,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
               onClick={handleLanguageAndLocal}
               className={`p-[16px] ml-[-16px] ${
                 showLanguageAndLocal
-                  ? "decoration-slice underline underline-offset-[20px] text-black"
+                  ? "decoration-slice underline underline-offset-[20px] text-black font-semibold"
                   : "text-[#717171]"
               }`}
             >
@@ -48,7 +48,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
               onClick={handleExchange}
               className={`p-[16px] ml-[-16px] ${
                 showExchange
-                  ? "decoration-slice underline underline-offset-[20px] text-black"
+                  ? "decoration-slice underline underline-offset-[20px] text-black font-semibold"
                   : "text-[#717171]"
               }`}
             >
@@ -59,7 +59,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
           {/* 글로벌 모달 ON + 언어와 지역 버튼 ON 인 경우 */}
           {showGlobalModal && showLanguageAndLocal && (
             <div>
-              <section className="relative flex flex-col justify-center text-[16px] bg-[#F7F7F7] rounded-lg w-[326px] h-[80px] mt-[50px] p-[16px]">
+              <section className="relative flex flex-col justify-center text-[16px] bg-[#F7F7F7] rounded-lg w-[360px] h-[80px] mt-[50px] p-[16px]">
                 <div className="mb-[8px] flex flex-row items-center gap-[8px]">
                   <span>번역</span>
                   <FontAwesomeIcon icon={faLanguage} className="text-[20px]" />
@@ -67,7 +67,7 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
                 <div className="text-[14px] text-[#737373]">
                   설명과 후기가 한국어로 자동 번역됩니다.
                 </div>
-                <div className="absolute left-[260px]">
+                <div className="absolute right-5">
                   {autoTranslation && (
                     <button
                       type="button"
@@ -92,14 +92,14 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
               </section>
 
               <section>
-                <h3 className="text-[22px] mt-[40px] mb-[20px]">
+                <h3 className="text-[22px] mt-[40px] mb-[20px] font-semibold">
                   추천 언어 및 지역
                 </h3>
                 <ul className="grid gap-[10px] bnb_xl:grid-cols-5 bnb_lg:grid-cols-4 bnb_md:grid-cols-3"></ul>
               </section>
 
               <section>
-                <h3 className="text-[22px] mt-[40px] mb-[20px]">
+                <h3 className="text-[22px] mt-[40px] mb-[20px] font-semibold">
                   언어와 지역을 선택하세요
                 </h3>
                 <ul className="grid gap-[10px] bnb_xl:grid-cols-5 bnb_lg:grid-cols-4 bnb_md:grid-cols-3">
@@ -122,8 +122,8 @@ export default function GlobalModal({ closeGlobalModal, showGlobalModal }) {
           {/* 글로벌 모달 ON + 통화 버튼 ON 인 경우 */}
           {showGlobalModal && showExchange && (
             <section>
-              <h3 className="text-[22px] mt-[20px] mb-[20px]">
-                통화를 선택하세요.
+              <h3 className="text-[22px] mt-[20px] mb-[20px] font-semibold">
+                통화를 선택하세요
               </h3>
               <ul className="grid gap-[10px] bnb_xl:grid-cols-5 bnb_lg:grid-cols-4 bnb_md:grid-cols-3">
                 {GlobalModalData.map((el) => (

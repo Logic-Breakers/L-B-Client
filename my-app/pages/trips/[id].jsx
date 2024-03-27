@@ -13,9 +13,9 @@ export default function Trips() {
       <main className="flex flex-row justify-center w-full h-[100vh]">
         <div className="w-[100%] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] bnb_md_xl:mt-[70px]">
           <div>
-            <h1 className="font-[500] text-[32px] pt-[36px] pb-[24px]">여행</h1>
+            <h1 className="font-bold text-[32px] pt-[36px] pb-[24px]">여행</h1>
             <div className="border-y-[1px] border-solid border-[#cccccc] pt-[32px] pb-[48px]">
-              <h2 className="text-[20px] font-[500] mb-[8px]">
+              <h2 className="text-[20px] font-bold mb-[8px]">
                 아직 예약된 여행이 없습니다!
               </h2>
               <div className="text-[16px] mb-[16px] text-[var(--menu-gray-color)]">
@@ -30,7 +30,7 @@ export default function Trips() {
                 예약 내역을 찾으실 수 없나요?
               </span>
               <Link href={"/help"}>
-                <span className="font-[500] underline decoration-solid">
+                <span className="font-bold underline decoration-solid">
                   도움말 센터 방문하기
                 </span>
               </Link>

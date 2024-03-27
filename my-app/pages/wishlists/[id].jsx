@@ -22,7 +22,7 @@ export default function Wishlists() {
       <Header fixed />
       <main className="flex flex-row justify-center items-center w-full bnb_sm:mb-[60px]">
         <div className="w-[100%] min-h-[100vh] bnb_md_xl:pt-[80px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px]">
-          <h1 className="text-[32px] font-[500] mt-[36px]">위시리스트</h1>
+          <h1 className="text-[32px] font-bold mt-[36px]">위시리스트</h1>
           <section>
             <ul className="grid bnb_xl:grid-cols-4 bnb_md_lg:grid-cols-3 bnb_sm:grid-cols-2 gap-[24px] my-[24px]">
               {wishlistsDummy.map((el) => (
@@ -46,7 +46,7 @@ export default function Wishlists() {
 
                       <div className="pt-[8px]">
                         <div className="flex flex-row justify-between">
-                          <span className="font-[500]">{el.location}</span>
+                          <span className="font-semibold">{el.location}</span>
                           <span>
                             <span>★</span>
                             <span className="ml-[4px] text-gray-500">
@@ -57,7 +57,7 @@ export default function Wishlists() {
                         <div className="text-gray-500">{el.feature}</div>
                         <div className="flex flex-row justify-between items-center">
                           <div>
-                            <span className="font-[500]">
+                            <span className="font-semibold">
                               {`₩${el.price.toLocaleString()} `}
                             </span>
                             <span className="text-gray-500">/박</span>

@@ -84,7 +84,7 @@ export default function LoginModal({ closeLoginModal }) {
       <section className="w-[568px] max-h-[746px] z-[1000] fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-[var(--modal-inner-bg)] rounded-lg cursor-default">
         <header className="flex flex-row justify-between items-center h-[63px] px-[24px] border-b-[1px] border-solid border-[#DDDDDD]">
           <CloseModalBtn onClick={closeLoginModal} />
-          <h3 className="pl-[58px] text-[16px] font-[600]">로그인</h3>
+          <h3 className="pl-[58px] text-[16px] font-semibold">로그인</h3>
           <RedBtn
             onClick={onClickSignUpPage}
             type={"button"}
@@ -94,7 +94,7 @@ export default function LoginModal({ closeLoginModal }) {
           />
         </header>
         <section className="mt-[30px] px-[24px]">
-          <h3 className="text-[22px] font-[500] mb-[20px]">
+          <h3 className="text-[22px] font-semibold mb-[20px]">
             에어비앤비에 오신 것을 환영합니다.
           </h3>
           <form onSubmit={(event) => event.preventDefault()}>
