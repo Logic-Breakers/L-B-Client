@@ -14,7 +14,20 @@ import {
 
 // 필터 버튼을 누르면 나타나는 모달
 export default function FilterModal({ closeFilterModal, showFilterModal }) {
-  const [typePlace, setTypePlace] = useState(["공간_전체", "방", "집_전체"]);
+  const [country, setCountry] = useState("대한민국");
+  const [typePlace, setTypePlace] = useState("공간_전체");
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(0);
+  const [bedrooms, setBedrooms] = useState("상관없음");
+  const [beds, setBeds] = useState("상관없음");
+  const [bathrooms, setBathrooms] = useState("상관없음");
+  const [propertyType, setPropertyType] = useState("단독 또는 다세대 주택");
+
+  // filter API
+  // /stays/filter?page=1&size=2&country={}&beds={}
+  // &bathrooms={}&propertyType={}
+  // &minPrice={}&maxPrice={}&placeType={}
+  // -> bedrooms 없음!
 
   const handleTypePlace = (event) => {
     const typePlaceValue = event.target.innerText;
@@ -31,6 +44,14 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
 
   const onClickAllOff = () => {
     console.log("필터 모달에서 전체 해제 버튼 누름");
+    setCountry("대한민국");
+    setTypePlace("공간_전체");
+    setMinPrice(0);
+    setMaxPrice(0);
+    setBedrooms("상관없음");
+    setBeds("상관없음");
+    setBathrooms("상관없음");
+    setPropertyType("단독_또는_다세대 주택");
   };
 
   const submitFilter = () => {
@@ -58,6 +79,20 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
         </header>
 
         <main className="w-full mt-14 mb-20 px-6 divide-y-[1px] overflow-y-scroll">
+          {/* 침실 & 침대 & 욕실 */}
+          <section className="py-8">
+            <h1 className="font-bold text-[22px] pb-2">국가</h1>
+            <div>
+              <div className="py-5 flex flex-row space-x-2 shrink-0 overflow-x-scroll scrollbar-hide">
+                <FilterModalNumberBtn text={"대한민국"} />
+                <FilterModalNumberBtn text={"미국"} />
+                <FilterModalNumberBtn text={"영국"} />
+                <FilterModalNumberBtn text={"일본"} />
+                <FilterModalNumberBtn text={"중국"} />
+              </div>
+            </div>
+          </section>
+
           {/* 숙소유형 */}
           <section className="py-6">
             <h1 className="font-bold text-[22px] pb-2">숙소 유형</h1>
@@ -129,12 +164,12 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
             </div>
           </section>
 
-          {/* 침실과 침대 */}
+          {/* 침실 & 침대 & 욕실 */}
           <section className="py-8">
             <h1 className="font-bold text-[22px] pb-2">침실과 침대</h1>
             <div>
               <div className="text-gray-600 pt-7 pb-5">침실</div>
-              <div className="flex flex-row space-x-2">
+              <div className="flex flex-row space-x-2 shrink-0 overflow-x-scroll scrollbar-hide">
                 <FilterModalNumberBtn text={"상관없음"} />
                 <FilterModalNumberBtn text={"1"} />
                 <FilterModalNumberBtn text={"2"} />
@@ -148,7 +183,7 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
             </div>
             <div>
               <div className="text-gray-600 pt-7 pb-5">침대</div>
-              <div className="flex flex-row space-x-2">
+              <div className="flex flex-row space-x-2 shrink-0 overflow-x-scroll scrollbar-hide">
                 <FilterModalNumberBtn text={"상관없음"} />
                 <FilterModalNumberBtn text={"1"} />
                 <FilterModalNumberBtn text={"2"} />
@@ -162,7 +197,7 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
             </div>
             <div>
               <div className="text-gray-600 pt-7 pb-5">욕실</div>
-              <div className="flex flex-row space-x-2">
+              <div className="flex flex-row space-x-2 shrink-0 overflow-x-scroll scrollbar-hide">
                 <FilterModalNumberBtn text={"상관없음"} />
                 <FilterModalNumberBtn text={"1"} />
                 <FilterModalNumberBtn text={"2"} />

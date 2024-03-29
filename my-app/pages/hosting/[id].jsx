@@ -42,8 +42,8 @@ export default function Hosting() {
     // console.dir(scrollTarget.scrollLeft);
     const scrollAmount =
       direction === "Left"
-        ? -scrollTarget.offsetWidth
-        : +scrollTarget.offsetWidth;
+        ? -scrollTarget.offsetWidth * 0.8
+        : +scrollTarget.offsetWidth * 0.8;
     scrollTarget.scrollBy({
       behavior: "smooth",
       left: scrollAmount,
