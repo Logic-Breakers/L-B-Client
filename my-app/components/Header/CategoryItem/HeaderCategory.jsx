@@ -20,14 +20,6 @@ export default function HeaderCategory({ getCategoryData, category }) {
     });
   };
 
-  // const onClickScrollRight = () => {
-  //   const scrollTarget = document.querySelector("#scrollTarget");
-  //   scrollTarget.scrollTo({
-  //     behavior: "smooth",
-  //     left: scrollTarget.scrollLeft + scrollTarget.offsetWidth,
-  //   });
-  // };
-
   return (
     <section className="bnb_xl:px-[80px] px-[40px] border-t-[1px] border-solid border-[#eeeeee] pt-3 flex flex-row justify-between items-center space-x-4">
       <div className="mr-2">
