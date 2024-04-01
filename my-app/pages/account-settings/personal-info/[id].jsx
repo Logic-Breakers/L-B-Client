@@ -24,6 +24,7 @@ export default function PersonalInfo() {
 
   // 프로필 사진, 이름, 이메일, 비밀번호, 전화번호
   // 데이터 가져온 값 넣어주기
+  // 유저 데이터 가져올 때 : 첫 렌더링, 새로고침 시, 저장버튼 눌렸을 때(새로 저장된 데이터 가져오기)
   const [profileImg, setProfileImg] = useState("");
   const [userName, setUserName] = useState("홍길동");
   const [email, setEmail] = useState("abcde@example.com");
@@ -216,6 +217,9 @@ export default function PersonalInfo() {
           // 토큰이 만료되지 않고, 정상적으로 응답을 받아온 경우
           // '프로필 사진, 성함, 이메일, 전화번호' 데이터를
           // 각 useState의 초기값으로 입력한다.
+
+          // 프로필 사진은 url로 데이터가 들어오는데, 해당 url로 이미지를 보여주고,
+          // 그 후에 url를 File 데이터로 변환하여 서버로 전송한다.
           console.log("userResponse", userResponse);
         } catch (err) {
           console.log(err);

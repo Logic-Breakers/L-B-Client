@@ -17,6 +17,7 @@ import RoomsAccommodationPlaceItem from "@/components/Rooms/RoomsAccommodationPl
 import RoomsFacilitiesItem from "@/components/Rooms/RoomsFacilitiesItem";
 import RoomsReviewItem from "@/components/Rooms/RoomsReviewItem";
 import RoomsNoticeItem from "@/components/Rooms/RoomsNoticeItem";
+import KakaoMap from "@/components/KakaoMap";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -307,14 +308,9 @@ export default function Rooms() {
           className="py-12 border-b-[1px]"
         >
           <div className="space-x-1 text-2xl font-semibold">
-            <span>★</span>
-            <span>4.0</span>
+            <span>★ 4.0</span>
             <span>∙</span>
-            <span>
-              <span>후기 </span>
-              <span>19</span>
-              <span>개</span>
-            </span>
+            <span>후기 19개</span>
           </div>
           <div className="pt-10 grid bnb_sm:grid-cols-1 grid-cols-2 gap-x-10 gap-y-6">
             <RoomsReviewItem />
@@ -335,11 +331,10 @@ export default function Rooms() {
           className="py-12 border-b-[1px]"
         >
           <h2 className="text-2xl font-semibold pb-6">숙소 위치</h2>
-          {/* <div className="bg-gray-400 w-full h-[480px]" /> AIzaSyD-WNZvPB9vxkcapA7K8LlEhfjX9bvPQWY */}
-          {/* 구글맵 함수에 인자로 해당 주소지를 받음. */}
-          {GoogleMap(
-            "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3162.067639052783!2d126.97405607632359!3d37.5770249235258!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x357ca2c06b408d39%3A0xedaef20ae4fc4c0b!2z7ISc7Jq47Yq567OE7IucIOyiheuhnOq1rCDtmqjsnpDroZwgMTI!5e0!3m2!1sko!2skr!4v1709027145508!5m2!1sko!2skr"
-          )}
+          <KakaoMap
+            address={"제주특별자치도 제주시 첨단로 242"}
+            houseName={"숙소 이름"}
+          />
           <div className="my-4 font-semibold">
             효자로 12, 종로구, 서울특별시, 한국
           </div>
@@ -357,24 +352,15 @@ export default function Rooms() {
             <div className="flex flex-row items-center space-x-4 mb-6">
               <div className="w-16 h-16 bg-gray-200 rounded-full" />
               <div>
-                <div className="text-2xl font-semibold">
-                  <span>호스트: </span>
-                  <span>userName</span>
-                  <span>님</span>
-                </div>
-                <div className="text-gray-500">
-                  <span>회원 가입일: </span>
-                  <span>2021년 8월</span>
-                </div>
+                <div className="text-2xl font-semibold">호스트: userName님</div>
+                <div className="text-gray-500">회원 가입일: 2021년 8월</div>
               </div>
             </div>
 
             <ul className="flex flex-row space-x-6 mb-6">
               <li>
                 <span className="mr-2">★</span>
-                <span>후기 </span>
-                <span>166</span>
-                <span>개</span>
+                <span>후기 166개</span>
               </li>
               <li>
                 <span className="mr-2">✅</span>
@@ -414,20 +400,9 @@ export default function Rooms() {
           {/* 호스트 정보의 오른쪽 */}
           <section>
             <div>
-              <div>
-                <span>언어: </span>
-                <span>한국어</span>
-              </div>
-              <div>
-                <span>응답률: </span>
-                <span>100</span>
-                <span>%</span>
-              </div>
-              <div>
-                <span>응답 시간: </span>
-                <span>1</span>
-                <span>시간 이내</span>
-              </div>
+              <div>언어: 한국어</div>
+              <div>응답률: 100%</div>
+              <div>응답시간: 1시간 이내</div>
             </div>
             <div className="mt-8 mb-6">
               <WhiteBtn text={"호스트에게 연락하기"} />
