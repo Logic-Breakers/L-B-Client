@@ -38,15 +38,8 @@ export default function Rooms() {
     console.log("편의시설 모두 보기 버튼 눌림");
   };
 
-  const GoogleMap = (location) => {
-    return (
-      <div>
-        <iframe className="w-full h-[480px]" src={location} />
-      </div>
-    );
-  };
-
   return (
+    // 숙소 사진 스크롤 위치
     <div ref={(el) => (scrollRef.current[0] = el)}>
       <Title text={"에어비앤비 | 휴가지 숙소, 통나무집, 해변가 주택 등"} />
       <Header />
@@ -80,9 +73,9 @@ export default function Rooms() {
 
         {/* 왼쪽 상자 */}
         <section className="flex flex-row justify-between border-b-[1px]">
-          <section className="bnb_sm:w-full w-[58.34%] divide-y-[1px]">
+          <section className="bnb_sm:w-full w-[58.34%] ">
             {/* 위치, 국가, 건물유형, 숙소유형, 인원, 침실, 침대, 욕실, 별점, 후기 */}
-            <section className="pb-6">
+            <section className="pb-6 border-b">
               <h2 className="text-[22px] font-semibold">
                 위치, 국가 + 건물유형 + 숙소유형 (ex 수영구, 한국의 게스트용
                 별채 전체)
@@ -107,25 +100,19 @@ export default function Rooms() {
             </section>
 
             {/* 호스트 */}
-            <section className="py-6">
+            <section className="py-6 border-b">
               <div className="flex flex-row items-center space-x-6">
                 <div className="bg-gray-200 w-[40px] h-[40px] rounded-full" />
                 <div>
-                  <div className="font-semibold">
-                    <span>호스트: </span>
-                    <span>○○</span>
-                    <span> 님</span>
-                  </div>
-                  <div className="text-gray-500">
-                    <span>호스팅 경력 2년</span>
-                  </div>
+                  <div className="font-semibold">호스트: userName 님</div>
+                  <div className="text-gray-500">호스팅 경력 2년</div>
                 </div>
               </div>
             </section>
 
             {/* 숙소 Highlight */}
-            {/* 숙소 등록 당시 입력한 내용을 가져와서 보여주기? (아직은 등록 시 입력하는 공간  없음) */}
-            <section className="py-6">
+            {/* 숙소 등록 당시 입력한 내용을 가져와서 보여주기? (아직은 등록 시 입력하는 공간 없음) */}
+            <section className="py-6 border-b">
               <RoomsHighlightItem
                 icon={<FontAwesomeIcon icon={faDoorOpen} />}
                 title={"셀프 체크인"}
@@ -148,7 +135,7 @@ export default function Rooms() {
             {/* 숙소 설명 */}
             {/* 100자? 까지만 보여주고 나머지는 ... 으로 보여주기 */}
             {/* 더 보기를 눌리면 모달창이 나타나도록 하기 */}
-            <section className="py-10 text-lg">
+            <section className="py-10 text-lg border-b">
               <div className="">
                 1. 동해물과 백두산이 마르고 닳도록 하느님이 보우하사 우리나라
                 만세 무궁화 삼천리 화려강산 대한 사람 대한으로 길이 보전하세 2.
@@ -161,7 +148,7 @@ export default function Rooms() {
             </section>
 
             {/* 숙박 장소 */}
-            <section className="py-12">
+            <section className="py-12 border-b">
               <h2 className="text-2xl font-semibold pb-6">숙박 장소</h2>
               <div className="grid bnb_sm:grid-cols-2 grid-cols-3 gap-4">
                 <RoomsAccommodationPlaceItem
@@ -173,13 +160,13 @@ export default function Rooms() {
                   detail={"싱글 침대 1개"}
                 />
               </div>
+
+              {/* 숙소 편의시설 스크롤 위치 */}
+              <div ref={(el) => (scrollRef.current[1] = el)} />
             </section>
 
             {/* 숙소 편의시설 */}
-            <section
-              ref={(el) => (scrollRef.current[1] = el)}
-              className="py-12"
-            >
+            <section className="py-12">
               <h2 className="text-2xl font-semibold pb-6">숙소 편의시설</h2>
               <ul className="grid grid-cols-2 gap-4">
                 {[1, 1, 1, 1, 1, 1, 1, 1, 1, 1].map((_, index) => (
@@ -196,6 +183,9 @@ export default function Rooms() {
                   onClick={showFacilitiesModal}
                   text={"편의시설 모두 보기"}
                 />
+
+                {/* 숙소 후기 스크롤 위치 */}
+                <div ref={(el) => (scrollRef.current[2] = el)} />
               </div>
             </section>
           </section>
@@ -207,12 +197,10 @@ export default function Rooms() {
               <section>
                 <div className="mb-6 flex flex-wrap">
                   <span className="mr-1 text-2xl font-semibold text-gray-500 line-through">
-                    <span className="">₩</span>
-                    <span className="">404,148</span>
+                    ₩404,148
                   </span>
                   <span>
-                    <span className="text-2xl font-semibold">₩</span>
-                    <span className="text-2xl font-semibold">88,000</span>
+                    <span className="text-2xl font-semibold">₩88,000</span>
                     <span className="text-xl"> /박</span>
                   </span>
                 </div>
@@ -289,7 +277,7 @@ export default function Rooms() {
               <div>
                 <h3 className="text-lg font-semibold">흔치 않은 기회</h3>
                 <div className="text-gray-500 text-sm">
-                  ○○ 님의 숙소는 보통 예약이 가득 차 있습니다.
+                  userName 님의 숙소는 보통 예약이 가득 차 있습니다.
                 </div>
               </div>
             </section>
@@ -303,10 +291,7 @@ export default function Rooms() {
         </section>
 
         {/* 후기 */}
-        <section
-          ref={(el) => (scrollRef.current[2] = el)}
-          className="py-12 border-b-[1px]"
-        >
+        <section className="py-12 border-b-[1px]">
           <div className="space-x-1 text-2xl font-semibold">
             <span>★ 4.0</span>
             <span>∙</span>
@@ -322,26 +307,21 @@ export default function Rooms() {
           </div>
           <div className="mt-8">
             <WhiteBtn text={"후기 모두 보기"} />
+
+            {/* 숙소 위치 스크롤 위치 */}
+            <div ref={(el) => (scrollRef.current[3] = el)} />
           </div>
         </section>
 
         {/* 숙소 위치 */}
-        <section
-          ref={(el) => (scrollRef.current[3] = el)}
-          className="py-12 border-b-[1px]"
-        >
+        <section className="py-12 border-b-[1px]">
           <h2 className="text-2xl font-semibold pb-6">숙소 위치</h2>
           <KakaoMap
             address={"제주특별자치도 제주시 첨단로 242"}
             houseName={"숙소 이름"}
           />
-          <div className="my-4 font-semibold">
-            효자로 12, 종로구, 서울특별시, 한국
-          </div>
-          <div>
-            서울특별시 종로구 효자로 12 (서울특별시 경복궁 광화문) <br />
-            경복궁, 세종대왕, 이순신 장군님의 동상 등을 볼 수 있습니다. ...
-          </div>
+          <div className="my-4 font-semibold">address</div>
+          <div>info</div>
           <SeeMoreBtn text={"더 보기"} mt={"4"} />
         </section>
 
