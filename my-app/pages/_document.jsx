@@ -5,11 +5,11 @@ export default function Document() {
     <Html lang="ko">
       <Head />
       <body>
-        <script
+        {/* <script
           type="text/javascript"
           strategy="beforeInteractive"
           src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_MAP_API_KEY}&libraries=services&autoload=false`}
-        ></script>
+        ></script> */}
         <Main />
         <NextScript />
       </body>
