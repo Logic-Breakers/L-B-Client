@@ -5,7 +5,7 @@ import Footer from "@/components/Footer/Footer";
 import AppBackPageBtn from "@/components/Buttons/AppBackPageBtn";
 import NavApp from "@/components/Header/Nav/NavApp";
 
-import { useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import LikedBtn from "@/components/Buttons/LikedBtn";
 import SeeMoreBtn from "@/components/Buttons/SeeMoreBtn";
@@ -33,6 +33,30 @@ import RoomsHeader from "@/components/Header/RoomsHeader";
 // 숙소 상세내용
 export default function Rooms() {
   const scrollRef = useRef([]);
+  const [isRoomsHeaderShow, setIsRoomsHeaderShow] = useState(false);
+
+  // 의존성 배열(Dependency Array)에 빈 배열('[]')을 전달하여,
+  // useEffect가 렌더링 시 한 번만 실행됩니다.
+  useEffect(() => {
+    const handleScroll = () => {
+      // RoomsHeader y축 600px 초과일 때만 보여준다.
+      if (window.scrollY > 600) {
+        setIsRoomsHeaderShow(true);
+      } else {
+        setIsRoomsHeaderShow(false);
+      }
+    };
+    // 마운트(= 컴포넌트가 화면에 있으면)된 경우, 이벤트 리스너를 등록한다.
+    // 마운트된 경우, 스크롤을 하면 handleScroll 함수가 호출되어 isRoomsHeaderShow의 상태를 업데이트 한다.
+
+    window.addEventListener("scroll", handleScroll);
+
+    // 언마운트(= 컴포넌트가 화면에서 사라지면)된 경우, 이벤트 리스너를 제거한다.
+    // 언마운트될 때, 이벤트 리스너를 제거하여 메모리 누수를 방지한다.
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   const showFacilitiesModal = () => {
     console.log("편의시설 모두 보기 버튼 눌림");
@@ -43,7 +67,10 @@ export default function Rooms() {
     <div ref={(el) => (scrollRef.current[0] = el)}>
       <Title text={"에어비앤비 | 휴가지 숙소, 통나무집, 해변가 주택 등"} />
       <Header />
-      <RoomsHeader scrollRef={scrollRef} />
+      <RoomsHeader
+        scrollRef={scrollRef}
+        isRoomsHeaderShow={isRoomsHeaderShow}
+      />
       <AppBackPageBtn />
       <main className="w-full max-w-[1280px] bnb_xl:px-[80px] bnb_md_lg:px-[40px] bnb_sm:px-[24px] bnb_sm:mt-[80px] bnb_sm:mb-[60px] mx-auto">
         <section>

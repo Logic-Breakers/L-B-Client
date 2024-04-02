@@ -3,10 +3,11 @@ import RoomsHeaderBtn from "../Buttons/RoomsHeaderBtn";
 import RedBtn from "../Buttons/RedBtn";
 
 // Rooms 페이지에서 스크롤 내리면 나타나는 헤더
-export default function RoomsHeader({ scrollRef }) {
+export default function RoomsHeader({ scrollRef, isRoomsHeaderShow }) {
   return (
     <header
-      className={`bnb_sm:hidden bnb_xl:px-[80px] px-[40px] bg-[#fff] fixed top-0 left-0 w-full z-[100] duration-[0.1s] border-b-[1px] border-solid border-[#eeeeee] flex flex-row justify-between items-center
+      className={`bnb_sm:hidden bnb_xl:px-[80px] px-[40px] bg-[#fff] fixed top-0 left-0 w-full z-[100] duration-[0.1s] border-b-[1px] border-solid border-[#eeeeee] flex flex-row justify-between items-center ${
+        isRoomsHeaderShow ? "block" : "hidden"
       }`}
     >
       <section className="flex flex-row items-center h-[80px] space-x-10">
