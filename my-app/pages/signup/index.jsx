@@ -87,10 +87,10 @@ export default function SignUp() {
   };
 
   const onClickSubmitBtn = async () => {
-    // API 요청을 보내기 위한 데이터 준비
+    // API 요청을 보내기 위한 FormData 객체 생성
     const formData = new FormData();
+    // stay 데이터(이미지를 제외한 나머지 데이터)를 JSON 형식으로 추가
     formData.append(
-      // 서버측과 정한 FormData 객체에 데이터를 추가하는 데 사용되는 키(key) : stay
       "stay",
       new Blob(
         [

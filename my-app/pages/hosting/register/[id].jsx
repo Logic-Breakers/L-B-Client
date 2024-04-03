@@ -145,8 +145,9 @@ export default function Register() {
     console.log("설명 : ", info);
   };
 
-  // Base64 데이터 URL(imageUrl)을 Blob으로 변환
+  // Base64 Data URL(imageUrl)을 Blob으로 변환하는 함수
   const convertDataURLToFile = async (dataURL, fileName) => {
+    // Base64 Data URL을 Blob으로 변환
     const response = await axios.get(dataURL, {
       responseType: "blob",
     });
@@ -155,9 +156,11 @@ export default function Register() {
     // Blob을 File 객체로 변환
     const houseImgFile = new File([blob], fileName, { type: blob.type });
 
+    // 변환된 File 객체 변환
     return houseImgFile;
   };
 
+  // 등록 버튼 클릭 시 실행되는 함수
   const onClickSubmitBtn = async () => {
     console.log("숙소 등록하기 버튼 누름");
     console.log("숙소 이름 : ", houseName);
@@ -178,8 +181,9 @@ export default function Register() {
     console.log("설명 : ", info);
     console.log("숙소 사진들 : ", houseImages);
 
-    // API 요청을 보내기 위한 데이터 준비
+    // API 요청을 보내기 위한 FormData 객체 생성
     const formData = new FormData();
+    // stay 데이터(이미지를 제외한 나머지 데이터)를 JSON 형식으로 추가
     formData.append(
       "stay",
       new Blob(
@@ -211,13 +215,17 @@ export default function Register() {
     // --> 해결방법 : Bases64 데이터 URL을 File 객체로 변환하고, FormData에 파일을 추가한다.
     // (--> 모든 파일을 한 번에 변환할 수 없으므로, for문을 통해 배열 요소를 하나씩 변환해준다.)
 
+    // 이미지 파일을 FormData에 추가
     if (houseImages.length >= 1) {
+      // houseImages 배열의 각 요소를 순회하며 처리
       console.log("파일 객체로 변환 전 이미지", houseImages);
       for (let i = 0; i < houseImages.length; i++) {
+        // Base64 Data URL을 File 객체로 변환
         const houseImgFile = await convertDataURLToFile(
           houseImages[i],
           `house_images_${i}`
         );
+        // FormData에 File을 추가
         formData.append("image", houseImgFile);
         console.log("파일 객체로 변환 후 이미지", houseImgFile);
       }
