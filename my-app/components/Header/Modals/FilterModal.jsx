@@ -243,7 +243,13 @@ export default function FilterModal({ closeFilterModal, showFilterModal }) {
             전체 해제
           </button>
 
-          <BlackBtn type={"submit"} onClick={submitFilter} text={"숙소 보기"} />
+          <BlackBtn
+            type={"submit"}
+            onClick={submitFilter}
+            px={"[24px]"}
+            py={"[14px]"}
+            text={"숙소 보기"}
+          />
         </footer>
       </form>
 

@@ -272,6 +272,8 @@ export default function PersonalInfo() {
                     <div className="mt-3">
                       <BlackBtn
                         type={"submit"}
+                        px={"[24px]"}
+                        py={"[14px]"}
                         onClick={onClickEditSubmit}
                         text={"저장"}
                       />
@@ -313,6 +315,8 @@ export default function PersonalInfo() {
                     <BlackBtn
                       type={"submit"}
                       onClick={onClickEditSubmit}
+                      px={"[24px]"}
+                      py={"[14px]"}
                       text={"저장"}
                     />
                   </form>
@@ -353,6 +357,8 @@ export default function PersonalInfo() {
                     <BlackBtn
                       type={"submit"}
                       onClick={onClickEditSubmit}
+                      px={"[24px]"}
+                      py={"[14px]"}
                       text={"저장"}
                     />
                   </form>
@@ -392,6 +398,8 @@ export default function PersonalInfo() {
                     <BlackBtn
                       type={"submit"}
                       onClick={onClickEditSubmit}
+                      px={"[24px]"}
+                      py={"[14px]"}
                       text={"저장"}
                     />
                   </form>
@@ -433,6 +441,8 @@ export default function PersonalInfo() {
                     <BlackBtn
                       type={"submit"}
                       onClick={onClickEditSubmit}
+                      px={"[24px]"}
+                      py={"[14px]"}
                       text={"저장"}
                     />
                   </form>

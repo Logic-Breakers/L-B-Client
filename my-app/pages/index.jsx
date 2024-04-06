@@ -70,8 +70,7 @@ export default function Home() {
       try {
         // 서버 api 호출
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_SERVER_URL}
-            /stays/category?page=1&size=20&categoryName=${categoryStorage}`,
+          `${process.env.NEXT_PUBLIC_SERVER_URL}/stays/category?page=1&size=20&categoryName=${categoryStorage}`,
           {
             headers: {
               "Content-Type": "application/json",

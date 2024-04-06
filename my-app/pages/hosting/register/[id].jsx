@@ -9,6 +9,8 @@ import HouseImages from "@/components/HouseImages";
 import RedBtn from "@/components/Buttons/RedBtn";
 import AppBackPageBtn from "@/components/Buttons/AppBackPageBtn";
 
+import DateRangeCalender from "@/components/DateRangeCalender";
+
 import CountryData from "@/components/Datas/CountryData";
 import PropertyTypeData from "@/components/Datas/PropertyTypeData";
 import PlaceTypeData from "@/components/Datas/PlaceTypeData";
@@ -272,6 +274,7 @@ export default function Register() {
               (* 는 필수 입력사항입니다.)
             </span>
           </div>
+
           <form onSubmit={(event) => event.preventDefault()}>
             <h2 className="text-xl text-gray-600">기본정보를 알려주세요</h2>
             <section className="my-8 space-y-10">
@@ -352,6 +355,10 @@ export default function Register() {
                     className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
                   />
                 </section>
+              </section>
+
+              <section>
+                <DateRangeCalender />
               </section>
 
               {/* 요금 */}

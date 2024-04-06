@@ -1,5 +1,5 @@
 import HeaderCategoryItem from "./HeaderCategoryItem";
-import ScrollArrowBtn from "@/components/Buttons/ScrollArrowBtn";
+import ArrowBtn from "@/components/Buttons/ArrowBtn";
 import FilterBtn from "@/components/Header/Nav/FilterBtn";
 
 import CategoryItemData from "@/components/Datas/CategoryItemData";
@@ -23,7 +23,8 @@ export default function HeaderCategory({ getCategoryData, category }) {
   return (
     <section className="bnb_xl:px-[80px] px-[40px] border-t-[1px] border-solid border-[#eeeeee] pt-3 flex flex-row justify-between items-center space-x-4">
       <div className="mr-2">
-        <ScrollArrowBtn onClickScrollBtn={onClickScrollBtn} dir={"Left"} />
+        {/* 왼쪽 화살표 버튼 */}
+        <ArrowBtn onClick={onClickScrollBtn} direction={"Left"} />
       </div>
       {/* 카테고리 아이템들 */}
       <section
@@ -45,7 +46,7 @@ export default function HeaderCategory({ getCategoryData, category }) {
       <div className="flex flex-row justify-between items-center gap-x-8">
         {/* 오른쪽 화살표 버튼 */}
         <div className="ml-2">
-          <ScrollArrowBtn onClickScrollBtn={onClickScrollBtn} dir={"Right"} />
+          <ArrowBtn onClick={onClickScrollBtn} direction={"Right"} />
         </div>
 
         {/* 필터 모달 버튼 */}
