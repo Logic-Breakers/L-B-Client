@@ -5,13 +5,13 @@ dayjs.locale("ko");
 import ArrowBtn from "./Buttons/ArrowBtn";
 import BlackBtn from "./Buttons/BlackBtn";
 
+// signup.jsx > DateCalendar.jsx
 export default function DateCalendar({
   birthDate,
   setBirthDate,
   showDateCalendarModal,
   setShowDateCalendarModal,
 }) {
-  // signup.jsx
   // const [showDateCalendarModal, setShowDateCalendarModal] = useState(false);
   // const [birthDate, setBirthDate] = useState(new Date());
 

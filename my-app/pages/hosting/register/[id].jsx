@@ -290,6 +290,7 @@ export default function Register() {
                   placeholder="숙소 이름을 적어주세요"
                 ></input>
               </section>
+
               {/* 국가 */}
               <section>
                 <HostingRegisterItemTitle text={"국가"} require mb />
@@ -357,9 +358,10 @@ export default function Register() {
                 </section>
               </section>
 
-              <section>
+              {/* test / rooms페이지의 달력처럼 만드는 중 */}
+              {/* <section>
                 <DateRangeCalender />
-              </section>
+              </section> */}
 
               {/* 요금 */}
               <section>
