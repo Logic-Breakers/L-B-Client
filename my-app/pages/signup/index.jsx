@@ -12,6 +12,8 @@ import Warning from "@/components/Warning";
 import RedBtn from "@/components/Buttons/RedBtn";
 import ProfileImage from "@/components/ProfileImage";
 
+import DateCalendar from "@/components/DateCalendar";
+
 import CountryData from "@/components/Datas/CountryData";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -21,6 +23,14 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 // 회원가입이 잘 되면 각 부분 유효성 검사하기
 export default function SignUp() {
   const router = useRouter();
+
+  // DateCalendar
+  const [showDateCalendarModal, setShowDateCalendarModal] = useState(false);
+
+  // showDateCalendarModal 버튼 핸들러
+  const handleShowDateCalendarBtn = () => {
+    setShowDateCalendarModal(!showDateCalendarModal);
+  };
 
   // 프로필 사진
   const [profileImg, setProfileImg] = useState("/profile_basic_img.png");
@@ -67,12 +77,6 @@ export default function SignUp() {
     setIsValid(isValidPhone);
   };
 
-  // 생년월일
-  const onBlurBirthDate = (event) => {
-    // 형식 맞추기 위해 뒤에 "T00:00:00" 추가함
-    setBirthDate(event.target.value + "T00:00:00");
-  };
-
   // Base64 데이터 URL을 Blob으로 변환
   const convertDataURLToFile = async (dataURL, fileName) => {
     const response = await axios.get(dataURL, {
@@ -100,7 +104,7 @@ export default function SignUp() {
             password,
             country,
             phone,
-            birthDate,
+            birthDate: birthDate + "T00:00:00",
           }),
         ],
         { type: "application/json" }
@@ -123,7 +127,7 @@ export default function SignUp() {
     console.log("password : ", password);
     console.log("country : ", country);
     console.log("phone : ", phone);
-    console.log("birthDate : ", birthDate);
+    console.log("birthDate : ", birthDate + "T00:00:00");
 
     try {
       // 서버 API 호출
@@ -260,13 +264,25 @@ export default function SignUp() {
                   {/* 생년월일 */}
                   <section>
                     <HostingRegisterItemTitle text={"생년월일"} require mb />
-                    <input
-                      required
-                      onBlur={onBlurBirthDate}
-                      // onChange={(event) => setBirthDate(event.target.value)}
-                      type="date"
-                      className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
-                    ></input>
+                    <div className="relative">
+                      <input
+                        readOnly
+                        required
+                        id="birthDate"
+                        type="date"
+                        onClick={handleShowDateCalendarBtn}
+                        value={birthDate}
+                        className="border-[#cccccc] border-[1px] rounded-md w-full h-[55px] text-md p-4 text-gray-600"
+                      />
+                      {showDateCalendarModal && (
+                        <DateCalendar
+                          birthDate={birthDate}
+                          setBirthDate={setBirthDate}
+                          showDateCalendarModal={showDateCalendarModal}
+                          setShowDateCalendarModal={setShowDateCalendarModal}
+                        />
+                      )}
+                    </div>
                   </section>
 
                   {/* 버튼을 누르면 서버에 제출되도록 함수 만들기 */}

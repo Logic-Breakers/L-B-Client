@@ -139,6 +139,7 @@ export default function DateRangeCalender() {
                 </div>
                 <input
                   id="checkOut"
+                  readOnly
                   type="date"
                   onClick={handleOnCheckOutBtn}
                   value={inputValue}
@@ -191,7 +192,11 @@ export default function DateRangeCalender() {
         </section>
 
         <section className="flex flex-row justify-end items-center gap-x-4">
-          <button type="button" onClick={onClickPresentMonth}>
+          <button
+            type="button"
+            onClick={onClickPresentMonth}
+            className="text-blue-500 hover:underline"
+          >
             오늘
           </button>
           <BlackBtn
