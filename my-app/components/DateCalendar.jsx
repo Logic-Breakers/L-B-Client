@@ -99,7 +99,7 @@ export default function DateCalendar({
   return (
     <div>
       {/* Date Calendar */}
-      <div className="absolute bnb_sm:top-[-360px] bnb_sm:right-0 z-[200]">
+      <div className="absolute top-[-360px] right-0 z-[200]">
         <div
           className={`w-[330px] p-4 rounded-2xl shadow-xxx ${
             showDateCalendarModal && showYearModal ? "bg-gray-300" : "bg-[#fff]"
