@@ -32,6 +32,8 @@ import RoomsHeader from "@/components/Header/RoomsHeader";
 
 // 숙소 상세내용
 export default function Rooms() {
+  // 위치를 참고하기 위해 useRef를 사용한다.
+  // 여러개를 참고하기 위해 빈배열('[]')을 사용한다.
   const scrollRef = useRef([]);
   const [isRoomsHeaderShow, setIsRoomsHeaderShow] = useState(false);
 
@@ -348,8 +350,6 @@ export default function Rooms() {
             houseName={"숙소 이름"}
           />
           <div className="my-4 font-semibold">address</div>
-          <div>info</div>
-          <SeeMoreBtn text={"더 보기"} mt={"4"} />
         </section>
 
         {/* 호스트 정보 */}

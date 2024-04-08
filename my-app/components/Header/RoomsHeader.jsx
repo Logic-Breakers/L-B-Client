@@ -3,6 +3,7 @@ import RoomsHeaderBtn from "../Buttons/RoomsHeaderBtn";
 import RedBtn from "../Buttons/RedBtn";
 
 // Rooms 페이지에서 스크롤 내리면 나타나는 헤더
+// 부모(rooms.jsx)으로부터 받은 props인 scrollRef를 RoomsHeaderBtn으로 넘겨준다.
 export default function RoomsHeader({ scrollRef, isRoomsHeaderShow }) {
   return (
     <header
