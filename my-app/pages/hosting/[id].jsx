@@ -10,7 +10,7 @@ import DeleteBtn from "@/components/Buttons/DeleteBtn";
 import HostingPresentHostingItem from "@/components/Hosting/indexPage/HostingPresentHostingItem";
 import HostingReservationItem from "@/components/Hosting/indexPage/HostingReservationItem";
 import HostingReviewItem from "@/components/Hosting/indexPage/HostingReviewItem";
-import ScrollArrowBtn from "@/components/Buttons/ScrollArrowBtn";
+import ArrowBtn from "@/components/Buttons/ArrowBtn";
 
 import { useState, useEffect } from "react";
 
@@ -102,10 +102,7 @@ export default function Hosting() {
               {/* 등록된 숙소를 누르면 해당 숙소 세부정보 사이트로 이동하도록 구현하기 */}
               {/* 서버로부터 등록한 전체 숙소 데이터 가져오기 */}
               <div className="mr-4">
-                <ScrollArrowBtn
-                  onClickScrollBtn={onClickScrollBtn}
-                  dir={"Left"}
-                />
+                <ArrowBtn onClick={onClickScrollBtn} direction={"Left"} />
               </div>
               <div
                 id="scrollTarget"
@@ -126,10 +123,7 @@ export default function Hosting() {
                 ))}
               </div>
               <div className="ml-4">
-                <ScrollArrowBtn
-                  onClickScrollBtn={onClickScrollBtn}
-                  dir={"Right"}
-                />
+                <ArrowBtn onClick={onClickScrollBtn} direction={"Right"} />
               </div>
             </div>
           </section>

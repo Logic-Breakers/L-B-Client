@@ -3,40 +3,38 @@ import DeleteBtn from "./Buttons/DeleteBtn";
 export default function ProfileImage({ profileImg, setProfileImg }) {
   // 프로필 이미지 핸들러
   const handleProfileImage = async (event) => {
-    // 하나의 이미지만 등록
+    // 하나의 이미지만 선택
     const file = event.target.files[0];
 
-    // 파일을 선택하지 않은 경우
+    // File을 선택하지 않은 경우
     if (!file) {
       return;
     } else {
-      // 파일을 선택했다면 기존 값 초기화 시키기
+      // File을 선택했다면 기존 값 초기화 시키기
       setProfileImg("");
 
-      // 이미지 화면에 보여주기
       const reader = new FileReader();
+
+      // file을 Base64 Data URL로 변환
+      // 아래 작업은 console.log를 했을 때 비동기 작업이 완료되지 않아 undefined로 나타난다.
+      reader.readAsDataURL(file);
+
+      // 이미지 화면에 보여주기
+      // 변환된 Base64 Data URL의 onload가 완료된 후 실행
       reader.onload = (event) => {
+        // 변환된 Base64 Data URL의 onload가 완료 2, 진행 중 1, 실패 0 을 반환한다.
         if (reader.readyState === 2) {
-          // 파일 onload가 성공 2, 진행 중 1, 실패 0 을 반환
           const imgUrl = event.target.result;
+          // 상태 업데이트
           setProfileImg(imgUrl);
         }
       };
-      reader.readAsDataURL(file);
     }
   };
 
-  // 프로필 이미지 삭제
+  // 프로필 이미지 삭제 (= 기본 이미지로 변경)
   const deleteImage = () => {
-    // 기본 이미지인 경우
-    if (profileImg === "/profile_basic_img.png") {
-      return;
-    }
-    // 등록한 이미지가 있는 경우
-    else {
-      // 기본 이미지로 변경하기
-      setProfileImg("/profile_basic_img.png");
-    }
+    setProfileImg("/profile_basic_img.png");
   };
 
   return (

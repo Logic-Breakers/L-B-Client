@@ -7,44 +7,56 @@ export default function HouseImages({ houseImages, setHouseImages }) {
 
   // 이미지 선택
   const handleHouseImages = async (event) => {
+    // File 전체
     const files = event.target.files;
     const imgUrls = [];
 
-    // 파일을 선택하지 않은 경우
+    // File을 선택하지 않은 경우
     if (files.length === 0) {
       return;
     } else {
-      // 파일을 선택했다면 기존 값 초기화 시키기
+      // File을 선택했다면 기존 값 초기화 시키기
       setHouseImages([]);
 
-      // 반복문을 통해 선택한 file 하나씩 Blob 객체로 변환하기
+      // 여러 개의 File을 한 번에 Base64 Data URL 변환시킬 수 없기 때문에,
+      // for문을 통해서 작업한다.
       for (let i = 0; i < files.length; i++) {
         const file = files[i];
         const reader = new FileReader();
 
+        // file을 Base64 Data URL로 변환
+        // 아래 작업은 console.log를 했을 때 비동기 작업이 완료되지 않아 undefined로 나타난다.
+        reader.readAsDataURL(file);
+
+        // 변환된 Base64 Data URL의 onload가 완료된 후 실행
         reader.onload = (event) => {
-          // 파일 onload가 성공 2, 진행 중 1, 실패 0 을 반환
+          // 변환된 Base64 Data URL의 onload가 완료 2, 진행 중 1, 실패 0 을 반환한다.
           if (reader.readyState === 2) {
             const imgUrl = event.target.result;
             imgUrls.push(imgUrl);
 
-            // 모든 파일을 처리한 경우
+            // 모든 파일을 처리한 경우, 상태 업데이트
             if (imgUrls.length === files.length) {
               setHouseImages(imgUrls);
             }
           }
         };
-        // Blob 객체로 변환하여 읽기
-        reader.readAsDataURL(file);
+
         console.log("imgUrls", imgUrls);
+        console.log("file", file);
       }
     }
   };
 
   // 이미지 삭제
   const deleteImage = (index) => {
+    // = ['imageURL1', 'imageURL2', 'imageURL3', ... ]
     const newHouseImages = [...houseImages];
+
+    // 선택한 index의 이미지부터 하나만 선택된다. (filter를 사용해도 된다.)
     newHouseImages.splice(index, 1);
+
+    // 만약 index가 1이면 -> ['imageURL1', 'imageURL3', ... ]
     setHouseImages(newHouseImages);
   };
 
