@@ -2,15 +2,16 @@ import dayjs from "dayjs";
 import { useState } from "react";
 dayjs.locale("ko");
 
-import ArrowBtn from "./Buttons/ArrowBtn";
-import BlackBtn from "./Buttons/BlackBtn";
+import ArrowBtn from "../Buttons/ArrowBtn";
+import BlackBtn from "../Buttons/BlackBtn";
 
-// signup.jsx > DateCalendar.jsx
-export default function DateCalendar({
+// signup.jsx > SignUpDateCalendar.jsx
+export default function SignUpDateCalendar({
   birthDate,
   setBirthDate,
   showDateCalendarModal,
   setShowDateCalendarModal,
+  showDateCalendarModalBtn,
 }) {
   // const [showDateCalendarModal, setShowDateCalendarModal] = useState(false);
   // const [birthDate, setBirthDate] = useState(new Date());
@@ -22,7 +23,7 @@ export default function DateCalendar({
   const currentDate = dayjs();
   const currentYear = currentDate.year();
 
-  // 200년 전의 날짜를 계산합니다.
+  // 200년 전의 연도를 계산합니다.
   const pastYear = currentDate.subtract(200, "year").year();
 
   // 현재 연도와 200년 전까지의 연도를 배열에 담습니다.
@@ -38,13 +39,13 @@ export default function DateCalendar({
   // 현재 날짜
   const [today, setToday] = useState(dayjs());
 
-  // 그 날이 포함된 달의 마지막 날
+  // 해당 달의 전체일수를 구함
   const daysInMonth = today.daysInMonth();
 
-  // 이번달의 1일
+  // 선택한 달의 1일에 대한 정보
   const firstDayOfMonth = dayjs(today).startOf("month").locale("ko");
 
-  // 1일부터 끝날까지 배열에 순차적으로 넣음
+  // 1일부터 마지막 날까지 배열에 순차적으로 넣음
   const dates = [];
   for (let i = 1; i <= daysInMonth; i++) {
     const date = dayjs(firstDayOfMonth).add(i - 1, "day");
@@ -56,10 +57,10 @@ export default function DateCalendar({
   const emptyDates = new Array(firstDayOfMonth.day()).fill(null);
 
   // 1일의 요일 만큼 앞에 빈 공백 넣어준다.
-  const calenderData = [...emptyDates, ...dates];
+  const calendarData = [...emptyDates, ...dates];
 
   // 이전 달
-  const onClickPreMonth = () => {
+  const onClickPastMonth = () => {
     setToday(dayjs(today).subtract(1, "month"));
   };
 
@@ -92,33 +93,38 @@ export default function DateCalendar({
   };
 
   // DateCalendar 모달 on, off
-  const showDateCalendarModalBtn = () => {
-    setShowDateCalendarModal(false);
-  };
+  // const showDateCalendarModalBtn = () => {
+  //   setShowDateCalendarModal(false);
+  // };
 
   return (
     <div>
       {/* Date Calendar */}
       <div className="absolute top-[-360px] right-0 z-[200]">
+        {/* 달력 모달과 연도 선택 모달이 둘 다 켜진 경우, 구분을 위해 달력 모달에 배경색을 입힌다. */}
         <div
           className={`w-[330px] p-4 rounded-2xl shadow-xxx ${
             showDateCalendarModal && showYearModal ? "bg-gray-300" : "bg-[#fff]"
           }`}
         >
           <section className="w-full">
+            {/* 달력의 헤더 */}
             <header>
               <div className="relative flex flex-row justify-center pb-[22px]">
+                {/* 연도 선택 버튼 */}
                 <div onClick={showYearModalBtn} className="cursor-pointer">
                   {today.format("YYYY년 M월")}
                 </div>
+                {/* 이전 달로 변경 */}
                 <div className="absolute left-4">
-                  <ArrowBtn onClick={onClickPreMonth} direction={"Left"} />
+                  <ArrowBtn onClick={onClickPastMonth} direction={"Left"} />
                 </div>
+                {/* 다음 달로 변경 */}
                 <div className="absolute right-4">
                   <ArrowBtn onClick={onClickNextMonth} direction={"Right"} />
                 </div>
 
-                {/* 연도, 월 변경 모달 */}
+                {/* 연도 변경 모달 */}
                 {showYearModal && (
                   <section className="absolute top-8 z-[201] bg-[#fff] border-[1px] w-full h-[280px] p-6 rounded-lg shadow-xxx ">
                     <ul className="w-full h-[200px] flex flex-row flex-wrap overflow-y-scroll scrollbar-hide">
@@ -137,6 +143,8 @@ export default function DateCalendar({
                         </li>
                       ))}
                     </ul>
+
+                    {/* 연도 모달 닫기 버튼 */}
                     <div className="flex flex-row justify-end pt-2">
                       <BlackBtn
                         type={"button"}
@@ -164,7 +172,7 @@ export default function DateCalendar({
             {/* 날짜 표시 */}
             <main>
               <ul className="flex flex-row flex-wrap">
-                {calenderData.map((date, index) => (
+                {calendarData.map((date, index) => (
                   <li
                     key={index}
                     className="w-[14.28%] aspect-square flex flex-row "
@@ -191,6 +199,7 @@ export default function DateCalendar({
 
           {/* 모달 하단 부분 */}
           <section className="flex flex-row justify-between items-center px-2">
+            {/* 초기화 버튼 */}
             <button
               type="button"
               onClick={onClickResetBtn}
@@ -198,6 +207,8 @@ export default function DateCalendar({
             >
               초기화
             </button>
+
+            {/* 켈린더 모달 전체 닫기 버튼 */}
             <BlackBtn
               type={"button"}
               onClick={showDateCalendarModalBtn}

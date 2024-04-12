@@ -12,7 +12,7 @@ import Warning from "@/components/Warning";
 import RedBtn from "@/components/Buttons/RedBtn";
 import ProfileImage from "@/components/ProfileImage";
 
-import DateCalendar from "@/components/DateCalendar";
+import SignUpDateCalendar from "@/components/Calendar/SignUpDateCalendar";
 
 import CountryData from "@/components/Datas/CountryData";
 
@@ -24,18 +24,18 @@ import { faChevronDown } from "@fortawesome/free-solid-svg-icons";
 export default function SignUp() {
   const router = useRouter();
 
-  // DateCalendar
+  // 생년월일 달력 모달 상태
   const [showDateCalendarModal, setShowDateCalendarModal] = useState(false);
 
-  // showDateCalendarModal 버튼 핸들러
-  const handleShowDateCalendarBtn = () => {
+  // 생년월일 달력 모달 on, off 버튼
+  const showDateCalendarModalBtn = () => {
     setShowDateCalendarModal(!showDateCalendarModal);
   };
 
   // 프로필 사진
   const [profileImg, setProfileImg] = useState("/profile_basic_img.png");
 
-  // 이름, 이메일, 비밀번호, 국가, 전화번호
+  // 이름, 이메일, 비밀번호, 국가, 전화번호, 생년월일
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -230,7 +230,7 @@ export default function SignUp() {
                     >
                       <select
                         id="country"
-                        className="appearance-none w-full h-full pl-4 rounded-md text-md text-gray-600"
+                        className="appearance-none w-full h-full pl-4 rounded-md text-md text-gray-600 "
                         defaultValue={""}
                       >
                         <option value="">국가를 선택해주세요</option>
@@ -268,18 +268,18 @@ export default function SignUp() {
                       <input
                         readOnly
                         required
-                        id="birthDate"
                         type="date"
-                        onClick={handleShowDateCalendarBtn}
+                        onClick={showDateCalendarModalBtn}
                         value={birthDate}
-                        className="border-[#cccccc] border-[1px] rounded-md w-full h-[55px] text-md p-4 text-gray-600"
+                        className="border-[#cccccc] border-[1px] rounded-md w-full h-[55px] text-md p-4 text-gray-600 cursor-pointer"
                       />
                       {showDateCalendarModal && (
-                        <DateCalendar
+                        <SignUpDateCalendar
                           birthDate={birthDate}
                           setBirthDate={setBirthDate}
                           showDateCalendarModal={showDateCalendarModal}
                           setShowDateCalendarModal={setShowDateCalendarModal}
+                          showDateCalendarModalBtn={showDateCalendarModalBtn}
                         />
                       )}
                     </div>

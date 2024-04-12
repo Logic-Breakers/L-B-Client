@@ -64,7 +64,7 @@ export default function HouseImages({ houseImages, setHouseImages }) {
     <div>
       <label
         htmlFor="img"
-        className="w-full cursor-pointer text-gray-600 hover:border-[var(--brand-color)] hover:text-[var(--brand-color)] flex items-center justify-center border-2 border-dashed border-gray-300 h-48 rounded-md"
+        className="w-full py-6 cursor-pointer text-gray-600 hover:border-[var(--brand-color)] hover:text-[var(--brand-color)] flex items-center justify-center border-2 border-dashed border-gray-300 rounded-lg"
       >
         <svg
           className="h-12 w-12"
@@ -96,7 +96,10 @@ export default function HouseImages({ houseImages, setHouseImages }) {
           <HostingRegisterItemTitle text={"사진 미리보기"} mb />
           <div className="flex flex-row gap-x-4 overflow-x-scroll scrollbar-hide">
             {houseImages.map((el, index) => (
-              <div key={index} className="relative flex-shrink-0 ">
+              <div
+                key={index}
+                className="relative flex-shrink-0 border-gray-300 border-[1px] rounded-lg"
+              >
                 <img src={el} className="w-[100px] aspect-square rounded-lg" />
 
                 <div className="absolute top-1 left-1">

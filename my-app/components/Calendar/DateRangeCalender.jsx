@@ -2,8 +2,8 @@ import dayjs from "dayjs";
 import { useState, useEffect } from "react";
 dayjs.locale("ko");
 
-import ArrowBtn from "./Buttons/ArrowBtn";
-import BlackBtn from "./Buttons/BlackBtn";
+import ArrowBtn from "../Buttons/ArrowBtn";
+import BlackBtn from "../Buttons/BlackBtn";
 
 export default function DateRangeCalender() {
   const [onCheckIn, setOnCheckIn] = useState(false);

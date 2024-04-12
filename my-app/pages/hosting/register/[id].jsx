@@ -9,7 +9,7 @@ import HouseImages from "@/components/HouseImages";
 import RedBtn from "@/components/Buttons/RedBtn";
 import AppBackPageBtn from "@/components/Buttons/AppBackPageBtn";
 
-import DateRangeCalender from "@/components/DateRangeCalender";
+import RegisterDateCalendar from "@/components/Calendar/RegisterDateCalendar";
 
 import CountryData from "@/components/Datas/CountryData";
 import PropertyTypeData from "@/components/Datas/PropertyTypeData";
@@ -53,6 +53,22 @@ export default function Register() {
   const [bedsNum, setBedsNum] = useState(1);
   const [bathroomsNum, setBathroomsNum] = useState(1);
 
+  // 시작일, 마감일 모달 상태
+  const [showStartDateCalendarModal, setShowStartDateCalendarModal] =
+    useState(false);
+  const [showEndDateCalendarModal, setShowEndDateCalendarModal] =
+    useState(false);
+
+  // 시작일 달력 모달 on, off 버튼
+  const showStartDateCalendarModalBtn = () => {
+    setShowStartDateCalendarModal(!showStartDateCalendarModal);
+  };
+
+  // 마감일 달력 모달 on, off 버튼
+  const showEndDateCalendarModalBtn = () => {
+    setShowEndDateCalendarModal(!showEndDateCalendarModal);
+  };
+
   // 숙소 이름
   const onBlurHouseName = (event) => {
     setHouseName(event.target.value);
@@ -63,18 +79,6 @@ export default function Register() {
   const onBlurCountry = (event) => {
     setCountry(event.target.value);
     console.log("국가 : ", country);
-  };
-
-  // 시작일
-  const onBlurStartDate = (event) => {
-    setStartDate(event.target.value + "T00:00:00");
-    console.log("시작일 : ", startDate);
-  };
-
-  // 마감일
-  const onBlurEndDate = (event) => {
-    setEndDate(event.target.value + "T00:00:00");
-    console.log("마감일 : ", endDate);
   };
 
   // 요금
@@ -170,8 +174,8 @@ export default function Register() {
     console.log("우편번호 : ", addrNum);
     console.log("주소 : ", addr);
     console.log("상세주소 : ", detailAddr);
-    console.log("시작일 : ", startDate);
-    console.log("마감일 : ", endDate);
+    console.log("시작일 : ", startDate + "T00:00:00");
+    console.log("마감일 : ", endDate + "T00:00:00");
     console.log("요금 : ", price);
     console.log("건물 유형 : ", propertyType);
     console.log("숙소 유형 : ", placeType);
@@ -195,8 +199,8 @@ export default function Register() {
             country,
             address: addr,
             detailAddress: detailAddr,
-            startDate,
-            endDate,
+            startDate: startDate + "T00:00:00",
+            endDate: endDate + "T00:00:00",
             price,
             propertyType,
             placeType,
@@ -240,10 +244,7 @@ export default function Register() {
         formData,
         {
           headers: {
-            // Authorization: "Bearer " + localStorage.getItem("acToken"),
-            Authorization:
-              "Bearer " +
-              "eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6WyJBRE1JTiIsIlVTRVIiXSwidXNlcm5hbWUiOiJhZG1pbkBnbWFpbC5jb20iLCJzdWIiOiJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE3MTA2NjU2MjYsImV4cCI6MTcxMDY2NTc0Nn0.r-R3XgYipekgQjtBGUjryJNc5XyAh51u8fbo0jXqZW8",
+            Authorization: "Bearer " + localStorage.getItem("acToken"),
             "Content-Type": "multipart/form-data",
             "ngrok-skip-browser-warning": "69420",
           },
@@ -337,31 +338,52 @@ export default function Register() {
               {/* 시작일 & 마감일 */}
               <section className="flex flex-row gap-x-8">
                 <section className="w-1/2">
+                  {/* 시작일 */}
                   <HostingRegisterItemTitle text={"시작일"} require mb />
-                  <input
-                    required
-                    onBlur={onBlurStartDate}
-                    // onChange={(event) => setStartDate(event.target.value)}
-                    type="date"
-                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
-                  />
+                  <div className="relative">
+                    <input
+                      readOnly
+                      required
+                      type="date"
+                      onClick={showStartDateCalendarModalBtn}
+                      value={startDate}
+                      className="border-[#cccccc] border-[1px] rounded-md w-full h-[55px] text-md p-4 text-gray-600 cursor-pointer"
+                    />
+                    {showStartDateCalendarModal && (
+                      <RegisterDateCalendar
+                        inputValue={startDate}
+                        setInputValue={setStartDate}
+                        showDateCalendarModal={showStartDateCalendarModal}
+                        setShowDateCalendarModal={setShowStartDateCalendarModal}
+                        showDateCalendarModalBtn={showStartDateCalendarModalBtn}
+                      />
+                    )}
+                  </div>
                 </section>
                 <section className="w-1/2">
+                  {/* 마감일 */}
                   <HostingRegisterItemTitle text={"마감일"} require mb />
-                  <input
-                    required
-                    onBlur={onBlurEndDate}
-                    // onChange={(event) => setEndDate(event.target.value)}
-                    type="date"
-                    className="border-solid border-[1px] border-[#cccccc] w-full h-[55px] rounded-md text-md text-gray-600 p-4 placeholder:text-gray-600"
-                  />
+                  <div className="relative">
+                    <input
+                      readOnly
+                      required
+                      type="date"
+                      onClick={showEndDateCalendarModalBtn}
+                      value={endDate}
+                      className="border-[#cccccc] border-[1px] rounded-md w-full h-[55px] text-md p-4 text-gray-600 cursor-pointer"
+                    />
+                    {showEndDateCalendarModal && (
+                      <RegisterDateCalendar
+                        inputValue={endDate}
+                        setInputValue={setEndDate}
+                        showDateCalendarModal={showEndDateCalendarModal}
+                        setShowDateCalendarModal={setShowEndDateCalendarModal}
+                        showDateCalendarModalBtn={showEndDateCalendarModalBtn}
+                      />
+                    )}
+                  </div>
                 </section>
               </section>
-
-              {/* test / rooms페이지의 달력처럼 만드는 중 */}
-              {/* <section>
-                <DateRangeCalender />
-              </section> */}
 
               {/* 요금 */}
               <section>
@@ -373,7 +395,7 @@ export default function Register() {
                     // onChange={(event) => setPrice(event.target.value)}
                     // value={price}
                     type="number"
-                    className="text-center border-solid border-[1px] border-[#cccccc] px-6 placeholder:text-center w-[150px] h-[55px] rounded-md text-md text-gray-600 placeholder:text-gray-600"
+                    className="text-center border-solid border-[1px] border-[#cccccc] px-6 placeholder:text-center w-[150px] h-[55px] rounded-md text-md text-gray-600 placeholder:text-gray-500"
                     placeholder="10000"
                   ></input>
                   <div className="absolute left-28 text-gray-600 text-sm">
